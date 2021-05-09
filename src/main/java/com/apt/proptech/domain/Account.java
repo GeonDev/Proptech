@@ -25,9 +25,9 @@ import java.sql.Date;
 @AllArgsConstructor
 @Builder
 public class Account {
-    Long ID;
-    String bankName;
-    String bankAccount;
+    Long Id;
+    String name;
+    String account;
 
     AccountState state;
 
