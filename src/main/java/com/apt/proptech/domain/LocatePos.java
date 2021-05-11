@@ -22,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class LocatePos {
     Long id;
+
     Double xPos;
     Double yPos;
     Double zPos;

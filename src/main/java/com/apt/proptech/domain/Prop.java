@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  *
  *  @author : SON
@@ -22,4 +24,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Prop {
     Long id;
+    List<LocatePos> locatePosList;
 }

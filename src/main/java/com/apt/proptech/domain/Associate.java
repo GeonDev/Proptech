@@ -1,9 +1,12 @@
 package com.apt.proptech.domain;
 
+import com.apt.proptech.domain.enums.AssociateState;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.sql.Date;
 
 /**
  *
@@ -23,4 +26,16 @@ import lombok.NoArgsConstructor;
 public class Associate {
     Long id;
     String name;
+    AssociateState state;
+
+    Long totalAmount;
+
+    Long targetAmount;
+
+    Date createAt;
+
+    Date endExpectAt;
+    Date endAt;
+
+
 }

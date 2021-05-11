@@ -1,9 +1,13 @@
 package com.apt.proptech.domain;
 
+import com.apt.proptech.domain.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.sql.Date;
+import java.util.List;
 
 /**
  *
@@ -22,8 +26,17 @@ import lombok.NoArgsConstructor;
 @Builder
 public class User {
 
-    Long id;
-    String password;
+    private Long id;
+    private String password;
 
+    private UserRole userRole;
+
+    private Date createdAt;
+    private Date lastLoginAt;
+    private Date updatedAt;
+    private Date leaveAt;
+
+    private List<Account> AccountList;
+    private List<Associate> AssociateList;
 
 }
