@@ -1,8 +1,14 @@
 package com.apt.proptech.domain;
 
 import com.apt.proptech.domain.enums.UserLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.xml.crypto.Data;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 
 /**
  *
@@ -19,7 +25,9 @@ import javax.xml.crypto.Data;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 public class AssociateUser {
+
     Long id;
 
     User user;

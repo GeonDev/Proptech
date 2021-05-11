@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.sql.Date;
 
 /**
  *
@@ -15,7 +16,7 @@ import javax.persistence.Id;
  *  @version 1.0
  *  @see  :
  *  @revision :
- *  @Description : 지도에 영역을 표시하기위해 사용하는 도메인
+ *  @Description : 유저가 모임에 제출한 비용을 기록해 놓은 도메인
  *
  */
 
@@ -24,12 +25,14 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 
-public class LocatePos {
+public class Receipt {
 
     Long id;
+    User user;
+    Associate associate;
+    Long payment;
 
-    Double xPos;
-    Double yPos;
-    Double zPos;
+    Date paymentAt;
 
+    Date expectAt;
 }

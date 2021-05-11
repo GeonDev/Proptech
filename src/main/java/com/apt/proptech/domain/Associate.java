@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Date;
 
 /**
@@ -23,7 +25,9 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 public class Associate {
+
     Long id;
     String name;
     AssociateState state;
@@ -31,6 +35,10 @@ public class Associate {
     Long totalAmount;
 
     Long targetAmount;
+
+    int paymentExpectCount;
+
+    int paymentCount;
 
     Date createAt;
 
