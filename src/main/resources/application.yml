@@ -1,3 +1,20 @@
 spring:
  server:
    port: 9060
+
+
+  datasource:
+    url: jdbc:mariadb://localhost:3306/mydb
+    username : myAdmin
+    password: admin
+    driver-class-name: org.mariadb.jdbc.Driver
+
+
+   jpa:
+     show-sql: true
+     propertice:
+       hibernate:
+         fomat_sql: true
+   h2:
+     console:
+       enabled: true
