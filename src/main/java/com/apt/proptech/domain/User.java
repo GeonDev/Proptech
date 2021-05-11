@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
@@ -24,11 +25,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
 public class User {
-
+    @Id
+    @GeneratedValue
     private Long id;
+
     private String password;
 
+    private String name;
+    private String email;
+
+    @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
     private Date createdAt;
@@ -36,7 +44,8 @@ public class User {
     private Date updatedAt;
     private Date leaveAt;
 
-    private List<Account> AccountList;
-    private List<Associate> AssociateList;
+    //private List<Account> AccountList;
+    //private List<Associate> AssociateList;
+    //private List<Receipt> receiptList;
 
 }
