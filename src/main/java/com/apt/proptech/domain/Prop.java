@@ -4,8 +4,7 @@ import lombok.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -23,10 +22,23 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
+@Entity
 public class Prop {
-
+    @Id @GeneratedValue
     Long id;
+
+    String city;
+    String State;
+    String zipCode;
+
+    String address;
+    String addressDetail;
+
+
+    @OneToOne(mappedBy = "propInfo")
+    Associate associateInfo;
+
+    @OneToMany
     List<LocatePos> locatePosList;
 
     @Override

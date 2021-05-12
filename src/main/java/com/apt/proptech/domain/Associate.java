@@ -52,6 +52,11 @@ public class Associate {
     Date endExpectDate;
     Date endRealDate;
 
+    @OneToOne
+    @JoinColumn(name = "prop_id")
+    Prop propInfo;
+
+
     @OneToMany(mappedBy = "associateInfo")
     List<AssociateUser> userInfoList = new ArrayList<>();
 
