@@ -4,9 +4,7 @@ import lombok.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  *
@@ -28,6 +26,10 @@ public class LocatePos {
 
     @Id @GeneratedValue
     Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="prop_id")
+    Prop prop;
 
     Double xPos;
     Double yPos;
