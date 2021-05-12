@@ -1,13 +1,12 @@
 package com.apt.proptech.domain;
 
 import com.apt.proptech.domain.enums.UserLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Date;
 
 
 /**
@@ -25,19 +24,31 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
+@Entity
 public class AssociateUser {
 
+    @Id @GeneratedValue
     Long id;
 
-    User user;
-    Associate associate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    User userInfo;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="associate_id")
+    Associate associateInfo;
+
+    @Enumerated(EnumType.STRING)
     UserLevel level;
 
-    Data createAt;
-    Data updateAt;
+    Date regDate;
+    Date updateDate;
 
+    @Override
+    public String toString() {
+        return ToStringBuilder
+                .reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 
 
 }

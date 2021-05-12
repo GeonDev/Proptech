@@ -1,11 +1,11 @@
 package com.apt.proptech.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.sql.Date;
 
@@ -28,11 +28,20 @@ import java.sql.Date;
 public class Receipt {
 
     Long id;
+
     User user;
+
     Associate associate;
+
     Long payment;
 
     Date paymentAt;
 
     Date expectAt;
+
+    @Override
+    public String toString() {
+        return ToStringBuilder
+                .reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }

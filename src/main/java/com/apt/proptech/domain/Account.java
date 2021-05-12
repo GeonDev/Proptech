@@ -1,13 +1,11 @@
 package com.apt.proptech.domain;
 
 import com.apt.proptech.domain.enums.AccountState;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -21,24 +19,36 @@ import java.sql.Date;
  *
  */
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
+@Entity
+@ToString(exclude = "user")
 public class Account {
 
+    @Id @GeneratedValue
     Long Id;
+
     String name;
     String account;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    User user;
+
+    @Enumerated(EnumType.STRING)
     AccountState state;
 
     Date regDate;
-    Date updateDate;
-    Date lastUseDate;
+    Date updatedDate;
+    Date useDate;
 
 
+    @Override
+    public String toString() {
+        return ToStringBuilder
+                .reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 
 }

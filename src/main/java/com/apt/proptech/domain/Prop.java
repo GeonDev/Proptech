@@ -1,9 +1,8 @@
 package com.apt.proptech.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -29,4 +28,10 @@ public class Prop {
 
     Long id;
     List<LocatePos> locatePosList;
+
+    @Override
+    public String toString() {
+        return ToStringBuilder
+                .reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }

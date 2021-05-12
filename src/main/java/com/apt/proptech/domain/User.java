@@ -1,13 +1,13 @@
 package com.apt.proptech.domain;
 
 import com.apt.proptech.domain.enums.UserRole;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,13 +39,24 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    private Date createdAt;
-    private Date lastLoginAt;
-    private Date updatedAt;
-    private Date leaveAt;
+    private Date regDate;
+    private Date loginDate;
+    private Date updatedDate;
+    private Date removeDate;
 
-    //private List<Account> AccountList;
-    //private List<Associate> AssociateList;
+    @OneToMany(mappedBy = "user")
+    private List<Account> accountList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "userInfo")
+    private List<AssociateUser> associateInfoList = new ArrayList<>();
+
     //private List<Receipt> receiptList;
+
+    @Override
+    public String toString() {
+        return ToStringBuilder
+                .reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
 
 }
