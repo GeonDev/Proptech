@@ -1,14 +1,14 @@
 package com.apt.proptech.domain;
 
 import com.apt.proptech.domain.enums.AssociateState;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -25,25 +25,41 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
+@Entity
 public class Associate {
 
+    @Id @GeneratedValue
     Long id;
+
     String name;
+
+    @Enumerated(EnumType.STRING)
     AssociateState state;
+
 
     Long totalAmount;
 
     Long targetAmount;
 
+    @Column(nullable = false)
     int paymentExpectCount;
 
-    int paymentCount;
+    @Column(nullable = false)
+    int paymentRealCount;
 
-    Date createAt;
+    Date regDate;
 
-    Date endExpectAt;
-    Date endAt;
+    Date endExpectDate;
+    Date endRealDate;
+
+    @OneToMany(mappedBy = "associateInfo")
+    List<AssociateUser> userInfoList = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return ToStringBuilder
+                .reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 
 
 }
