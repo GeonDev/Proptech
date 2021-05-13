@@ -25,7 +25,7 @@ import java.sql.Date;
 @Builder
 @Entity
 @ToString(exclude = "user")
-public class Account {
+public class Account extends BaseTimeEntity{
 
     @Id @GeneratedValue
     Long Id;
@@ -40,8 +40,7 @@ public class Account {
     @Enumerated(EnumType.STRING)
     AccountState state;
 
-    Date regDate;
-    Date updatedDate;
+
     Date useDate;
 
 

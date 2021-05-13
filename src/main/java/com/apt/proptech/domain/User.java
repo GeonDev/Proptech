@@ -26,7 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-public class User {
+public class User extends BaseTimeEntity{
     @Id
     @GeneratedValue
     private Long id;
@@ -39,9 +39,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    private Date regDate;
+
     private Date loginDate;
-    private Date updatedDate;
+
     private Date removeDate;
 
     @OneToMany(mappedBy = "user")

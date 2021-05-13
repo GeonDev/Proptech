@@ -25,7 +25,7 @@ import java.sql.Date;
 @AllArgsConstructor
 @Builder
 @Entity
-public class AssociateUser {
+public class AssociateUser extends BaseTimeEntity{
 
     @Id @GeneratedValue
     Long id;
@@ -41,8 +41,6 @@ public class AssociateUser {
     @Enumerated(EnumType.STRING)
     UserLevel level;
 
-    Date regDate;
-    Date updateDate;
 
     @Override
     public String toString() {
