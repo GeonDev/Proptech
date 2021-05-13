@@ -26,7 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Associate {
+public class Associate extends BaseTimeEntity{
 
     @Id @GeneratedValue
     Long id;
@@ -46,8 +46,6 @@ public class Associate {
 
     @Column(nullable = false)
     int paymentRealCount;
-
-    Date regDate;
 
     Date endExpectDate;
     Date endRealDate;
