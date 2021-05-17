@@ -1,6 +1,7 @@
 package com.apt.proptech.domain;
 
 import com.apt.proptech.domain.enums.UserRole;
+import com.apt.proptech.domain.enums.UserState;
 import lombok.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -39,18 +40,21 @@ public class User extends BaseTimeEntity{
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
+    @Enumerated(EnumType.STRING)
+    private UserState userState;
 
     private Date loginDate;
 
-    private Date removeDate;
+    private Date retiredDate;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany
     private List<Account> accountList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "userInfo")
+    @OneToMany
     private List<AssociateUser> associateInfoList = new ArrayList<>();
 
-    //private List<Receipt> receiptList;
+    @OneToMany
+    private List<Receipt> receiptList = new ArrayList<>();
 
     @Override
     public String toString() {

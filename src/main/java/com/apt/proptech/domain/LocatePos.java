@@ -35,6 +35,8 @@ public class LocatePos {
     Double yPos;
     Double zPos;
 
+    int order;
+
     @Override
     public String toString() {
         return ToStringBuilder
