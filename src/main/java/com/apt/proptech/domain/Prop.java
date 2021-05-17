@@ -1,10 +1,13 @@
 package com.apt.proptech.domain;
 
+import com.apt.proptech.domain.enums.PropType;
 import lombok.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -28,14 +31,21 @@ public class Prop {
     Long id;
 
     String city;
-    String State;
+    String state;
     String zipCode;
 
     String address;
     String addressDetail;
 
+    Long price;
 
-    @OneToOne(mappedBy = "propInfo")
+    LocalDateTime purchaseDate;
+
+    @Enumerated(EnumType.STRING)
+    PropType propType;
+
+    @ManyToOne
+    @JoinColumn(name = "associate_id")
     Associate associateInfo;
 
     @OneToMany

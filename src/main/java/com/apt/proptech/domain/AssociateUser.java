@@ -1,12 +1,11 @@
 package com.apt.proptech.domain;
 
-import com.apt.proptech.domain.enums.UserLevel;
+import com.apt.proptech.domain.enums.UserGrade;
 import lombok.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 
 /**
@@ -39,7 +38,7 @@ public class AssociateUser extends BaseTimeEntity{
     Associate associateInfo;
 
     @Enumerated(EnumType.STRING)
-    UserLevel level;
+    UserGrade userGrade;
 
 
     @Override
