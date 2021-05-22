@@ -27,19 +27,20 @@ import javax.persistence.*;
 public class AssociateUser extends BaseTimeEntity{
 
     @Id @GeneratedValue
-    Long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
-    User userInfo;
+    private User userInfo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="associate_id")
-    Associate associateInfo;
+    private Associate associateInfo;
 
     @Enumerated(EnumType.STRING)
-    UserGrade userGrade;
+    private UserGrade userGrade;
 
+    private String propAdress;
 
     @Override
     public String toString() {

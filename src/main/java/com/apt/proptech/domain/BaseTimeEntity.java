@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
@@ -16,9 +17,9 @@ import java.sql.Date;
 public class BaseTimeEntity {
 
     @CreatedDate
-    Date regDate;
+    LocalDateTime regDate;
 
     @LastModifiedDate
-    Date updatedDate;
+    LocalDateTime modiDate;
 
 }
