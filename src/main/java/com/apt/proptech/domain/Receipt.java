@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -26,21 +27,20 @@ import java.sql.Date;
 public class Receipt {
 
     @Id @GeneratedValue
-    Long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    User user;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    Associate associate;
+    private Associate associate;
 
-    Long payment;
+    private Long payment;
 
-    Date paymentAt;
+    private LocalDateTime paymentAt;
 
-    Date expectAt;
 
     @Override
     public String toString() {

@@ -29,26 +29,28 @@ import java.util.List;
 public class Associate extends BaseTimeEntity{
 
     @Id @GeneratedValue
-    Long id;
+    private Long id;
 
-    String name;
+    private String name;
 
     @Enumerated(EnumType.STRING)
-    AssociateState state;
+    private AssociateState state;
 
-
-    Long totalAmount;
-
-    Long targetAmount;
 
     @Column(nullable = false)
-    int paymentExpectCount;
+    private int operateFeeRatio;
 
     @Column(nullable = false)
-    int paymentRealCount;
+    private int paymentExpectCount;
 
-    Date endExpectDate;
-    Date endRealDate;
+    @Column(nullable = false)
+    private int paymentRealCount;
+
+    private Long totalRequiredPayment;
+
+
+    private Date endExpectDate;
+    private Date endRealDate;
 
     @OneToOne
     @JoinColumn(name = "prop_id")
@@ -57,6 +59,11 @@ public class Associate extends BaseTimeEntity{
 
     @OneToMany(mappedBy = "associateInfo")
     List<AssociateUser> userInfoList = new ArrayList<>();
+
+    @OneToMany
+    List<Claim> claimListList = new ArrayList<>();
+
+
 
     @Override
     public String toString() {

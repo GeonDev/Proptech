@@ -28,28 +28,28 @@ import java.util.List;
 @Entity
 public class Prop {
     @Id @GeneratedValue
-    Long id;
+    private Long id;
 
-    String city;
-    String state;
-    String zipCode;
+    private String city;
+    private String state;
+    private String zipCode;
 
-    String address;
-    String addressDetail;
+    private String address;
+    private String addressDetail;
 
-    Long price;
+    private Long price;
 
-    LocalDateTime purchaseDate;
+    private LocalDateTime purchaseDate;
 
     @Enumerated(EnumType.STRING)
-    PropType propType;
+    private PropType propType;
 
     @ManyToOne
     @JoinColumn(name = "associate_id")
-    Associate associateInfo;
+    private Associate associateInfo;
 
     @OneToMany
-    List<LocatePos> locatePosList;
+    private List<LocatePos> locatePosList;
 
     @Override
     public String toString() {

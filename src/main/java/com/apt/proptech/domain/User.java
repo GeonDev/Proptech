@@ -37,6 +37,8 @@ public class User extends BaseTimeEntity{
     private String name;
     private String email;
 
+    private String profileImg;
+
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 

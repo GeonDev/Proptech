@@ -25,17 +25,17 @@ import javax.persistence.*;
 public class LocatePos {
 
     @Id @GeneratedValue
-    Long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="prop_id")
-    Prop prop;
+    private Prop prop;
 
-    Double xPos;
-    Double yPos;
-    Double zPos;
+    private Double xPos;
+    private Double yPos;
+    private Double zPos;
 
-    int order;
+    private int order;
 
     @Override
     public String toString() {

@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -30,18 +31,20 @@ public class Account extends BaseTimeEntity{
     @Id @GeneratedValue
     Long Id;
 
-    String name;
+    String nickName;
+
     String account;
+
+    String bankName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     User user;
 
     @Enumerated(EnumType.STRING)
-    AccountState state;
+    AccountState accountState;
 
-
-    Date useDate;
+    LocalDateTime useDate;
 
 
     @Override
