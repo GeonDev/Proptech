@@ -34,7 +34,7 @@ public class Receipt {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "associate_id")
     private Associate associate;
 
     private Long payment;
