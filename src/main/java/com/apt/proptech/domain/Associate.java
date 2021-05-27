@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,42 +35,21 @@ public class Associate extends BaseTimeEntity{
     private String name;
 
     @Enumerated(EnumType.STRING)
-    private AssociateState state;
+    private AssociateState associateState;
 
 
-    @Column(nullable = false)
-    private int operateFeeRatio;
-
-    @Column(nullable = false)
-    private int paymentExpectCount;
-
-    @Column(nullable = false)
-    private int paymentRealCount;
-
-    private Long totalRequiredPayment;
+    private Double operateFeeRatio;
 
 
-    private Date endExpectDate;
-    private Date endRealDate;
+    private LocalDateTime endExpectDate;
 
-    @OneToOne
-    @JoinColumn(name = "prop_id")
-    Prop propInfo;
+    private LocalDateTime endRealDate;
 
-
-    @OneToMany(mappedBy = "associateInfo")
-    List<AssociateUser> userInfoList = new ArrayList<>();
 
     @OneToMany
-    List<Claim> claimListList = new ArrayList<>();
+    List<PurchaseProp> purchasePropList = new ArrayList<>();
 
 
-
-    @Override
-    public String toString() {
-        return ToStringBuilder
-                .reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
 
 
 }

@@ -9,16 +9,6 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
-/**
- *
- *  @author : SON
- *  @since 2021. 05. 08
- *  @version 1.0
- *  @see  :
- *  @revision :
- *  @Description : 사용자가 저장한 은행계좌 정보 도메인
- *
- */
 
 @Data
 @NoArgsConstructor
@@ -29,28 +19,21 @@ import java.time.LocalDateTime;
 public class Account extends BaseTimeEntity{
 
     @Id @GeneratedValue
-    Long Id;
+    private Long Id;
 
-    String nickName;
+    private String nickName;
 
-    String account;
+    private String account;
 
-    String bankName;
+    private String bankName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
-    User user;
+    private User user;
 
     @Enumerated(EnumType.STRING)
-    AccountState accountState;
+    private AccountState accountState;
 
-    LocalDateTime useDate;
-
-
-    @Override
-    public String toString() {
-        return ToStringBuilder
-                .reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
+    private LocalDateTime useDate;
 
 }

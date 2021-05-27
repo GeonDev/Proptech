@@ -10,23 +10,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- *
- *  @author : SON
- *  @since 2021. 05. 08
- *  @version 1.0
- *  @see  :
- *  @revision :
- *  @Description : 부동산 정보를 저장한 도메인
- *
- */
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-public class Prop {
+public class PurchaseProp extends BaseTimeEntity{
     @Id @GeneratedValue
     private Long id;
 
