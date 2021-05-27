@@ -8,17 +8,6 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
-/**
- *
- *  @author : SON
- *  @since 2021. 05. 08
- *  @version 1.0
- *  @see  :
- *  @revision :
- *  @Description : 유저가 모임에 제출한 비용을 기록해 놓은 도메인
- *
- */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,21 +19,12 @@ public class Receipt {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "associate_id")
-    private Associate associate;
+    @JoinColumn(name = "claim_id")
+    private Claim claim;
 
     private Long payment;
 
-    private LocalDateTime paymentAt;
+    private LocalDateTime paymentDate;
 
-
-    @Override
-    public String toString() {
-        return ToStringBuilder
-                .reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
+    private String buyerIp;
 }

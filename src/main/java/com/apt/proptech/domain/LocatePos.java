@@ -28,19 +28,13 @@ public class LocatePos {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="prop_id")
-    private Prop prop;
+    @JoinColumn(name="purchase_prop_id")
+    private PurchaseProp prop;
 
     private Double xPos;
     private Double yPos;
     private Double zPos;
 
     private int order;
-
-    @Override
-    public String toString() {
-        return ToStringBuilder
-                .reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
 
 }

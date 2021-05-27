@@ -8,19 +8,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- *
- *  @author : SON
- *  @since 2021. 05. 08
- *  @version 1.0
- *  @see  :
- *  @revision :
- *  @Description : 사용자가 정보를 저장한 도메인
- *
- */
 
 @Data
 @NoArgsConstructor
@@ -39,30 +29,28 @@ public class User extends BaseTimeEntity{
 
     private String profileImg;
 
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
     @Enumerated(EnumType.STRING)
     private UserState userState;
 
-    private Date loginDate;
+    private LocalDateTime retiredDate;
 
-    private Date retiredDate;
+    private LocalDateTime modiPasswordDate;
 
     @OneToMany
     private List<Account> accountList = new ArrayList<>();
 
     @OneToMany
-    private List<AssociateUser> associateInfoList = new ArrayList<>();
+    private List<LoginHistory> loginHistoryList = new ArrayList<>();
 
-    @OneToMany
-    private List<Receipt> receiptList = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return ToStringBuilder
-                .reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
 
 
 }

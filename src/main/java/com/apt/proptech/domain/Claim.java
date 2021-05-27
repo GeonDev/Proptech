@@ -30,10 +30,10 @@ public class Claim extends BaseTimeEntity{
 
     private Long payment;
 
-    private int count;
+    private int round;
 
     @ManyToOne
-    @JoinColumn(name ="associate_id")
-    private Associate associateInfo;
+    @JoinColumn(name ="sale_prop_id")
+    private SaleProp saleProp;
 
 }
