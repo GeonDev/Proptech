@@ -13,18 +13,20 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Receipt {
+public class Receipt extends BaseTimeEntity{
 
     @Id @GeneratedValue
     private Long id;
 
     private Long payment;
 
-    private LocalDateTime paymentDate;
-
     private String buyerIp;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "claim_id")
     private Claim claim;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }

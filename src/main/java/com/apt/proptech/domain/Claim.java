@@ -9,16 +9,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- *  @author : SON
- *  @since 2021. 05. 19
- *  @version 1.0
- *  @see  :
- *  @revision :
- *  @Description : 모임에서 선정한 지불 정보를 저장히는 곳
- *
- */
 
 @Data
 @NoArgsConstructor
@@ -42,6 +32,6 @@ public class Claim extends BaseTimeEntity{
 
 
     @OneToMany
-    List<Receipt> receiptList = new ArrayList<>();
+    private List<Receipt> receiptList = new ArrayList<>();
 
 }

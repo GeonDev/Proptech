@@ -1,4 +1,4 @@
-package com.apt.proptech.repository.service;
+package com.apt.proptech.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;

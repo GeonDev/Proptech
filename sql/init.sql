@@ -108,6 +108,20 @@ CREATE TABLE IF NOT EXISTS `login_history` (
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
+-- 테이블 proptech.owned_history 구조 내보내기
+DROP TABLE IF EXISTS `owned_history`;
+CREATE TABLE IF NOT EXISTS `owned_history` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `reg_date` date DEFAULT NULL,
+  `modi_date` date DEFAULT NULL,
+  `owned_state` varchar(50) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `sale_prop_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
 -- 테이블 proptech.prop_price 구조 내보내기
 DROP TABLE IF EXISTS `prop_price`;
 CREATE TABLE IF NOT EXISTS `prop_price` (
@@ -147,8 +161,10 @@ CREATE TABLE IF NOT EXISTS `receipt` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `claim_id` bigint(20) DEFAULT NULL,
   `payment` bigint(20) DEFAULT NULL,
-  `payment_date` date DEFAULT NULL,
+  `reg_date` date DEFAULT NULL,
+  `modi_date` date DEFAULT NULL,
   `buyer_ip` varchar(50) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -164,6 +180,20 @@ CREATE TABLE IF NOT EXISTS `sale_prop` (
   `sale_round` int(11) DEFAULT NULL,
   `reg_date` date DEFAULT NULL,
   `modi_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 proptech.staff 구조 내보내기
+DROP TABLE IF EXISTS `staff`;
+CREATE TABLE IF NOT EXISTS `staff` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `staff_role` varchar(50) DEFAULT NULL,
+  `reg_date` date DEFAULT NULL,
+  `modi_date` date DEFAULT NULL,
+  `associate_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

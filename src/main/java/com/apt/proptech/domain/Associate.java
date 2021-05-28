@@ -11,16 +11,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- *  @author : SON
- *  @since 2021. 05. 08
- *  @version 1.0
- *  @see  :
- *  @revision :
- *  @Description : 주택조합 정보를 저장한 도메인
- *
- */
 
 @Data
 @NoArgsConstructor
@@ -49,14 +39,26 @@ public class Associate extends BaseTimeEntity{
 
     private String address;
 
+    @OneToMany
+    private List<PurchaseProp> purchasePropList = new ArrayList<>();
 
     @OneToMany
-    List<PurchaseProp> purchasePropList = new ArrayList<>();
+    private List<SaleProp> salePropList = new ArrayList<>();
 
     @OneToMany
-    List<SaleProp> salePropList = new ArrayList<>();
+    private List<Staff> staffList = new ArrayList<>();
 
+    //전체 참여자 수
+    @Transient
+    private int totalJoinUserCount;
 
+    //전체 사업 금액
+    @Transient
+    private int totalRequiredPaid;
+
+    //전체 미납 금액
+    @Transient
+    private int totalUnPaid;
 
 
 }

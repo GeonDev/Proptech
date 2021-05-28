@@ -33,7 +33,7 @@ public class PurchaseProp extends BaseTimeEntity{
     @Enumerated(EnumType.STRING)
     private PropType propType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "associate_id")
     private Associate associateInfo;
 
@@ -43,9 +43,4 @@ public class PurchaseProp extends BaseTimeEntity{
     @OneToMany
     private List<PropPrice> propPriceList;
 
-    @Override
-    public String toString() {
-        return ToStringBuilder
-                .reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
 }
