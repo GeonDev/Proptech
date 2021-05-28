@@ -1,4 +1,4 @@
-package com.apt.proptech.Controller;
+package com.apt.proptech.controller.rest;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

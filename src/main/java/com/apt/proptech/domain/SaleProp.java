@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -22,6 +24,8 @@ public class SaleProp extends BaseTimeEntity {
 
     private String addressDetail;
 
+    private int saleRound;
+
     @ManyToOne
     @JoinColumn(name = "associate_id")
     private Associate associate;
@@ -30,8 +34,7 @@ public class SaleProp extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "claim_id")
-    private Claim claim;
+    @OneToMany
+    List<Claim> claimList = new ArrayList<>();
 
 }

@@ -29,10 +29,6 @@ public class User extends BaseTimeEntity{
 
     private String profileImg;
 
-    @ManyToOne
-    @JoinColumn(name = "company_id")
-    private Company company;
-
 
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
@@ -42,7 +38,12 @@ public class User extends BaseTimeEntity{
 
     private LocalDateTime retiredDate;
 
-    private LocalDateTime modiPasswordDate;
+    private LocalDateTime modiPwdDate;
+
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 
     @OneToMany
     private List<Account> accountList = new ArrayList<>();

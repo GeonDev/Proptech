@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -32,8 +34,14 @@ public class Claim extends BaseTimeEntity{
 
     private int round;
 
+    private String description;
+
     @ManyToOne
     @JoinColumn(name ="sale_prop_id")
     private SaleProp saleProp;
+
+
+    @OneToMany
+    List<Receipt> receiptList = new ArrayList<>();
 
 }

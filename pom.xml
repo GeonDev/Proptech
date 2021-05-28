@@ -68,7 +68,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- ToStringBuilder 를 사용하기위한 lib -->
+		<!-- ToStringBuilder -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
