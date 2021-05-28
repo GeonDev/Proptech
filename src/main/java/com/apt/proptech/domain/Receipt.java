@@ -18,13 +18,13 @@ public class Receipt {
     @Id @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "claim_id")
-    private Claim claim;
-
     private Long payment;
 
     private LocalDateTime paymentDate;
 
     private String buyerIp;
+
+    @ManyToOne
+    @JoinColumn(name = "claim_id")
+    private Claim claim;
 }

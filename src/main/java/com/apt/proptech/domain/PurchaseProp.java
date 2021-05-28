@@ -6,7 +6,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -40,6 +39,9 @@ public class PurchaseProp extends BaseTimeEntity{
 
     @OneToMany
     private List<LocatePos> locatePosList;
+
+    @OneToMany
+    private List<PropPrice> propPriceList;
 
     @Override
     public String toString() {

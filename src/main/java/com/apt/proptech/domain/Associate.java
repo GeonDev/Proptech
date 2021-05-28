@@ -37,17 +37,24 @@ public class Associate extends BaseTimeEntity{
     @Enumerated(EnumType.STRING)
     private AssociateState associateState;
 
-
     private Double operateFeeRatio;
-
 
     private LocalDateTime endExpectDate;
 
     private LocalDateTime endRealDate;
 
+    private String city;
+
+    private String state;
+
+    private String address;
+
 
     @OneToMany
     List<PurchaseProp> purchasePropList = new ArrayList<>();
+
+    @OneToMany
+    List<SaleProp> salePropList = new ArrayList<>();
 
 
 

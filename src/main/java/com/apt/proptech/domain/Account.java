@@ -21,7 +21,7 @@ public class Account extends BaseTimeEntity{
     @Id @GeneratedValue
     private Long Id;
 
-    private String nickName;
+    private String description;
 
     private String account;
 
