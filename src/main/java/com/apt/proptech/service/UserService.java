@@ -1,8 +1,6 @@
-package com.apt.proptech.repository.service;
+package com.apt.proptech.service;
 
 import com.apt.proptech.domain.User;
-import com.apt.proptech.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

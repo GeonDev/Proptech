@@ -21,7 +21,7 @@ public class Company {
     private String bizRegNum;
     private String address;
     private String zipCode;
-    LocalDateTime establishDate;
+    private LocalDateTime establishDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

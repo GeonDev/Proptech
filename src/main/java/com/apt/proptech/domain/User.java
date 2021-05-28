@@ -41,7 +41,7 @@ public class User extends BaseTimeEntity{
     private LocalDateTime modiPwdDate;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private Company company;
 
@@ -51,7 +51,10 @@ public class User extends BaseTimeEntity{
     @OneToMany
     private List<LoginHistory> loginHistoryList = new ArrayList<>();
 
+    @OneToMany
+    private List<OwnedHistory> ownedHistoryList = new ArrayList<>();
 
-
+    @OneToMany
+    private List<Receipt> receiptList = new ArrayList<>();
 
 }
