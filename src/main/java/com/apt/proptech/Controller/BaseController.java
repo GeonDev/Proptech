@@ -1,4 +1,4 @@
-package com.apt.proptech.controller;
+package com.apt.proptech.Controller;
 
 import com.apt.proptech.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;

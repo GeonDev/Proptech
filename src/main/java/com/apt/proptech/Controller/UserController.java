@@ -1,9 +1,9 @@
-package com.apt.proptech.controller;
+package com.apt.proptech.Controller;
 
 
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class UserController extends BaseController{
+public class UserController extends BaseController {
 
 }
