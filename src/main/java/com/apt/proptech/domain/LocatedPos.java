@@ -12,9 +12,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-public class LocatePos {
+public class LocatedPos {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

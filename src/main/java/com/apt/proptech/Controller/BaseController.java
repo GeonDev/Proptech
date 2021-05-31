@@ -2,6 +2,10 @@ package com.apt.proptech.Controller;
 
 import com.apt.proptech.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,23 +17,35 @@ public abstract class BaseController<Entity>  {
 
 
     @PostMapping("")
-    public Entity create( @RequestBody Entity entity ){
+    public Entity addItem( @RequestBody Entity entity ){
         return baseService.addItem(entity);
     }
 
     @GetMapping("{id}")
-    public Entity read( @PathVariable Long id ){
+    public Entity getItem( @PathVariable Long id ){
         return baseService.getItem(id);
     }
 
+    @GetMapping("")
+    public Page<Entity> getItemList(@PageableDefault(sort = { "id" }, direction = Sort.Direction.ASC) Pageable pageable){
+
+        return  baseService.getItemList(pageable);
+    }
+
+
+
+
     @PutMapping("")
-    public Entity update(@RequestBody Entity entity ){
+    public Entity updateItem(@RequestBody Entity entity ){
         return baseService.updateItem(entity);
     }
 
     @DeleteMapping("{id}")
-    public Entity delete(@PathVariable Long id ){
+    public Entity deleteItem(@PathVariable Long id ){
         return baseService.deleteItem(id);
     }
+
+
+
 
 }

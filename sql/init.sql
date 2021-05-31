@@ -81,13 +81,13 @@ CREATE TABLE IF NOT EXISTS `company` (
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
 -- 테이블 proptech.locate_pos 구조 내보내기
-DROP TABLE IF EXISTS `locate_pos`;
+DROP TABLE IF EXISTS `located_pos`;
 CREATE TABLE IF NOT EXISTS `locate_pos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `purchase_prop_id` int(11) DEFAULT NULL,
-  `x_pos` int(11) DEFAULT NULL,
-  `y_pos` int(11) DEFAULT NULL,
-  `z_pos` int(11) DEFAULT NULL,
+  `x_pos` DOUBLE DEFAULT NULL,
+  `y_pos` DOUBLE DEFAULT NULL,
+  `z_pos` DOUBLE DEFAULT NULL,
   `order` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `purchase_prop` (
   `state` varchar(50) DEFAULT NULL,
   `zip_code` varchar(50) DEFAULT NULL,
   `address` varchar(50) DEFAULT NULL,
-  `adress_detail` varchar(50) DEFAULT NULL,
+  `address_detail` varchar(50) DEFAULT NULL,
   `price` bigint(20) DEFAULT NULL,
   `purchase_date` date DEFAULT NULL,
   `prop_type` varchar(50) DEFAULT NULL,
