@@ -2,11 +2,10 @@ package com.apt.proptech.domain;
 
 import com.apt.proptech.domain.enums.PropType;
 import lombok.*;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -38,9 +37,9 @@ public class PurchaseProp extends BaseTimeEntity{
     private Associate associateInfo;
 
     @OneToMany
-    private List<LocatePos> locatePosList;
+    private List<LocatedPos> locatedList = new ArrayList<>();
 
     @OneToMany
-    private List<PropPrice> propPriceList;
+    private List<PropPrice> priceList = new ArrayList<>();;
 
 }

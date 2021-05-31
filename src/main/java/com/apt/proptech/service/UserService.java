@@ -1,10 +1,15 @@
 package com.apt.proptech.service;
 
 import com.apt.proptech.domain.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService extends BaseService<User>{
+
+
+
 
     @Override
     public User addItem(User object) {
@@ -44,4 +49,10 @@ public class UserService extends BaseService<User>{
 
         return user;
     }
+
+    @Override
+    public Page<User> getItemList(Pageable pageable) {
+        return baseRepository.findAll(pageable);
+    }
+
 }
