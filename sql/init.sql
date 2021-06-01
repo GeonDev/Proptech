@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `locate_pos` (
   `x_pos` DOUBLE DEFAULT NULL,
   `y_pos` DOUBLE DEFAULT NULL,
   `z_pos` DOUBLE DEFAULT NULL,
-  `order` int(11) DEFAULT NULL,
+  `order_count` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `login_history` (
   `login_date` date DEFAULT NULL,
   `login_ip` varchar(50) DEFAULT NULL,
   `is_login` tinyint(4) DEFAULT NULL,
-  `ip_cheched` varchar(50) DEFAULT NULL,
+  `ip_checked` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -217,9 +217,3 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 내보낼 데이터가 선택되어 있지 않습니다.
-
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

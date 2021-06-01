@@ -1,8 +1,8 @@
 package com.apt.proptech.Controller;
 
+import com.apt.proptech.domain.Pagination;
 import com.apt.proptech.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -27,13 +27,9 @@ public abstract class BaseController<Entity>  {
     }
 
     @GetMapping("")
-    public Page<Entity> getItemList(@PageableDefault(sort = { "id" }, direction = Sort.Direction.ASC) Pageable pageable){
-
-        return  baseService.getItemList(pageable);
+    public Pagination getItemList(@PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC, size = 10) Pageable pageable){
+        return baseService.getItemList(pageable);
     }
-
-
-
 
     @PutMapping("")
     public Entity updateItem(@RequestBody Entity entity ){
