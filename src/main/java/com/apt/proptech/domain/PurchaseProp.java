@@ -36,10 +36,10 @@ public class PurchaseProp extends BaseTimeEntity{
     @JoinColumn(name = "associate_id")
     private Associate associateInfo;
 
-    @OneToMany
+    @OneToMany(mappedBy = "prop")
     private List<LocatedPos> locatedList = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "prop")
     private List<PropPrice> priceList = new ArrayList<>();;
 
 }

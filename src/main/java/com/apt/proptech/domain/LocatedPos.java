@@ -26,6 +26,6 @@ public class LocatedPos {
     private Double yPos;
     private Double zPos;
 
-    private int order;
+    private Integer orderCount;
 
 }

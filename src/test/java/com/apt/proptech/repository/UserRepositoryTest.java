@@ -8,9 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class UserRepositoryTest {
@@ -24,13 +21,6 @@ class UserRepositoryTest {
     @Test
     @Transactional
     void crud() {
-        User user = userRepository.findById(1l).orElse(null);
-
-        List<Account> accountList = user.getAccountList();
-
-        for(Account account : accountList){
-            System.out.println(account);
-        }
 
 
     }
