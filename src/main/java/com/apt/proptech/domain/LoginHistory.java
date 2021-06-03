@@ -16,8 +16,7 @@ import java.time.LocalDateTime;
 @Entity
 public class LoginHistory {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDateTime loginDate;

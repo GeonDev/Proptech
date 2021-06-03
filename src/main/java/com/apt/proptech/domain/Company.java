@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,17 +16,12 @@ import java.time.LocalDateTime;
 @Entity
 public class Company {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String ceoName;
     private String bizRegNum;
     private String address;
     private String zipCode;
     private LocalDateTime establishDate;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
 
 }

@@ -1,6 +1,6 @@
 package com.apt.proptech.service;
 
-import com.apt.proptech.domain.Pagination;
+import com.apt.proptech.domain.dto.Pagination;
 import com.apt.proptech.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

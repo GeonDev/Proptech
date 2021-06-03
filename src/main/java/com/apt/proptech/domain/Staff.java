@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Entity
 public class Staff extends BaseTimeEntity {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Enumerated(EnumType.STRING)

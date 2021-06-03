@@ -1,4 +1,4 @@
-package com.apt.proptech.domain;
+package com.apt.proptech.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

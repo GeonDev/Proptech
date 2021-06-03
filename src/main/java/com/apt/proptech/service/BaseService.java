@@ -1,7 +1,7 @@
 package com.apt.proptech.service;
 
 
-import com.apt.proptech.domain.Pagination;
+import com.apt.proptech.domain.dto.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

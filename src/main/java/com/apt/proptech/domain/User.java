@@ -18,16 +18,22 @@ import java.util.List;
 @Builder
 @Entity
 public class User extends BaseTimeEntity{
-    @Id
-    @GeneratedValue
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    //다른 엔티티의 user_id와 혼동하지 말것! -> 로그인시 구분되기 쉽게 하는 이름
+    private String userName;
 
     private String password;
 
+    //실명 입력
     private String name;
     private String email;
 
     private String profileImg;
+
+    private String phoneNumber;
 
 
     @Enumerated(EnumType.STRING)
@@ -38,10 +44,10 @@ public class User extends BaseTimeEntity{
 
     private LocalDateTime retiredDate;
 
-    private LocalDateTime modiPwdDate;
+    private LocalDateTime modiPasswordDate;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private Company company;
 

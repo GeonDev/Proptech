@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Receipt extends BaseTimeEntity{
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long payment;

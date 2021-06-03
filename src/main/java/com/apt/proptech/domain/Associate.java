@@ -19,7 +19,7 @@ import java.util.List;
 @Entity
 public class Associate extends BaseTimeEntity{
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -28,6 +28,7 @@ public class Associate extends BaseTimeEntity{
     private AssociateState associateState;
 
     private Double operateFeeRatio;
+
 
     private LocalDateTime endExpectDate;
 

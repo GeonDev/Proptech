@@ -16,7 +16,7 @@
      propertice:
        hibernate:
          fomat_sql: true
-         ddl-auto: none
+         ddl-auto: create-drop
    h2:
      console:
        enabled: true

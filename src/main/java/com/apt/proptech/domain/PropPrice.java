@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Entity
 public class PropPrice extends BaseTimeEntity {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long price;
