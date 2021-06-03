@@ -41,7 +41,4 @@ public abstract class BaseController<Entity>  {
         return baseService.deleteItem(id);
     }
 
-
-
-
 }
