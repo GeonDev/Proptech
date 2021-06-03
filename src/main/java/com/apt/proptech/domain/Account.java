@@ -18,8 +18,8 @@ import java.time.LocalDateTime;
 @ToString(exclude = "user")
 public class Account extends BaseTimeEntity{
 
-    @Id @GeneratedValue
-    private Long Id;
+    @Id
+    private Long id;
 
     private String description;
 

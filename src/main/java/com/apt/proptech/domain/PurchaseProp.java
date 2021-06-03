@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 @Entity
 public class PurchaseProp extends BaseTimeEntity{
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String city;

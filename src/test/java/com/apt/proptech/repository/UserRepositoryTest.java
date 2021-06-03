@@ -23,6 +23,25 @@ class UserRepositoryTest {
     void crud() {
 
 
+        User user = User.builder()
+                .name("MIN")
+                .email("min@gmail.com")
+                .phoneNumber("010-2222-3333")
+                .password("1234")
+                .build();
+
+        userRepository.save(user);
+
+        List<User> list = userRepository.findAll();
+
+        list.forEach(o ->{
+            System.out.println(o.getId() );
+            System.out.println(o.getName() );
+            System.out.println(o.getUserRole() );
+            System.out.println(o.getRegDate() );
+        } );
+
+
     }
 
 }
