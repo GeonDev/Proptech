@@ -1,4 +1,4 @@
-package com.apt.proptech.controller.rest;
+package com.apt.proptech.Controller.api;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,7 @@ public class TestController {
     @RequestMapping("/testcon")
     public ModelAndView testCont(Model model){
 
-        System.out.println("tttttttttttttttttttttttttttt");
+
         ModelAndView mv = new ModelAndView("jsonView");
 
         mv.addObject("name","Son");

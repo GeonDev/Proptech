@@ -1,6 +1,6 @@
 
  server:
-   port: 9060
+   port: 8081
 
 
  spring:
