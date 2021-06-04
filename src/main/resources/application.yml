@@ -3,6 +3,7 @@
    port: 8081
 
 
+
  spring:
    profiles:
      active: local
@@ -16,7 +17,7 @@
      propertice:
        hibernate:
          fomat_sql: true
-         ddl-auto: create-drop
+         # ddl-auto: create-drop
    h2:
      console:
        enabled: true

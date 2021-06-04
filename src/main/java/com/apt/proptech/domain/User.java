@@ -47,11 +47,11 @@ public class User extends BaseTimeEntity{
     private LocalDateTime modiPasswordDate;
 
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Account> accountList = new ArrayList<>();
 
     @OneToMany

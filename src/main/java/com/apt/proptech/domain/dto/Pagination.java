@@ -5,19 +5,22 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Pagination {
+public class Pagination<Entity>{
 
     private Integer totalPages;
     private Long totalElements;
     private Integer currentPage;
     private Integer currentElements;
 
-    private List<Object> contents;
+    private List<Entity> contents;
+
+
 }
 

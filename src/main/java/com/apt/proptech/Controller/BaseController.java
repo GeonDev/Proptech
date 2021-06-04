@@ -26,6 +26,7 @@ public abstract class BaseController<Entity>  {
         return baseService.getItem(id);
     }
 
+
     @GetMapping("")
     public Pagination getItemList(@PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC, size = 10) Pageable pageable){
         return baseService.getItemList(pageable);
