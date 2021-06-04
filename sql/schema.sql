@@ -1,7 +1,8 @@
 
-DROP DATABASE IF EXISTS `proptech`;
-CREATE DATABASE IF NOT EXISTS `proptech` 
-USE `proptech`;
+-- MariaDB에서 사용
+-- DROP DATABASE IF EXISTS `proptech`;
+-- CREATE DATABASE IF NOT EXISTS `proptech`
+-- USE `proptech`;
 
 DROP TABLE IF EXISTS `account`;
 CREATE TABLE IF NOT EXISTS `account` (

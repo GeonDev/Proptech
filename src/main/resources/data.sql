@@ -18,7 +18,8 @@ INSERT INTO `user` (`id`, `user_name`, `company_id`, `password`, `name`, `email`
 INSERT INTO `account` (`id`, `user_id`, `description`, `account`, `bank_name`, `account_state`, `use_date`, `reg_date`, `modi_date`) VALUES
 	(1, 6, NULL, '110-3345-4533', '신한은행', 'ACTIVE', '2021-06-03', '2021-06-03', NULL),
 	(2, 6, NULL, '110-4352-453', '신한은행', 'ACTIVE', '2021-08-01', '2019-06-12', NULL),
-	(3, 7, NULL, '70122-434-12', '국민은행', 'ACTIVE', '2019-06-03', '2018-06-03', NULL);
+	(3, 7, NULL, '70122-434-12', '국민은행', 'ACTIVE', '2019-06-03', '2018-06-03', NULL),
+	(4, 3, NULL, '74930-432-13', '우리은행', 'ACTIVE', '2019-06-03', '2018-06-03', NULL);
 
 
 
