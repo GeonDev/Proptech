@@ -10,10 +10,14 @@ public class MainController {
 
     @GetMapping("/")
     public String index(Model model ){
-
-
         model.addAttribute("message", "HELLOW!!! ");
         return "index";
+    }
+
+    @GetMapping("/dd")
+    public String dash( ){
+
+        return "dash";
     }
 
 }
