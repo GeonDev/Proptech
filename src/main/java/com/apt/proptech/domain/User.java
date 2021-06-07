@@ -23,7 +23,8 @@ public class User extends BaseTimeEntity{
     private Long id;
 
     //다른 엔티티의 user_id와 혼동하지 말것! -> 로그인시 구분되기 쉽게 하는 이름
-    private String userName;
+    //security를 사용할때 기본으로 요구하는 값
+    private String username;
 
     private String password;
 
