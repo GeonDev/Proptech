@@ -15,7 +15,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findAllByNameContaining(String name);
 
-    Optional<User> findByUserNameAndPassword(String userName, String password);
+    Optional<User> findByUsernameAndPassword(String username, String password);
 
 
     @Query(value = "SELECT * FROM user WHERE user.user_role =:role ORDER BY id DESC" ,nativeQuery = true)
