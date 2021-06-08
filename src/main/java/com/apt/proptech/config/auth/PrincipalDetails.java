@@ -41,11 +41,13 @@ public class PrincipalDetails implements UserDetails{
 		return true;
 	}
 
+	//계정 비밀번호가 만료되지 않았는지 반환
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
 
+	// 계정이 활성화(사용가능) 상태 인지 반환
 	@Override
 	public boolean isEnabled() {
 		return true;
