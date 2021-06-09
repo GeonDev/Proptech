@@ -1,4 +1,4 @@
-package com.apt.proptech.config.auth;
+package com.apt.proptech.service.auth;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -55,9 +55,9 @@ public class PrincipalDetails implements UserDetails{
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Collection<GrantedAuthority> collet = new ArrayList<GrantedAuthority>();
-		collet.add(()->{ return user.getUserRole().name();});
-		return collet;
+		Collection<GrantedAuthority> collection = new ArrayList<GrantedAuthority>();
+		collection.add(()->{ return user.getUserRole().name();});
+		return collection;
 	}
 
 

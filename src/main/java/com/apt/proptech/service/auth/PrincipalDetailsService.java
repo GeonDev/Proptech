@@ -1,4 +1,4 @@
-package com.apt.proptech.config.auth;
+package com.apt.proptech.service.auth;
 
 import com.apt.proptech.domain.User;
 import com.apt.proptech.repository.UserRepository;

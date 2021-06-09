@@ -26,14 +26,6 @@ class UserRepositoryTest {
     @Transactional
     void crud() {
 
-        User user = User.builder()
-                .name("MIN")
-                .email("min@gmail.com")
-                .phoneNumber("010-2222-3333")
-                .password("1234")
-                .build();
-
-        userRepository.save(user);
 
         List<User> list = userRepository.findAllByUserRoles("USER");
 
@@ -68,18 +60,12 @@ class UserRepositoryTest {
         for( Account a : user.get(0).getAccountList()   ){
             System.out.println(a.getBankName());
         }
-
-
-
-
-
         List<Account> accountList = accountRepository.findAll();
 
         accountList.forEach(o->{
             System.out.println(o.getBankName());
             System.out.println(o.getAccount());
         });
-
     }
 
 
