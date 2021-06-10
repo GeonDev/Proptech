@@ -4,18 +4,24 @@ import com.apt.proptech.domain.dto.Pagination;
 import com.apt.proptech.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService extends BaseService<User>{
 
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
 
     @Override
     public User addItem(User object) {
 
+        System.out.println("USER : " + object.getName() + "ADD!!" );
+
+
         User user = User.builder()
-                .id(object.getId())
-                .password(object.getPassword())
+                .username(object.getUsername())
+                .password(encoder.encode(object.getPassword()))
                 .name(object.getName())
                 .email(object.getEmail())
                 .build();

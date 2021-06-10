@@ -16,7 +16,7 @@ public abstract class BaseController<Entity>  {
     protected BaseService<Entity> baseService;
 
 
-    @PostMapping("")
+    @PostMapping("/add")
     public Entity addItem( @RequestBody Entity entity ){
         return baseService.addItem(entity);
     }
