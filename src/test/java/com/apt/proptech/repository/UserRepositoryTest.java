@@ -26,8 +26,7 @@ class UserRepositoryTest {
     @Transactional
     void crud() {
 
-
-        List<User> list = userRepository.findAllByUserRoles("USER");
+        List<User> list = userRepository.findAllByUserRoles("ROLE_USER");
 
         list.forEach(o ->{
             System.out.println(o.getId() );
@@ -46,6 +45,7 @@ class UserRepositoryTest {
             System.out.println(o.getRegDate() );
         } );
     }
+
 
     @Test
     @Transactional

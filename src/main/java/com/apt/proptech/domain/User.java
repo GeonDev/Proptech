@@ -5,6 +5,8 @@ import com.apt.proptech.domain.enums.UserState;
 import lombok.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -17,6 +19,8 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
+@DynamicInsert
+@DynamicUpdate
 public class User extends BaseTimeEntity{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

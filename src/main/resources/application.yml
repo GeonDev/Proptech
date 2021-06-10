@@ -3,16 +3,24 @@
    port: 8081
 
  spring:
+   mustache:
+      expose-request-attributes: true
    profiles:
-     active: local
+     active: dev
      #active: local # 로컬환경
+
+
+
 ---
  spring:
-   datasource:
-    schema: classpath*:sql/schema.sql
-    data: classpath*:sql/data.sql
-
    profiles: local
+   datasource:
+     url: jdbc:h2:~/test;
+     username: sa
+     password:
+     driver-class-name: org.h2.Driver
+     schema: classpath*:sql/schema.sql
+     data: classpath*:sql/data.sql
    jpa:
      show-sql: true
      propertice:
