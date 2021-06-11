@@ -37,6 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.loginProcessingUrl("/loginProc")
 			.defaultSuccessUrl("/")
 		.and()
+			.oauth2Login()
+			.loginPage("/login")
+		.and()
 			.logout()
 			.logoutSuccessUrl("/login")
 			.invalidateHttpSession(true);

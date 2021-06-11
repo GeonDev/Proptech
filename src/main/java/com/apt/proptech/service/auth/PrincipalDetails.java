@@ -2,6 +2,7 @@ package com.apt.proptech.service.auth;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 import com.apt.proptech.domain.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,18 +10,27 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 
 import lombok.Data;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 // Authentication 객체에 저장할 수 있는 유일한 타입
 @Data
-public class PrincipalDetails implements UserDetails{
+public class PrincipalDetails implements UserDetails, OAuth2User {
 
 	private User user;
+	private Map<String, Object> attributes;
 
+	//일반 로그인시 사용
 	public PrincipalDetails(User user) {
 		super();
 		this.user = user;
 	}
-	
+
+	// OAuth2.0 로그인시 사용
+	public PrincipalDetails(User user, Map<String, Object> attributes) {
+		this.user = user;
+		this.attributes = attributes;
+	}
+
 	@Override
 	public String getPassword() {
 		return user.getPassword();
@@ -52,7 +62,12 @@ public class PrincipalDetails implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-	
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		return attributes;
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> collection = new ArrayList<GrantedAuthority>();
@@ -61,5 +76,8 @@ public class PrincipalDetails implements UserDetails{
 	}
 
 
-	
+	@Override
+	public String getName() {
+		return null;
+	}
 }
