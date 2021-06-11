@@ -3,13 +3,11 @@ package com.apt.proptech.domain;
 import com.apt.proptech.domain.enums.UserRole;
 import com.apt.proptech.domain.enums.UserState;
 import lombok.*;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,16 +27,16 @@ public class User extends BaseTimeEntity{
     //다른 엔티티의 user_id와 혼동하지 말것! -> 로그인시 구분되기 쉽게 하는 이름
     //security를 사용할때 기본으로 요구하는 값
     private String username;
-
     private String password;
-
     //실명 입력
     private String name;
     private String email;
-
     private String profileImg;
-
     private String phoneNumber;
+
+    //OAuth를 위한 필드
+    private String provider;
+    private String providerId;
 
 
     @Enumerated(EnumType.STRING)

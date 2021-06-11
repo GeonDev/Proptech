@@ -1,42 +1,48 @@
+server:
+  port: 8081
 
- server:
-   port: 8081
-
- spring:
-   mustache:
-      expose-request-attributes: true
-   profiles:
-     active: dev
-     #active: local # 로컬환경
-
+spring:
+  profiles:
+    active: dev
+    #active: local # 로컬환경
+  security:
+    oauth2:
+      client:
+        registration:
+          google: # /oauth2/authorization/google 이 주소를 동작하게 한다.
+            client-id: 179466165218-labr6a3r5loot66nca9td0c69i8j67lk.apps.googleusercontent.com
+            client-secret: s11im3AA8XB6l4lWIvUQQGzl
+            scope:
+            - email
+            - profile
 
 
 ---
- spring:
-   profiles: local
-   datasource:
-     url: jdbc:h2:~/test;
-     username: sa
-     password:
-     driver-class-name: org.h2.Driver
-     schema: classpath*:sql/schema.sql
-     data: classpath*:sql/data.sql
-   jpa:
-     show-sql: true
-     propertice:
-       hibernate:
-         fomat_sql: true
-         ddl-auto: create-drop
-   h2:
-     console:
-       enabled: true
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:h2:~/test;
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    schema: classpath*:sql/schema.sql
+    data: classpath*:sql/data.sql
+  jpa:
+    show-sql: true
+    propertice:
+  hibernate:
+    fomat_sql: true
+    ddl-auto: create-drop
+  h2:
+   console:
+    enabled: true
 ---
 
  spring:
    profiles: dev
    datasource:
-    url: jdbc:mariadb://localhost:3306/proptech
-    username : GUNS
-    password: GUNS
-    driver-class-name: org.mariadb.jdbc.Driver
+     url: jdbc:mariadb://localhost:3306/proptech
+     username : GUNS
+     password: GUNS
+     driver-class-name: org.mariadb.jdbc.Driver
 ---
