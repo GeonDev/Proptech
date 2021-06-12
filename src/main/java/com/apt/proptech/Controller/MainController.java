@@ -2,7 +2,7 @@ package com.apt.proptech.Controller;
 
 import com.apt.proptech.domain.User;
 import com.apt.proptech.service.UserService;
-import com.apt.proptech.service.auth.PrincipalDetails;
+import com.apt.proptech.domain.oauth.PrincipalDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

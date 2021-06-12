@@ -1,6 +1,6 @@
-package com.apt.proptech.service.auth;
+package com.apt.proptech.service.oauth;
 
-import com.apt.proptech.domain.User;
+import com.apt.proptech.domain.oauth.PrincipalDetails;
 import com.apt.proptech.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

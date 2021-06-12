@@ -2,8 +2,6 @@ package com.apt.proptech.domain;
 
 import com.apt.proptech.domain.enums.AccountState;
 import lombok.*;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.sql.Date;
