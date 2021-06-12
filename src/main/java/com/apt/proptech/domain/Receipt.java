@@ -1,12 +1,11 @@
 package com.apt.proptech.domain;
 
-import lombok.*;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor

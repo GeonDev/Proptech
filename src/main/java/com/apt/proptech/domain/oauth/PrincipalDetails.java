@@ -1,4 +1,4 @@
-package com.apt.proptech.service.auth;
+package com.apt.proptech.domain.oauth;
 
 import java.util.ArrayList;
 import java.util.Collection;

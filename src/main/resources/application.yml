@@ -1,6 +1,10 @@
 server:
   port: 8081
 
+jasypt:
+  encryptor:
+    bean: jasyptEncryptor
+
 spring:
   profiles:
     active: dev
@@ -10,8 +14,8 @@ spring:
       client:
         registration:
           google: # /oauth2/authorization/google 이 주소를 동작하게 한다.
-            client-id: 179466165218-labr6a3r5loot66nca9td0c69i8j67lk.apps.googleusercontent.com
-            client-secret: s11im3AA8XB6l4lWIvUQQGzl
+            client-id: ENC(3P13X0MEc7WH3Hchx8s4PEGFNbGL7s0QOeISXx+sxYlX1TByJ/HnXJHERDPmywLCbhlFoxp1yczmkj3g7IWUReIB2vHRkaLF/9AuaA5jnWwEexSVlyTRNw==)
+            client-secret: ENC(SccKsp2Z/9tA3396ftHJRpjlPwTE7Hz7ushjsfTySrQ31L65u0X8dg==)
             scope:
             - email
             - profile
@@ -41,8 +45,9 @@ spring:
  spring:
    profiles: dev
    datasource:
+     sql-script-encoding: UTF-8
      url: jdbc:mariadb://localhost:3306/proptech
-     username : GUNS
-     password: GUNS
+     username: ENC(LyzpWYaIfBHycYC0uOJw6w==)
+     password: ENC(/j9TCvgQDkpQWHi2dq56ag==)
      driver-class-name: org.mariadb.jdbc.Driver
 ---

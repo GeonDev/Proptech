@@ -10,7 +10,7 @@ import com.apt.proptech.domain.oauth.GoogleUserInfo;
 import com.apt.proptech.domain.oauth.NaverUserInfo;
 import com.apt.proptech.domain.oauth.OAuth2UserInfo;
 import com.apt.proptech.repository.UserRepository;
-import com.apt.proptech.service.auth.PrincipalDetails;
+import com.apt.proptech.domain.oauth.PrincipalDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
