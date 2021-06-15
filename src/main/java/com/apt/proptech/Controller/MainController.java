@@ -1,12 +1,17 @@
 package com.apt.proptech.Controller;
 
 import com.apt.proptech.domain.User;
+import com.apt.proptech.domain.enums.UserRole;
 import com.apt.proptech.service.UserService;
 import com.apt.proptech.domain.oauth.PrincipalDetails;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +31,10 @@ public class MainController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
 
     @GetMapping("/")
     public String index(Model model ){
@@ -48,19 +57,19 @@ public class MainController {
 
     @PostMapping("/register")
     public String register(@ModelAttribute("User") User user ){
-
-        System.out.println("ddddd "+user.getName() );
-
+        LOGGER.debug("회원 가입 진행");
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setUserRole(UserRole.ROLE_USER);
         userService.addItem(user);
-
         return "redirect:/";
     }
 
 
     @GetMapping("/userinfo")
-    public @ResponseBody
-    String user(@AuthenticationPrincipal PrincipalDetails principal) {
-        System.out.println("Principal : " + principal.getUsername());
+    @ResponseBody
+    public String user(@AuthenticationPrincipal PrincipalDetails principal) {
+        LOGGER.debug("principal : "+principal.getName());
+
         // iterator 순차 출력 해보기
         Iterator<? extends GrantedAuthority> iter = principal.getAuthorities().iterator();
         while (iter.hasNext()) {

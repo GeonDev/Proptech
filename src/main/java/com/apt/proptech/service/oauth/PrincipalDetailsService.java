@@ -1,5 +1,6 @@
 package com.apt.proptech.service.oauth;
 
+import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.oauth.PrincipalDetails;
 import com.apt.proptech.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,12 @@ public class PrincipalDetailsService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-		return new PrincipalDetails(userRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException(username)));
+		User user = userRepository.findByUsername(username);
+		if(user == null) {
+			return null;
+		}else {
+			return new PrincipalDetails(user);
+		}
 	}
 
 }

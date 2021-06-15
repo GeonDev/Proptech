@@ -11,7 +11,11 @@ import com.apt.proptech.domain.oauth.NaverUserInfo;
 import com.apt.proptech.domain.oauth.OAuth2UserInfo;
 import com.apt.proptech.repository.UserRepository;
 import com.apt.proptech.domain.oauth.PrincipalDetails;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -19,12 +23,16 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 
-
 @Service
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+	static final Logger LOGGER = LoggerFactory.getLogger(PrincipalOauth2UserService.class);
+
 
 	// userRequest 는 code를 받아서 accessToken을 응답 받은 객체
 	@Override
@@ -49,28 +57,29 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
 			oAuth2UserInfo = new NaverUserInfo((Map)oAuth2User.getAttributes().get("response"));
 		} else {
-			System.out.println("우리는 구글과 페이스북만 지원해요 ㅎㅎ");
+			LOGGER.debug(" 지원하지 않는 소셜 로그인 입니다.");
 		}
 
-		Optional<User> userOptional = 
-				userRepository.findByProviderAndProviderId(oAuth2UserInfo.getProvider(), oAuth2UserInfo.getProviderId());
+		Optional<User> userOptional;
+		userOptional = userRepository.findByProviderAndProviderId(oAuth2UserInfo.getProvider(), oAuth2UserInfo.getProviderId());
+
 		User user;
 		if (userOptional.isPresent()) {
 			user = userOptional.get();
 			// user가 존재하면 update 해주기
 			user.setEmail(oAuth2UserInfo.getEmail());
-			userRepository.save(user);
 		} else {
 			// user의 패스워드가 null이기 때문에 OAuth 유저는 일반적인 로그인을 할 수 없음.
 			user = User.builder()
 					.username(oAuth2UserInfo.getProvider() + "_" + oAuth2UserInfo.getProviderId())
+					.password(encoder.encode(oAuth2UserInfo.getProviderId()) )
 					.email(oAuth2UserInfo.getEmail())
 					.userRole(UserRole.ROLE_USER)
 					.provider(oAuth2UserInfo.getProvider())
 					.providerId(oAuth2UserInfo.getProviderId())
 					.build();
-			userRepository.save(user);
 		}
+		userRepository.save(user);
 
 		return new PrincipalDetails(user, oAuth2User.getAttributes());
 	}
