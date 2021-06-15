@@ -7,8 +7,7 @@ jasypt:
 
 spring:
   profiles:
-    active: dev
-    #active: local # 로컬환경
+    active: local
   security:
     oauth2:
       client:

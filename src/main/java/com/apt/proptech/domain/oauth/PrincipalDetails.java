@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.Data;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-// Authentication 객체에 저장할 수 있는 유일한 타입
+
 @Data
 public class PrincipalDetails implements UserDetails, OAuth2User {
 
