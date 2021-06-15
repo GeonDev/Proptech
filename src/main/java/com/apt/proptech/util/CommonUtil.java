@@ -174,10 +174,10 @@ public class CommonUtil {
     }
 
 
-    public static String getUserIp() throws Exception {
+    public static String getUserIp() {
 
         HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-        String ip = null;
+        String ip = "";
 
         ip = request.getHeader("X-Forwarded-For");
 
