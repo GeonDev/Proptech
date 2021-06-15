@@ -1,17 +1,21 @@
 package com.apt.proptech.service.oauth;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
 
+import com.apt.proptech.domain.LoginHistory;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.enums.UserRole;
 import com.apt.proptech.domain.oauth.FaceBookUserInfo;
 import com.apt.proptech.domain.oauth.GoogleUserInfo;
 import com.apt.proptech.domain.oauth.NaverUserInfo;
 import com.apt.proptech.domain.oauth.OAuth2UserInfo;
+import com.apt.proptech.repository.LoginHistoryRepository;
 import com.apt.proptech.repository.UserRepository;
 import com.apt.proptech.domain.oauth.PrincipalDetails;
 
+import com.apt.proptech.util.CommonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,10 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private LoginHistoryRepository loginHistoryRepository;
+
 
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -66,8 +74,17 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 		User user;
 		if (userOptional.isPresent()) {
 			user = userOptional.get();
-			// user가 존재하면 update 해주기
-			user.setEmail(oAuth2UserInfo.getEmail());
+
+			//로그인 히스토리 기록
+			LoginHistory loginHistory = LoginHistory.builder()
+					.loginIp(CommonUtil.getUserIp())
+					.user(user)
+					.isLogin(true)
+					.loginDate(LocalDateTime.now())
+					.build();
+
+			loginHistoryRepository.save(loginHistory);
+
 		} else {
 			// user의 패스워드가 null이기 때문에 OAuth 유저는 일반적인 로그인을 할 수 없음.
 			user = User.builder()
@@ -78,8 +95,10 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 					.provider(oAuth2UserInfo.getProvider())
 					.providerId(oAuth2UserInfo.getProviderId())
 					.build();
+
 		}
 		userRepository.save(user);
+
 
 		return new PrincipalDetails(user, oAuth2User.getAttributes());
 	}
