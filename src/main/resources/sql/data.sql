@@ -2,14 +2,14 @@ INSERT INTO `company` (`id`, `ceo_name`, `biz_reg_num`, `address`, `zip_code`, `
 	(1, '김CC', '12345631', '', '034342', '2021-06-03');
 	
 INSERT INTO `user` (`id`, `username`, `company_id`, `password`, `name`, `email`, `profile_Img`, `user_role`, `user_state`, `retired_date`, `reg_date`, `modi_date`, `modi_password_date`, `phone_number`) VALUES
-	(1, 'Admin', NULL, '$2a$10$Izrc7nyTyH38JVE/uD37qui1bqy7/gr22UpgSHqi/W4eQKVdPV41q', '관리자', NULL, 'img/proflie_img.jpg', 'ROLE_ADMIN', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3554-0901'),
-	(2, 'Manager', NULL, '$2a$10$bGruS8.UvG9FYOFV6zfS3OoKlOEto/YvNIqu6N3NKTx5rkTJie1sO', '운영자', NULL, 'img/proflie_img.jpg', 'ROLE_MANAGER', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3456-2034'),
-	(3, 'Partner', 1, '$2a$10$nKqCj682/pL3B1QlYVMeluSxr8xB/JySi6aO1SU8IRfsEgFIlrnO6', '파트너사', NULL, 'img/proflie_img.jpg', 'ROLE_PARTNER', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3456-1245'),
-	(4, 'Staff01', NULL, '$2a$10$TypW6qPn2o7441NNoSS85e5NauidkmxYzKpOPyora.8i6DMnAgDIm', '스탭1', NULL, 'img/proflie_img.jpg', 'ROLE_STAFF', 'AUTH', NULL, '2021-06-03', NULL, NULL, '010-3434-3941'),
-	(5, 'Staff02', NULL, '$2a$10$IVXqd80UCAtoWNiQWyqPm.A.Aoeai7oRD2KFJPCPa11Kec163Pjsu', '스탭2', NULL, 'img/proflie_img.jpg', 'ROLE_USER', 'AUTH', NULL, '2021-06-03', NULL, NULL, NULL),
-	(6, 'User01', NULL, '$2a$10$si4DIExdyVrzHFJfwU/G7e9hW/DhvnsInThaKOK0vc/PowEVt1Wtu', '김OO', NULL, 'img/proflie_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, NULL),
-	(7, 'User02', NULL, '$2a$10$zTt24aA0Gtx7xWV97Ffe4Of0w8D5baZzUvGLHE5mT8MRz64j0H7YW', '이OO', NULL, 'img/proflie_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, NULL),
-	(8, 'User03', NULL, '$2a$10$IdzE20lwxNazrf8WrNMOdeIRyQMuOVxHly9v1DBtVwIon.B7JEid6', '박OO', NULL, 'img/proflie_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, NULL);
+	(1, 'Admin', NULL, '$2a$10$Izrc7nyTyH38JVE/uD37qui1bqy7/gr22UpgSHqi/W4eQKVdPV41q', '관리자', NULL, '/img/profile_img.jpg', 'ROLE_ADMIN', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3554-0901'),
+	(2, 'Manager', NULL, '$2a$10$bGruS8.UvG9FYOFV6zfS3OoKlOEto/YvNIqu6N3NKTx5rkTJie1sO', '운영자', NULL, '/img/profile_img.jpg', 'ROLE_MANAGER', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3456-2034'),
+	(3, 'Partner', 1, '$2a$10$nKqCj682/pL3B1QlYVMeluSxr8xB/JySi6aO1SU8IRfsEgFIlrnO6', '파트너사', NULL, '/img/profile_img.jpg', 'ROLE_PARTNER', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3456-1245'),
+	(4, 'Staff01', NULL, '$2a$10$TypW6qPn2o7441NNoSS85e5NauidkmxYzKpOPyora.8i6DMnAgDIm', '스탭1', NULL, '/img/profile_img.jpg', 'ROLE_STAFF', 'AUTH', NULL, '2021-06-03', NULL, NULL, '010-3434-3941'),
+	(5, 'Staff02', NULL, '$2a$10$IVXqd80UCAtoWNiQWyqPm.A.Aoeai7oRD2KFJPCPa11Kec163Pjsu', '스탭2', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'AUTH', NULL, '2021-06-03', NULL, NULL, NULL),
+	(6, 'User01', NULL, '$2a$10$si4DIExdyVrzHFJfwU/G7e9hW/DhvnsInThaKOK0vc/PowEVt1Wtu', '김OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, NULL),
+	(7, 'User02', NULL, '$2a$10$zTt24aA0Gtx7xWV97Ffe4Of0w8D5baZzUvGLHE5mT8MRz64j0H7YW', '이OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, NULL),
+	(8, 'User03', NULL, '$2a$10$IdzE20lwxNazrf8WrNMOdeIRyQMuOVxHly9v1DBtVwIon.B7JEid6', '박OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, NULL);
 
 
 

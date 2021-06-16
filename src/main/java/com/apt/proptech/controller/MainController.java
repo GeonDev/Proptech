@@ -1,4 +1,4 @@
-package com.apt.proptech.Controller;
+package com.apt.proptech.controller;
 
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.enums.UserRole;
@@ -15,10 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,22 +26,23 @@ import java.util.Iterator;
 public class MainController {
 
     @Autowired
-    private UserService userService;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private UserService userService;
 
     static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
 
     @GetMapping("/")
     public String index(Model model ){
-        model.addAttribute("message", "HELLOW!!! ");
         return "index";
     }
 
     @GetMapping("/login")
-    public String loginView( ){
+    public String loginView(Model model, @RequestParam(value = "error", required = false) String error, @RequestParam(value = "exception", required = false) String exception){
 
+        model.addAttribute("error",error);
+        model.addAttribute("exception",exception);
         return "login/login";
     }
 
@@ -84,7 +82,6 @@ public class MainController {
 
     @GetMapping("/forgot")
     public String forgotPasswordView( ){
-
         return "login/forgot-password";
     }
 

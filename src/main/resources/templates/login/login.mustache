@@ -23,6 +23,9 @@
                                     <input type="password" name="password" class="form-control form-control-user"
                                         placeholder="Password">
                                 </div>
+                                {{#error}}
+                                    <p style="color:red;"> {{exception}} </p>
+                                {{/error}}
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
                                         <input type="checkbox" class="custom-control-input" id="customCheck">
