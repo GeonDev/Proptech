@@ -7,7 +7,7 @@ jasypt:
 
 spring:
   profiles:
-    active: local
+    active: dev
   security:
     oauth2:
       client:
@@ -24,7 +24,7 @@ spring:
 spring:
   profiles: local
   datasource:
-    url: jdbc:h2:~/test;AUTO_SERVER=true
+    url: jdbc:h2:~/test
     username: sa
     password:
     driver-class-name: org.h2.Driver
@@ -35,7 +35,7 @@ spring:
     propertice:
   hibernate:
     fomat_sql: true
-    ddl-auto: create-drop
+    ddl-auto: update
   h2:
    console:
     enabled: true

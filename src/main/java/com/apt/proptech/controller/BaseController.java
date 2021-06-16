@@ -1,4 +1,4 @@
-package com.apt.proptech.Controller;
+package com.apt.proptech.controller;
 
 import com.apt.proptech.domain.dto.Pagination;
 import com.apt.proptech.service.BaseService;

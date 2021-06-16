@@ -1,6 +1,5 @@
 package com.apt.proptech.service.oauth;
 
-import com.apt.proptech.Controller.MainController;
 import com.apt.proptech.domain.LoginHistory;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.oauth.PrincipalDetails;

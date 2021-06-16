@@ -154,7 +154,7 @@ CREATE TABLE `user` (
   `password` varchar(60) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `profile_Img` varchar(50) DEFAULT 'img/proflie_img.jpg',
+  `profile_Img` varchar(50) DEFAULT '/img/proflie_img.jpg',
   `provider` varchar(50) DEFAULT NULL,
   `provider_id` varchar(50) DEFAULT NULL,
   `user_role` varchar(50) DEFAULT 'USER',
