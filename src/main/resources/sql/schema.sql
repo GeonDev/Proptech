@@ -166,3 +166,15 @@ CREATE TABLE `user` (
   `phone_number` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
+
+CREATE TABLE `web_menu` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_role` varchar(50) DEFAULT 'USER',
+  `name` varchar(50) DEFAULT NULL,
+  `url` varchar(50) DEFAULT NULL,
+  `parent_id` bigint(20) DEFAULT NULL,
+  `order_seq` int(20) DEFAULT 0,
+  `reg_date` date DEFAULT NULL,
+  `modi_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
