@@ -32,8 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable().headers().frameOptions().disable();
 		http.authorizeRequests()
 			//.antMatchers("/user/**").authenticated()
-			.antMatchers("/", "/css/**", "/js/**", "/img/**", "/h2-console/**" ).permitAll()
-			.antMatchers("/dash/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF') or hasRole('ROLE_MANAGER') or hasRole('ROLE_PARTNER')")
+			.antMatchers("/login", "/css/**", "/js/**", "/img/**", "/h2-console/**" ).permitAll()
+			.antMatchers("/main").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF') or hasRole('ROLE_MANAGER') or hasRole('ROLE_PARTNER')")
 		.and()
 			.formLogin()
 			.loginPage("/login")

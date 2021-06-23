@@ -90,6 +90,20 @@ public class MainController {
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return "redirect:/login";
     }
+
+    @GetMapping("/main")
+    public String mainDashboard(Model model ,@AuthenticationPrincipal PrincipalDetails principal){
+
+        model.addAttribute("profileImg",principal.getUser().getProfileImg() );
+        model.addAttribute("userName",principal.getUser().getUsername() );
+
+        model.addAttribute("totalAlerts","");
+        model.addAttribute("totalMessages","");
+
+        model.addAttribute("contentName","Main");
+
+        return "main";
+    }
 }
 
 

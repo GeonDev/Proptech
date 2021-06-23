@@ -11,17 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/dash")
 public class DashboardController {
 
-    @GetMapping("/main")
-    public String mainDashboard(Model model ,@AuthenticationPrincipal PrincipalDetails principal){
 
-        model.addAttribute("profileImg",principal.getUser().getProfileImg() );
-        model.addAttribute("userName",principal.getUser().getUsername() );
-
-        model.addAttribute("totalAlerts","");
-        model.addAttribute("totalMessages","");
-
-        return "dash";
-    }
 
 
 }
