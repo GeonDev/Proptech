@@ -14,4 +14,4 @@ https://www.erdcloud.com/d/Pk6EtYnSeQkTrQHic
 #### 4. Spring Data JPA
 #### 5. Spring Security
 #### 6. MAVEN 3.6.3
-#### 7. Thymeleaf/Vue.js
+#### 7. Mustache
