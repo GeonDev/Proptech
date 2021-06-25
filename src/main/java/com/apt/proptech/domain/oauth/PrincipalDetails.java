@@ -1,16 +1,14 @@
 package com.apt.proptech.domain.oauth;
 
+import com.apt.proptech.domain.User;
+import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
-
-import com.apt.proptech.domain.User;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-
-import lombok.Data;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 
 
 @Data

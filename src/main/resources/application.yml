@@ -5,7 +5,10 @@ jasypt:
   encryptor:
     bean: jasyptEncryptor
 
+
 spring:
+  mustache:
+    expose-session-attributes: true
   profiles:
     active: dev
   security:

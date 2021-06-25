@@ -28,8 +28,11 @@ public abstract class BaseController<Entity>  {
 
 
     @GetMapping("")
-    public Pagination getItemList(@PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC, size = 10) Pageable pageable){
-        return baseService.getItemList(pageable);
+    public Pagination getItemList(@PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC, size = 10) Pageable pageable,
+                                  @RequestParam(value = "type", required = false, defaultValue = "") String type,
+                                  @RequestParam(value = "value", required = false, defaultValue = "") String value ){
+
+        return baseService.getItemList(pageable, type, value);
     }
 
     @PutMapping("")
