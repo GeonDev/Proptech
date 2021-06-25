@@ -1,0 +1,82 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Data Tables</h6>
+        </div>
+
+        <div class ="row">
+            <div class ="col-sm-12 col-md-9">
+                <p class="pl-3 pb-0 pt-3">{{pages.currentPage}} to {{pages.totalPages}} of {{pages.totalElements}} entries</p>
+            </div>
+            <div class ="col-sm-12 col-md-3">
+                <div class="input-group mb-3 pr-3 pb-0 pt-3">
+                        <select class="selectpicker" id="inputGroupSelect1">
+                            <option selected>Choose</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    <input type="text" class="form-control" aria-label="Text input" for="inputGroupSelect1">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 테이블 내용 불러오기 -->
+        {{#tableUser}}
+            {{>contents/tableUser}}
+        {{/tableUser}}
+
+        {{#tableAssociate}}
+            {{>contents/tableAssociate}}
+        {{/tableAssociate}}
+
+    </div>
+
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+
+            {{#isFirstPage}}
+            <li class="page-item disabled">
+            {{/isFirstPage}}
+
+            {{^isFirstPage}}
+            <li class="page-item ">
+            {{/isFirstPage}}
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+
+
+            {{#pages.pageNumbers}}
+                <li class="page-item"><a class="page-link" href="#">{{.}}</a></li>
+            {{/pages.pageNumbers}}
+
+
+
+
+            {{#isLastPage}}
+            <li class="page-item disabled">
+            {{/isLastPage}}
+
+            {{^isLastPage}}
+            <li class="page-item ">
+            {{/isLastPage}}
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+
+</div>
+<!-- /.container-fluid -->

@@ -1,0 +1,34 @@
+<div class="card-body pt-0">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+                <th>name</th>
+                <th>Email</th>
+                <th>phoneNumber</th>
+                <th>provider</th>
+                <th>Role</th>
+                <th>State</th>
+                <th>Reg Date</th>
+                <th>Retire Date</th>
+            </tr>
+            </thead>
+
+            <tbody>
+                {{#pages.contents}}
+                    <tr>
+                        <td>{{name}}</td>
+                        <td>{{email}}</td>
+                        <td>{{phoneNumber}}</td>
+                        <td>{{provider}}</td>
+                        <td>{{role}}</td>
+                        <td>{{state}}</td>
+                        <td>{{registerDate}}</td>
+                        <td>{{retiredDate}}</td>
+
+                    </tr>
+                {{/pages.contents}}
+            </tbody>
+        </table>
+    </div>
+</div>

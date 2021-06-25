@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.Iterator;
 
 @Controller
@@ -86,21 +87,29 @@ public class MainController {
     }
 
     @GetMapping(value = "/logout")
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        
+        //트리거 삭제
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+        
+        //세션삭제
+        session.invalidate();
+
         return "redirect:/login";
     }
 
     @GetMapping("/main")
-    public String mainDashboard(Model model ,@AuthenticationPrincipal PrincipalDetails principal){
+    public String mainDashboard(Model model , @AuthenticationPrincipal PrincipalDetails principal, HttpSession session){
 
-        model.addAttribute("profileImg",principal.getUser().getProfileImg() );
-        model.addAttribute("userName",principal.getUser().getUsername() );
+        //세션은 단순 화면 표시용 기능 -> 실제 연산은 시큐리티 세션으로 처리
+        session.setAttribute( "profileImg",principal.getUser().getProfileImg());
+        session.setAttribute( "userName",principal.getUser().getUsername());
 
-        model.addAttribute("totalAlerts","");
-        model.addAttribute("totalMessages","");
-
+        session.setAttribute( "totalAlerts","");
+        session.setAttribute( "totalMessages","");
         model.addAttribute("contentName","Main");
+
+        model.addAttribute("test",null);
 
         return "main";
     }

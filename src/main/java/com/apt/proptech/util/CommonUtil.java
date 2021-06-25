@@ -1,24 +1,18 @@
 package com.apt.proptech.util;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
+
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.context.request.RequestContextHolder;
@@ -26,6 +20,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 public class CommonUtil {
+
+
+
+
     public static String null2str(String org, String converted) {
         if (org == null || org.trim().length() == 0)
             return converted;
@@ -81,6 +79,14 @@ public class CommonUtil {
         else {
             SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
             return sdf.format(new Date(date.getTime()));
+        }
+    }
+
+    public static String toDateStr(LocalDateTime date) {
+        if (date == null)
+            return "";
+        else {
+            return date.format(DateTimeFormatter.ofPattern("YYYY-MM-DD"));
         }
     }
 
@@ -146,23 +152,9 @@ public class CommonUtil {
         }
 
         return true;
-
     }
 
 
-    public static String checkOvperlap(String csv ,String src, String str) {
-
-        String [] list =  src.split(csv);
-        String result = new String();
-
-        for(String s : list) {
-            if (!(s.equals(str))) {
-                result += (s+csv);
-            }
-        }
-
-        return result;
-    }
 
     public static void writeFile(MultipartFile multipartFile, String saveFileName, String SAVE_PATH) throws IOException{
 
@@ -210,19 +202,6 @@ public class CommonUtil {
     }
 
 
-
-    public static String getHaxcode(int num) {
-
-        String hax = Integer.toHexString(num);
-        if(hax.length() == 1) {
-            String temp = "0";
-            temp += hax;
-            hax = temp;
-        }
-
-        return hax;
-    }
-
     public static String generateMD5(String message) {
         return hashString(message, "MD5","UTF-8");
     }
@@ -264,20 +243,4 @@ public class CommonUtil {
 
     }
 
-
-    public static String getFilePath(ServletContext context, String uploadPath, String realPath) {
-        String path = context.getRealPath("/");
-        String OS = System.getProperty("os.name").toLowerCase();
-
-        if(OS.contains("win")) {
-            //워크스페이스 경로를 받아온다.
-            path = path.substring(0,path.indexOf("\\.metadata"));
-            path +=  uploadPath;
-        }else {
-            //실제 톰켓 데이터가 저장되는 경로를 가리킨다.
-            path =  realPath;
-        }
-
-        return path;
-    }
 }

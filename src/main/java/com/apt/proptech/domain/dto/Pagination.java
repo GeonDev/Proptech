@@ -16,11 +16,20 @@ public class Pagination<Entity>{
 
     private Integer totalPages;
     private Long totalElements;
+
+    private Integer pageSize;
+
     private Integer currentPage;
     private Integer currentElements;
 
-    private List<Entity> contents;
+    //첫번째 페이지
+    private boolean isFirstPage;
+    //마지막 페이지
+    private boolean isLastPage;
 
+    private List<Integer> pageNumbers;
+
+    private List<Entity> contents;
 
 }
 
