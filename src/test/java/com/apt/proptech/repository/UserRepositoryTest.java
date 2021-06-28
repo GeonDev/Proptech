@@ -7,6 +7,7 @@ import com.apt.proptech.domain.enums.UserState;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
@@ -26,7 +27,8 @@ class UserRepositoryTest {
     @Transactional
     void crud() {
 
-        List<User> list = userRepository.findAllByUserRoles("ROLE_USER");
+        Pageable page = PageRequest.of(0,10);
+        Page<User> list = userRepository.findAllByUserRoles("ROLE_USER",page);
 
         list.forEach(o ->{
             System.out.println(o.getId() );
@@ -35,8 +37,7 @@ class UserRepositoryTest {
             System.out.println(o.getRegDate() );
         } );
 
-        Pageable page = PageRequest.of(0,10);
-        List<User> pageUser = userRepository.findAllByUserState(UserState.AUTH, page);
+        Page<User> pageUser = userRepository.findAllByUserState("AUTH", page);
 
         pageUser.forEach(o ->{
             System.out.println(o.getId() );

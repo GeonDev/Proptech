@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/table")
 public class TableController {
@@ -34,7 +37,7 @@ public class TableController {
 
         Pagination<UserDto> pagination =  userService.getItemList(pageable,type,value);
 
-        //머스테치는 값이 존재하는지로 if를 체크 한다.
+        //페이지 이동 버튼 체크 -> 머스테치는 값이 존재하는지로 if를 체크 한다.
         if(pagination.isFirstPage() ){
             model.addAttribute("isFirstPage", true);
         }
@@ -44,13 +47,18 @@ public class TableController {
         }
 
 
+
+        //페이지 타이틀 이름
         model.addAttribute("contentName","User List");
 
+        //페이지 콘텐츠를 포함한 DTO 
         model.addAttribute("pages", pagination);
 
+        //테이블 레이아웃을 불러옴
         model.addAttribute("tableLayout","true");
 
-        model.addAttribute("tableUser","true");
+        //유저 테이블 형식을 불러옴
+        model.addAttribute("tableUser","tableUser");
 
 
         return "main";
@@ -64,7 +72,7 @@ public class TableController {
 
         model.addAttribute("tableLayout","true");
 
-        model.addAttribute("tableAssociate","true");
+        model.addAttribute("tableAssociate","tableAssociate");
 
         return "main";
     }
