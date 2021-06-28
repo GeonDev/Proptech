@@ -3,6 +3,8 @@ package com.apt.proptech.service;
 import com.apt.proptech.domain.dto.Pagination;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.dto.UserDto;
+import com.apt.proptech.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,6 +15,10 @@ import java.util.List;
 
 @Service
 public class UserService extends BaseService<User>{
+
+    @Autowired
+    private UserRepository userRepository;
+
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -67,7 +73,17 @@ public class UserService extends BaseService<User>{
     @Override
     public Pagination getItemList(Pageable pageable, String type, String value) {
 
-        Page<User> userPage = baseRepository.findAll(pageable);
+        Page<User> userPage = null;
+
+        if(type.equals("Role")){
+            userPage = userRepository.findAllByUserRoles(value, pageable);
+        }else if(type.equals("State")){
+            userPage = userRepository.findAllByUserState(value, pageable);
+        }else{
+            userPage = baseRepository.findAll(pageable);
+        }
+
+
 
         //화면에 표시하기 위한 Pagination 세팅
         Pagination<UserDto> items = Pagination.<UserDto>builder()
@@ -79,6 +95,9 @@ public class UserService extends BaseService<User>{
                 .currentElements(userPage.getNumberOfElements()+1)
                 .contents(convertDomain(userPage.getContent()))
                 .pageNumbers(setPageNumber(userPage.getNumber(), userPage.getSize(), userPage.getTotalPages()))
+                .prePageNum(setPrePageNum(userPage.getNumber(), userPage.isFirst()) )
+                .nextPageNum(setNextPageNum(userPage.getNumber(), userPage.isLast()))
+                .searchType(setSearchType())
                 .build();
 
         return items;
@@ -94,6 +113,33 @@ public class UserService extends BaseService<User>{
 
         return  result;
     }
+
+    private List<String> setSearchType(){
+        List<String> temp = new ArrayList<>();
+        temp.add("All");
+        temp.add("Role");
+        temp.add("State");
+        return temp;
+    }
+
+
+    private int setNextPageNum(int currentPage, boolean isLast ){
+
+        if(!isLast ){
+            return currentPage + 2;
+        }
+        return -1;
+    }
+
+    private int setPrePageNum(int currentPage, boolean isFirst ){
+
+        if( !isFirst ){
+            return currentPage-1;
+        }
+
+        return  -1;
+    }
+
 
     private List<Integer> setPageNumber(int currentPage, int pageSize, int totalPages ){
 

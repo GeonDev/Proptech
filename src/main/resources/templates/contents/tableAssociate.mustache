@@ -5,23 +5,29 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
+                    <th>Round</th>
+                    <th>Fee(%)</th>
+                    <th>End Expect Date</th>
+                    <th>End Real Date</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Address</th>
                 </tr>
             </thead>
 
             <tbody>
+            {{#pages.contents}}
                 <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
+                    <td>{{name}}</td>
+                    <td>{{associateState}}</td>
+                    <td>{{operateFeeRatio}}</td>
+                    <td>{{endExpectDate}}</td>
+                    <td>{{endRealDate}}</td>
+                    <td>{{city}}</td>
+                    <td>{{state}}</td>
+                    <td>{{address}}</td>
                 </tr>
+            {{/pages.contents}}
             </tbody>
         </table>
     </div>

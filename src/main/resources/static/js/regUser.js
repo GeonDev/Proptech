@@ -1,11 +1,9 @@
-var mainReg = {
+var regUser = {
     init : function () {
         var _this = this;
         $('#btn-reg').on('click', function () {
             _this.save();
         });
-
-
     },
     save : function () {
         var username = $("#inputUserName").val();
@@ -26,9 +24,7 @@ var mainReg = {
 
         $("form").attr("action", "/register");
         $("form").submit();
-
     }
-
 };
 
-mainReg.init();
+regUser.init();
