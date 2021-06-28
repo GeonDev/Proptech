@@ -114,6 +114,7 @@ public class UserService extends BaseService<User>{
         return  result;
     }
 
+
     private List<String> setSearchType(){
         List<String> temp = new ArrayList<>();
         temp.add("All");
@@ -123,48 +124,6 @@ public class UserService extends BaseService<User>{
     }
 
 
-    private int setNextPageNum(int currentPage, boolean isLast ){
 
-        if(!isLast ){
-            return currentPage + 2;
-        }
-        return -1;
-    }
-
-    private int setPrePageNum(int currentPage, boolean isFirst ){
-
-        if( !isFirst ){
-            return currentPage-1;
-        }
-
-        return  -1;
-    }
-
-
-    private List<Integer> setPageNumber(int currentPage, int pageSize, int totalPages ){
-
-        List<Integer> pageNum = new ArrayList<>();
-
-        int size = pageSize/2;
-
-        int start = currentPage- size;
-        if(start < 0){
-            start = 0;
-        }
-
-        int end = currentPage + size;
-        if( end > totalPages){
-            end = totalPages;
-        }
-
-        for(int i = start; i< currentPage; i++){
-            pageNum.add(i+1);
-        }
-        for(int i = currentPage; i< end; i++){
-            pageNum.add(i+1);
-        }
-
-        return  pageNum;
-    }
 
 }

@@ -21,8 +21,9 @@ INSERT INTO `account` (`id`, `user_id`, `description`, `account`, `bank_name`, `
 
 
 
-INSERT INTO `associate` (`id`, `name`, `associate_state`, `operate_fee_ratio`, `end_expect_date`, `end_real_date`, `city`, `state`, `address`) VALUES
-	(1, '강남 조합', 'CREATE', 0.2, '2025-08-03', NULL, '서울', '강남구', '도산대로');
+INSERT INTO `associate` (`id`, `name`, `associate_round`, `operate_fee_ratio`, `end_expect_date`, `end_real_date`, `city`, `state`, `address`) VALUES
+	(1, '강남 조합', 'CREATE', 0.2, '2025-08-03', NULL, '서울', '강남구', '도산대로'),
+	(2, '용산 조합', 'CREATE', 0.5, '2024-05-03', NULL, '서울', '용산구', '용산로');
 
 
 

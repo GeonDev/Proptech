@@ -1,5 +1,6 @@
 package com.apt.proptech.controller;
 
+import com.apt.proptech.domain.dto.AssociateDto;
 import com.apt.proptech.domain.dto.Pagination;
 import com.apt.proptech.domain.dto.UserDto;
 import com.apt.proptech.domain.oauth.PrincipalDetails;
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/table")
@@ -47,7 +46,6 @@ public class TableController {
         }
 
 
-
         //페이지 타이틀 이름
         model.addAttribute("contentName","User List");
 
@@ -65,10 +63,24 @@ public class TableController {
     }
 
     @GetMapping("/associate-list")
-    public String associateTables(Model model){
+    public String associateTables (Model model, @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC, size = 10) Pageable pageable,
+                                        @RequestParam(value = "type", required = false, defaultValue = "") String type,
+                                        @RequestParam(value = "value", required = false, defaultValue = "") String value){
 
+        Pagination<AssociateDto> pagination =  associateService.getItemList(pageable,type,value);
+
+        //페이지 이동 버튼 체크 -> 머스테치는 값이 존재하는지로 if를 체크 한다.
+        if(pagination.isFirstPage() ){
+            model.addAttribute("isFirstPage", true);
+        }
+
+        if(pagination.isLastPage() ){
+            model.addAttribute("isLastPage", true);
+        }
 
         model.addAttribute("contentName","Associate List");
+
+        model.addAttribute("pages", pagination);
 
         model.addAttribute("tableLayout","true");
 

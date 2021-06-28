@@ -1,6 +1,6 @@
 package com.apt.proptech.domain;
 
-import com.apt.proptech.domain.enums.AssociateState;
+import com.apt.proptech.domain.enums.AssociateRound;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,10 +25,9 @@ public class Associate extends BaseTimeEntity{
     private String name;
 
     @Enumerated(EnumType.STRING)
-    private AssociateState associateState;
+    private AssociateRound associateRound;
 
     private Double operateFeeRatio;
-
 
     private LocalDateTime endExpectDate;
 
