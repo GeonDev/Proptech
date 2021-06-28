@@ -21,9 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class CommonUtil {
 
-
-
-
     public static String null2str(String org, String converted) {
         if (org == null || org.trim().length() == 0)
             return converted;
@@ -42,6 +39,15 @@ public class CommonUtil {
             return CommonUtil.null2str((String) org, "");
         }
     }
+
+    public static String null2str(Double org) {
+        if(org !=null){
+            return String.valueOf(org);
+        }else{
+            return "";
+        }
+    }
+
 
     public static String null2str(java.math.BigDecimal org, String converted) {
         if (org == null)
@@ -82,11 +88,12 @@ public class CommonUtil {
         }
     }
 
+
     public static String toDateStr(LocalDateTime date) {
         if (date == null)
             return "";
         else {
-            return date.format(DateTimeFormatter.ofPattern("YYYY-MM-DD"));
+            return date.format(DateTimeFormatter.ofPattern("YYYY-MM-dd"));
         }
     }
 

@@ -39,7 +39,6 @@ public class UserDto {
         this.registerDate = CommonUtil.toDateStr(user.getRegDate());
         this.retiredDate = CommonUtil.toDateStr(user.getRetiredDate());
         this.modiPasswordDate = CommonUtil.toDateStr(user.getModiPasswordDate());
-
     }
 
 

@@ -6,9 +6,11 @@
                 <tr>
                     <th>Name</th>
                     <th>Round</th>
-                    <th>Fee(%)</th>
+                    <th>Register</th>
                     <th>End Expect Date</th>
                     <th>End Real Date</th>
+                    <th>Fee(%)</th>
+                    <th>Modified</th>
                     <th>City</th>
                     <th>State</th>
                     <th>Address</th>
@@ -19,10 +21,12 @@
             {{#pages.contents}}
                 <tr>
                     <td>{{name}}</td>
-                    <td>{{associateState}}</td>
-                    <td>{{operateFeeRatio}}</td>
-                    <td>{{endExpectDate}}</td>
-                    <td>{{endRealDate}}</td>
+                    <td>{{round}}</td>
+                    <td>{{registerDate}}</td>
+                    <td>{{expectDate}}</td>
+                    <td>{{realDate}}</td>
+                    <td>{{feeRatio}}</td>
+                    <td>{{modifiedDate}}</td>
                     <td>{{city}}</td>
                     <td>{{state}}</td>
                     <td>{{address}}</td>

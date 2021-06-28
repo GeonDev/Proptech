@@ -109,8 +109,6 @@ public class MainController {
         session.setAttribute( "totalMessages","");
         model.addAttribute("contentName","Main");
 
-        model.addAttribute("test",null);
-
         return "main";
     }
 }

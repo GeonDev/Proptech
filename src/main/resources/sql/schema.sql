@@ -20,10 +20,12 @@ CREATE TABLE account (
 CREATE TABLE `associate` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
-  `associate_state` varchar(50) DEFAULT 'CREATE',
+  `associate_round` varchar(50) DEFAULT 'CREATE',
   `operate_fee_ratio` double DEFAULT NULL,
   `end_expect_date` date DEFAULT NULL,
   `end_real_date` date DEFAULT NULL,
+  `reg_date` date DEFAULT NULL,
+  `modi_date` date DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
   `state` varchar(50) DEFAULT NULL,
   `address` varchar(50) DEFAULT NULL,
