@@ -1,7 +1,108 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-    <!-- DataTales Example -->
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Filter</h6>
+        </div>
+        <div class="cord-body">
+            <div class="row ml-2">
+
+                <!-- GSON :  날짜 선택 부분 -->
+                <div class="col-xl-5 col-md-6">
+                    <div class="alert">
+                        <div class='col-md-5 col-xs-4 mr-4'>
+                            <b> DATE : </b>
+                            <div class="form-group">
+                                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" value="2021-06-29">
+                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-md-5 col-xs-4 ml-0'>
+                            <b> ~ </b>
+                            <div class="form-group">
+                                <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" value="2021-06-30">
+                                    <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GSON :  검색 타입 선택 부분  -->
+                <div class=" col-xl-3 col-md-6">
+                    <div class="alert">
+                        <b> TYPE : </b>
+                        <select class="selectpicker" id="inputGroupSelect1" data-width="fit">
+                            <option value="" selected>Choose</option>
+
+                            {{#pages.searchType}}
+                                <option value="{{.}}">{{.}}</option>
+                            {{/pages.searchType}}
+                        </select>
+                    </div>
+                </div>
+
+                <!-- GSON :  페이지 당 개수 선택  -->
+                <div class=" col-xl-3 col-md-6">
+                    <div class="alert">
+                        <b> SIZE : </b>
+                        <select class="selectpicker" id="inputGroupSelect2" data-width="fit">
+                            <option value="10" selected>10</option>
+                            <option value="25" >25</option>
+                            <option value="50" >50</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row ml-2">
+
+            <!-- GSON :  표시할 칼럼 선택 : 머스테치로 구현하기 힘들어 대기  -->
+            <!--
+            <div class="col-xl-8 col-md-6">
+                <div class="alert">
+                    <b> COLUMN : </b>
+                    <select class="selectpicker" multiple data-actions-box="true" id="inputGroupSelect3" data-width="auto">
+                        {{#pages.columnTitles}}
+                        <option value="{{order}}" selected>{{title}}</option>
+                        {{/pages.columnTitles}}
+                    </select>
+                </div>
+            </div>
+            -->
+
+            <!-- GSON :  검색어 입력 & 검색 요청  -->
+            <div class="col-xl-4 col-md-6">
+                <div class="alert">
+                    <div class="input-group ml-0">
+                        <b> KEYWORD : </b>
+                        <input id="inputGroupText1" type="text" class="form-control" aria-label="Text input">
+                        <div class="input-group-append">
+                            <button id="tableSearchBtn" class="btn btn-primary" type="button" onclick="getTablePage(1)">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- DataTales -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Tables</h6>
@@ -10,28 +111,6 @@
         <div class ="row">
             <div class ="col-sm-12 col-md-9">
                 <p class="pl-3 pb-0 pt-3">{{pages.currentPage}} to {{pages.totalPages}} of {{pages.totalElements}} entries</p>
-            </div>
-            <div class ="col-sm-12 col-md-3">
-                <div class="input-group mb-3 pr-3 pb-0 pt-3">
-                    <div class="input-group-prepend">
-                        <select class="selectpicker" id="inputGroupSelect1">
-                            <option value="" selected>Choose</option>
-
-                            {{#pages.searchType}}
-                                <option value="{{.}}">{{.}}</option>
-                            {{/pages.searchType}}
-                        </select>
-                    </div>
-
-                    <input id="inputGroupText1" type="text" class="form-control" aria-label="Text input">
-
-                    <div class="input-group-append">
-                        <button id="tableSearchBtn" class="btn btn-primary" type="button" onclick="getTablePage(1)">
-                            <i class="fas fa-search fa-sm"></i>
-                        </button>
-                    </div>
-
-                </div>
             </div>
         </div>
 

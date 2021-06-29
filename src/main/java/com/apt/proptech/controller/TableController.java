@@ -30,9 +30,11 @@ public class TableController {
 
 
     @GetMapping("/user-list")
-    public String userTables(Model model, @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC, size = 10) Pageable pageable,
+    public String userTables(Model model, @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC) Pageable pageable,
                              @RequestParam(value = "type", required = false, defaultValue = "") String type,
-                             @RequestParam(value = "value", required = false, defaultValue = "") String value){
+                             @RequestParam(value = "value", required = false, defaultValue = "") String value,
+                             @RequestParam(value = "start", required = false, defaultValue = "") String StartDate,
+                             @RequestParam(value = "end", required = false, defaultValue = "") String endDate){
 
         Pagination<UserDto> pagination =  userService.getItemList(pageable,type,value);
 
@@ -63,9 +65,11 @@ public class TableController {
     }
 
     @GetMapping("/associate-list")
-    public String associateTables (Model model, @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC, size = 10) Pageable pageable,
+    public String associateTables (Model model, @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC) Pageable pageable,
                                         @RequestParam(value = "type", required = false, defaultValue = "") String type,
-                                        @RequestParam(value = "value", required = false, defaultValue = "") String value){
+                                        @RequestParam(value = "value", required = false, defaultValue = "") String value,
+                                        @RequestParam(value = "start", required = false, defaultValue = "") String StartDate,
+                                        @RequestParam(value = "end", required = false, defaultValue = "") String endDate){
 
         Pagination<AssociateDto> pagination =  associateService.getItemList(pageable,type,value);
 

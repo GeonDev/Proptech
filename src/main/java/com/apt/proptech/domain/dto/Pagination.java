@@ -37,9 +37,14 @@ public class Pagination<Entity>{
     //이전번호 - 머스테지는 연산이 안되서 추가
     private  Integer nextPageNum;
 
-
     //검색 타입
     private List<String> searchType;
+
+    //컬럼 이름 정보 - > 일부 컬럼을 지울떄 사용
+    private List<ColumnTitle> columnTitles;
+
+    //칼럼의 총 개수 -> 선탯되지 않은 칼럼을 찾을때 사영
+    private Integer totalColumnCount;
 
     //콘텐츠 정보
     private List<Entity> contents;

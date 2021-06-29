@@ -1,5 +1,6 @@
 package com.apt.proptech.service;
 
+import com.apt.proptech.domain.dto.ColumnTitle;
 import com.apt.proptech.domain.dto.Pagination;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.dto.UserDto;
@@ -83,8 +84,6 @@ public class UserService extends BaseService<User>{
             userPage = baseRepository.findAll(pageable);
         }
 
-
-
         //화면에 표시하기 위한 Pagination 세팅
         Pagination<UserDto> items = Pagination.<UserDto>builder()
                 .isFirstPage(userPage.isFirst())
@@ -98,6 +97,8 @@ public class UserService extends BaseService<User>{
                 .prePageNum(setPrePageNum(userPage.getNumber(), userPage.isFirst()) )
                 .nextPageNum(setNextPageNum(userPage.getNumber(), userPage.isLast()))
                 .searchType(setSearchType())
+                .columnTitles(setColumns())
+                .totalColumnCount(8)
                 .build();
 
         return items;
@@ -120,6 +121,22 @@ public class UserService extends BaseService<User>{
         temp.add("All");
         temp.add("Role");
         temp.add("State");
+        return temp;
+    }
+
+
+    private List<ColumnTitle> setColumns(){
+        List<ColumnTitle> temp = new ArrayList<>();
+
+        temp.add(new ColumnTitle("name",0 ) );
+        temp.add(new ColumnTitle("Email",1 ) );
+        temp.add(new ColumnTitle("phoneNumber",2 ) );
+        temp.add(new ColumnTitle("provider",3 ) );
+        temp.add(new ColumnTitle("Role",4 ) );
+        temp.add(new ColumnTitle("State",5 ) );
+        temp.add(new ColumnTitle("Reg Date",6 ) );
+        temp.add(new ColumnTitle("Retire Date",7 ) );
+
         return temp;
     }
 

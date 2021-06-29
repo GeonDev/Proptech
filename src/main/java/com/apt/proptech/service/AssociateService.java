@@ -2,10 +2,11 @@ package com.apt.proptech.service;
 
 
 import com.apt.proptech.domain.Associate;
-import com.apt.proptech.domain.User;
+
 import com.apt.proptech.domain.dto.AssociateDto;
+import com.apt.proptech.domain.dto.ColumnTitle;
 import com.apt.proptech.domain.dto.Pagination;
-import com.apt.proptech.domain.dto.UserDto;
+
 import com.apt.proptech.repository.AssociateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -87,6 +88,8 @@ public class AssociateService extends BaseService<Associate>{
                 .prePageNum(setPrePageNum(associatesPages.getNumber(), associatesPages.isFirst()) )
                 .nextPageNum(setNextPageNum(associatesPages.getNumber(), associatesPages.isLast()))
                 .searchType(setSearchType())
+                .columnTitles(setColumns())
+                .totalColumnCount(10)
                 .build();
 
         return items;
@@ -109,6 +112,23 @@ public class AssociateService extends BaseService<Associate>{
         temp.add("Round");
         temp.add("Address");
         temp.add("Name");
+        return temp;
+    }
+
+    private List<ColumnTitle> setColumns(){
+        List<ColumnTitle> temp = new ArrayList<>();
+
+        temp.add(new ColumnTitle("Name",0 ) );
+        temp.add(new ColumnTitle("Round",1 ) );
+        temp.add(new ColumnTitle("Register",2 ) );
+        temp.add(new ColumnTitle("End Expect Date",3 ) );
+        temp.add(new ColumnTitle("End Real Date",4 ) );
+        temp.add(new ColumnTitle("Fee(%)",5 ) );
+        temp.add(new ColumnTitle("Modified",6 ) );
+        temp.add(new ColumnTitle("City",7 ) );
+        temp.add(new ColumnTitle("State",8 ) );
+        temp.add(new ColumnTitle("Address",9 ) );
+
         return temp;
     }
 
