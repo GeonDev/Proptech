@@ -3,14 +3,9 @@
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
             <tr>
-                <th>name</th>
-                <th>Email</th>
-                <th>phoneNumber</th>
-                <th>provider</th>
-                <th>Role</th>
-                <th>State</th>
-                <th>Reg Date</th>
-                <th>Retire Date</th>
+                {{#pages.columnTitles}}
+                    <th>{{title}}</th>
+                {{/pages.columnTitles}}
             </tr>
             </thead>
 
@@ -25,7 +20,6 @@
                         <td>{{state}}</td>
                         <td>{{registerDate}}</td>
                         <td>{{retiredDate}}</td>
-
                     </tr>
                 {{/pages.contents}}
             </tbody>
