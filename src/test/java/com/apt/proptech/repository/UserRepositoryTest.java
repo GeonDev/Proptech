@@ -4,6 +4,8 @@ import com.apt.proptech.domain.Account;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.enums.UserRole;
 import com.apt.proptech.domain.enums.UserState;
+import com.apt.proptech.repository.support.UserRepositorySupport;
+import com.apt.proptech.util.CommonUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +14,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @SpringBootTest
@@ -23,7 +27,10 @@ class UserRepositoryTest {
     @Autowired
     private AccountRepository accountRepository;
 
-    @Test
+    @Autowired
+    private UserRepositorySupport userRepositorySupport;
+
+
     @Transactional
     void crud() {
 
@@ -48,7 +55,7 @@ class UserRepositoryTest {
     }
 
 
-    @Test
+
     @Transactional
     void joinQueryTest(){
         List<User> user = userRepository.findAllByPartnerInfo();
@@ -69,6 +76,20 @@ class UserRepositoryTest {
         });
     }
 
+    @Test
+    void userSupport(){
+
+        String name ="관리자";
+        String startDate = "2003-01-04";
+        String endDate = "";
+
+        List<User> list = userRepositorySupport.findUserNameAndDate(name, startDate, endDate);
+
+        list.forEach( o->{
+            System.out.println(o.getName());
+            System.out.println(o.getRegDate());
+        });
+    }
 
 
 }

@@ -9,6 +9,7 @@ import java.security.MessageDigest;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -95,6 +96,12 @@ public class CommonUtil {
         else {
             return date.format(DateTimeFormatter.ofPattern("YYYY-MM-dd"));
         }
+    }
+
+
+    public static LocalDateTime toStringLocalDateTime(String str){
+        LocalDate date = LocalDate.parse(str, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return date.atStartOfDay();
     }
 
 
