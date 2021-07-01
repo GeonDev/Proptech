@@ -34,7 +34,8 @@ public class TableController {
                              @RequestParam(value = "type", required = false, defaultValue = "") String type,
                              @RequestParam(value = "value", required = false, defaultValue = "") String value,
                              @RequestParam(value = "start", required = false, defaultValue = "") String StartDate,
-                             @RequestParam(value = "end", required = false, defaultValue = "") String endDate){
+                             @RequestParam(value = "end", required = false, defaultValue = "") String endDate,
+                             @RequestParam(value = "selected", required = false, defaultValue = "c0#c1#c2#c3#c4#c5#c6#c7") String selected){
 
         Pagination<UserDto> pagination =  userService.getItemList(pageable,type,value);
 
@@ -60,6 +61,14 @@ public class TableController {
         //유저 테이블 형식을 불러옴
         model.addAttribute("tableUser","tableUser");
 
+        String[] selectArr = selected.split("#");
+
+        //선택된 칼럼만 활성화
+        for(int i =0; i<selectArr.length;i++){
+            model.addAttribute(""+selectArr[i],true);
+        }
+
+
 
         return "main";
     }
@@ -69,7 +78,8 @@ public class TableController {
                                         @RequestParam(value = "type", required = false, defaultValue = "") String type,
                                         @RequestParam(value = "value", required = false, defaultValue = "") String value,
                                         @RequestParam(value = "start", required = false, defaultValue = "") String StartDate,
-                                        @RequestParam(value = "end", required = false, defaultValue = "") String endDate){
+                                        @RequestParam(value = "end", required = false, defaultValue = "") String endDate,
+                                        @RequestParam(value = "selected", required = false, defaultValue = "c0#c1#c2#c3#c4#c5#c6#c7#c8#c9") String selected){
 
         Pagination<AssociateDto> pagination =  associateService.getItemList(pageable,type,value);
 
@@ -89,6 +99,12 @@ public class TableController {
         model.addAttribute("tableLayout","true");
 
         model.addAttribute("tableAssociate","tableAssociate");
+
+        String[] selectArr = selected.split("#");
+
+        for(int i =0; i<selectArr.length;i++){
+            model.addAttribute(""+selectArr[i],true);
+        }
 
         return "main";
     }

@@ -23,7 +23,16 @@ function getTablePage(pageNum) {
         url =  url + "/associate-list?";
      }
 
-     url = url + "page=" + targetPage+ "&size=" + pageSize+ "&type=" + searchType + "&value="+searchValue + "&start="+startDate + "&end="+endDate;
+     var selectedColumn = $("#inputGroupSelect3 option:selected");
+
+     var selected = "";
+     $(selectedColumn).each(function(index, selectedColumn){
+         selected += "#" + $(this).val();
+     });
+
+    selected = selected.substr(1);
+
+     url = url + "page=" + targetPage+ "&size=" + pageSize+ "&type=" + searchType + "&value="+searchValue + "&start="+startDate + "&end="+endDate+ "&selected="+selected
 
     window.location.href = url;
 }
@@ -40,20 +49,10 @@ function getParameterByName(name) {
 function setupTableColumn(selectedColumn) {
 
         const table = document.getElementById('dataTable');
-
-
-
-
-              for(var i = 0; i < table.rows.length; i++)  {
-                table.rows[i].deleteCell(-1);
-              }
-
-
+      for(var i = 0; i < table.rows.length; i++)  {
+        table.rows[i].deleteCell(-1);
+      }
 }
-
-
-
-
 
 $(function(){
 
@@ -74,17 +73,6 @@ $(function(){
 
     	$("#datetimepicker1").on("change.datetimepicker", function (e) { $('#datetimepicker2').datetimepicker('minDate', e.date); });
     	$("#datetimepicker2").on("change.datetimepicker", function (e) { $('#datetimepicker1').datetimepicker('maxDate', e.date); });
-
-
-        var selectedColumn = $("#inputGroupSelect3 option:selected");
-
-        var selected = [];
-        $(selectedColumn).each(function(index, selectedColumn){
-            selected.push([$(this).val()]);
-        });
-
-        console.log(selected);
-
 
 
 });
