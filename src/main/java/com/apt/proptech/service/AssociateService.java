@@ -118,16 +118,16 @@ public class AssociateService extends BaseService<Associate>{
     private List<ColumnTitle> setColumns(){
         List<ColumnTitle> temp = new ArrayList<>();
 
-        temp.add(new ColumnTitle("Name",0 ) );
-        temp.add(new ColumnTitle("Round",1 ) );
-        temp.add(new ColumnTitle("Register",2 ) );
-        temp.add(new ColumnTitle("End Expect Date",3 ) );
-        temp.add(new ColumnTitle("End Real Date",4 ) );
-        temp.add(new ColumnTitle("Fee(%)",5 ) );
-        temp.add(new ColumnTitle("Modified",6 ) );
-        temp.add(new ColumnTitle("City",7 ) );
-        temp.add(new ColumnTitle("State",8 ) );
-        temp.add(new ColumnTitle("Address",9 ) );
+        temp.add(new ColumnTitle("Name","c0" ) );
+        temp.add(new ColumnTitle("Round","c1" ) );
+        temp.add(new ColumnTitle("Register","c2" ) );
+        temp.add(new ColumnTitle("End Expect Date","c3" ) );
+        temp.add(new ColumnTitle("End Real Date","c4" ) );
+        temp.add(new ColumnTitle("Fee(%)","c5" ) );
+        temp.add(new ColumnTitle("Modified","c6" ) );
+        temp.add(new ColumnTitle("City","c7" ) );
+        temp.add(new ColumnTitle("State","c8" ) );
+        temp.add(new ColumnTitle("Address","c9" ) );
 
         return temp;
     }
