@@ -128,14 +128,14 @@ public class UserService extends BaseService<User>{
     private List<ColumnTitle> setColumns(){
         List<ColumnTitle> temp = new ArrayList<>();
 
-        temp.add(new ColumnTitle("name",0 ) );
-        temp.add(new ColumnTitle("Email",1 ) );
-        temp.add(new ColumnTitle("phoneNumber",2 ) );
-        temp.add(new ColumnTitle("provider",3 ) );
-        temp.add(new ColumnTitle("Role",4 ) );
-        temp.add(new ColumnTitle("State",5 ) );
-        temp.add(new ColumnTitle("Reg Date",6 ) );
-        temp.add(new ColumnTitle("Retire Date",7 ) );
+        temp.add(new ColumnTitle("Name","c0" ) );
+        temp.add(new ColumnTitle("Email","c1" ) );
+        temp.add(new ColumnTitle("PhoneNumber","c2" ) );
+        temp.add(new ColumnTitle("Provider","c3" ) );
+        temp.add(new ColumnTitle("Role","c4" ) );
+        temp.add(new ColumnTitle("State","c5" ) );
+        temp.add(new ColumnTitle("Reg Date","c6" ) );
+        temp.add(new ColumnTitle("Retire Date","c7" ) );
 
         return temp;
     }

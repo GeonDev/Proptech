@@ -3,23 +3,60 @@
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
             <tr>
-                {{#pages.columnTitles}}
-                    <th>{{title}}</th>
-                {{/pages.columnTitles}}
+                {{#c0}}
+                    <th>Name</th>
+                {{/c0}}
+                {{#c1}}
+                    <th>Email</th>
+                {{/c1}}
+                {{#c2}}
+                    <th>PhoneNumber</th>
+                {{/c2}}
+                {{#c3}}
+                    <th>Provider</th>
+                {{/c3}}
+                {{#c4}}
+                    <th>Role</th>
+                {{/c4}}
+                {{#c5}}
+                    <th>State</th>
+                {{/c5}}
+                {{#c6}}
+                    <th>Reg Date</th>
+                {{/c6}}
+                {{#c7}}
+                    <th>Retire Date</th>
+                {{/c7}}
             </tr>
             </thead>
 
             <tbody>
                 {{#pages.contents}}
                     <tr>
-                        <td>{{name}}</td>
-                        <td>{{email}}</td>
-                        <td>{{phoneNumber}}</td>
-                        <td>{{provider}}</td>
-                        <td>{{role}}</td>
-                        <td>{{state}}</td>
-                        <td>{{registerDate}}</td>
-                        <td>{{retiredDate}}</td>
+                        {{#c0}}
+                            <td>{{name}}</td>
+                        {{/c0}}
+                        {{#c1}}
+                            <td>{{email}}</td>
+                        {{/c1}}
+                        {{#c2}}
+                            <td>{{phoneNumber}}</td>
+                        {{/c2}}
+                        {{#c3}}
+                            <td>{{provider}}</td>
+                        {{/c3}}
+                        {{#c4}}
+                            <td>{{role}}</td>
+                        {{/c4}}
+                        {{#c5}}
+                            <td>{{state}}</td>
+                        {{/c5}}
+                        {{#c6}}
+                            <td>{{registerDate}}</td>
+                        {{/c6}}
+                        {{#c7}}
+                            <td>{{retiredDate}}</td>
+                        {{/c7}}
                     </tr>
                 {{/pages.contents}}
             </tbody>

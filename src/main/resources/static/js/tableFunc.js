@@ -15,6 +15,20 @@ function getTablePage(pageNum) {
 
     var endDate = $("#datetimepicker2 input").val();
 
+
+    //칼럼 셀렉터에서 선택된 내용을 가지고 옴
+    var selectedColumn = $("#inputGroupSelect3 option:selected");
+
+
+    var column = "";
+    $(selectedColumn).each(function(index, selectedColumn){
+        column = column +"#"+ $(this).val()
+     });
+
+    column = column.substr(1);
+
+
+
     var url = "/table";
 
      if(contentName == "User List" ){
@@ -23,7 +37,7 @@ function getTablePage(pageNum) {
         url =  url + "/associate-list?";
      }
 
-     url = url + "page=" + targetPage+ "&size=" + pageSize+ "&type=" + searchType + "&value="+searchValue + "&start="+startDate + "&end="+endDate;
+     url = url + "page=" + targetPage+ "&size=" + pageSize+ "&type=" + searchType + "&value="+searchValue + "&start="+startDate + "&end="+endDate+ "&column"+column;
 
     window.location.href = url;
 }
@@ -36,22 +50,14 @@ function getParameterByName(name) {
         return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-
+//GSON : 이미 그려진 에서 컬럼을 삭제하는 기능
 function setupTableColumn(selectedColumn) {
 
         const table = document.getElementById('dataTable');
-
-
-
-
               for(var i = 0; i < table.rows.length; i++)  {
                 table.rows[i].deleteCell(-1);
               }
-
-
 }
-
-
 
 
 
@@ -74,17 +80,6 @@ $(function(){
 
     	$("#datetimepicker1").on("change.datetimepicker", function (e) { $('#datetimepicker2').datetimepicker('minDate', e.date); });
     	$("#datetimepicker2").on("change.datetimepicker", function (e) { $('#datetimepicker1').datetimepicker('maxDate', e.date); });
-
-
-        var selectedColumn = $("#inputGroupSelect3 option:selected");
-
-        var selected = [];
-        $(selectedColumn).each(function(index, selectedColumn){
-            selected.push([$(this).val()]);
-        });
-
-        console.log(selected);
-
 
 
 });

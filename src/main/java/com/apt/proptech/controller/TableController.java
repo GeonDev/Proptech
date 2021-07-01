@@ -1,6 +1,7 @@
 package com.apt.proptech.controller;
 
 import com.apt.proptech.domain.dto.AssociateDto;
+import com.apt.proptech.domain.dto.ColumnTitle;
 import com.apt.proptech.domain.dto.Pagination;
 import com.apt.proptech.domain.dto.UserDto;
 import com.apt.proptech.domain.oauth.PrincipalDetails;
@@ -10,12 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 
 @Controller
@@ -34,7 +37,8 @@ public class TableController {
                              @RequestParam(value = "type", required = false, defaultValue = "") String type,
                              @RequestParam(value = "value", required = false, defaultValue = "") String value,
                              @RequestParam(value = "start", required = false, defaultValue = "") String StartDate,
-                             @RequestParam(value = "end", required = false, defaultValue = "") String endDate){
+                             @RequestParam(value = "end", required = false, defaultValue = "") String endDate,
+                             @RequestParam(value = "column", required = false, defaultValue = "") String column){
 
         Pagination<UserDto> pagination =  userService.getItemList(pageable,type,value);
 
@@ -60,6 +64,20 @@ public class TableController {
         //유저 테이블 형식을 불러옴
         model.addAttribute("tableUser","tableUser");
 
+        //출력할 칼럼을 전달
+        if(column == "" ){
+            List<ColumnTitle> temp = pagination.getColumnTitles();
+            for(int i =0; i< temp.size(); i++ ){
+                model.addAttribute(temp.get(i).getOrder()+"",true);
+            }
+
+        }else{
+            String[] columnArr = column.split("#");
+            for(int i =0; i< columnArr.length; i++ ){
+                model.addAttribute(columnArr[i]+"",true);
+            }
+        }
+
 
         return "main";
     }
@@ -69,7 +87,8 @@ public class TableController {
                                         @RequestParam(value = "type", required = false, defaultValue = "") String type,
                                         @RequestParam(value = "value", required = false, defaultValue = "") String value,
                                         @RequestParam(value = "start", required = false, defaultValue = "") String StartDate,
-                                        @RequestParam(value = "end", required = false, defaultValue = "") String endDate){
+                                        @RequestParam(value = "end", required = false, defaultValue = "") String endDate,
+                                        @RequestParam(value = "column", required = false, defaultValue = "") String column){
 
         Pagination<AssociateDto> pagination =  associateService.getItemList(pageable,type,value);
 
@@ -90,9 +109,20 @@ public class TableController {
 
         model.addAttribute("tableAssociate","tableAssociate");
 
+        //출력할 칼럼을 전달
+        if(column == "" ){
+            List<ColumnTitle> temp = pagination.getColumnTitles();
+            for(int i =0; i< temp.size(); i++ ){
+                model.addAttribute(temp.get(i).getOrder()+"",true);
+            }
+
+        }else{
+            String[] columnArr = column.split("#");
+            for(int i =0; i< columnArr.length; i++ ){
+                model.addAttribute(columnArr[i]+"",true);
+            }
+        }
+
         return "main";
     }
-
-
-
 }

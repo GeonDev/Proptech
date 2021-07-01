@@ -9,9 +9,9 @@ import lombok.Getter;
 public class ColumnTitle {
 
     private String title;
-    private int order;
+    private String order;
 
-    public ColumnTitle(String title, int order ){
+    public ColumnTitle(String title, String order ){
         this.title = title;
         this.order = order;
     }
