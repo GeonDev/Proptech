@@ -65,7 +65,7 @@ public class TableController {
 
         //선택된 칼럼만 활성화
         for(int i =0; i<selectArr.length;i++){
-            model.addAttribute(""+selectArr[i],true);
+            model.addAttribute(selectArr[i],true);
         }
 
 
@@ -103,7 +103,7 @@ public class TableController {
         String[] selectArr = selected.split("#");
 
         for(int i =0; i<selectArr.length;i++){
-            model.addAttribute(""+selectArr[i],true);
+            model.addAttribute(selectArr[i],true);
         }
 
         return "main";
