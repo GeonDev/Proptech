@@ -134,6 +134,16 @@ public class UserService extends BaseService<User>{
     }
 
 
+    public List<UserDto> getExcalDate(String type, String value, String startDate, String endDate){
+        List<User> temp = userRepositorySupport.findUserTypeAndDate(type,value,startDate,endDate);
+
+        List<UserDto> items = new ArrayList<>();
+        temp.forEach(o->{ items.add(new UserDto(o)); });
+
+        return  items;
+    }
+
+
 
 
     private List<UserDto> convertDomain( List<User> data){
@@ -164,7 +174,7 @@ public class UserService extends BaseService<User>{
         temp.add(new ColumnTitle("Name","c0" ) );
         temp.add(new ColumnTitle("Email","c1" ) );
         temp.add(new ColumnTitle("phoneNumber","c2" ) );
-        temp.add(new ColumnTitle("provider","c3" ) );
+        temp.add(new ColumnTitle("Provider","c3" ) );
         temp.add(new ColumnTitle("Role","c4" ) );
         temp.add(new ColumnTitle("State","c5" ) );
         temp.add(new ColumnTitle("Reg Date","c6" ) );
