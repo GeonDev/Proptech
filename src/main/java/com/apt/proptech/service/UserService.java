@@ -5,8 +5,10 @@ import com.apt.proptech.domain.dto.Pagination;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.dto.UserDto;
 import com.apt.proptech.repository.UserRepository;
+import com.apt.proptech.repository.support.UserRepositorySupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,8 @@ public class UserService extends BaseService<User>{
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserRepositorySupport userRepositorySupport;
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -104,6 +108,44 @@ public class UserService extends BaseService<User>{
         return items;
     }
 
+
+    public Pagination getItemList(Pageable pageable, String type, String value, String startDate, String endDate) {
+
+        PageImpl<User> userPage = userRepositorySupport.findUserTypeAndDatePage(type, value, startDate, endDate, pageable);
+
+        //화면에 표시하기 위한 Pagination 세팅
+        Pagination<UserDto> items = Pagination.<UserDto>builder()
+                .isFirstPage(userPage.isFirst())
+                .isLastPage(userPage.isLast())
+                .totalPages(userPage.getTotalPages())
+                .totalElements(userPage.getTotalElements())
+                .currentPage(userPage.getNumber()+1)
+                .currentElements(userPage.getNumberOfElements()+1)
+                .contents(convertDomain(userPage.getContent()))
+                .pageNumbers(setPageNumber(userPage.getNumber(), userPage.getSize(), userPage.getTotalPages()))
+                .prePageNum(setPrePageNum(userPage.getNumber(), userPage.isFirst()) )
+                .nextPageNum(setNextPageNum(userPage.getNumber(), userPage.isLast()))
+                .searchType(setSearchType())
+                .columnTitles(setColumns())
+                .totalColumnCount(8)
+                .build();
+
+        return items;
+    }
+
+
+    public List<UserDto> getExcalDate(String type, String value, String startDate, String endDate){
+        List<User> temp = userRepositorySupport.findUserTypeAndDate(type,value,startDate,endDate);
+
+        List<UserDto> items = new ArrayList<>();
+        temp.forEach(o->{ items.add(new UserDto(o)); });
+
+        return  items;
+    }
+
+
+
+
     private List<UserDto> convertDomain( List<User> data){
         List<UserDto> result = new ArrayList<UserDto>();
 
@@ -121,6 +163,7 @@ public class UserService extends BaseService<User>{
         temp.add("All");
         temp.add("Role");
         temp.add("State");
+        temp.add("Name");
         return temp;
     }
 
@@ -130,7 +173,7 @@ public class UserService extends BaseService<User>{
 
         temp.add(new ColumnTitle("Name","c0" ) );
         temp.add(new ColumnTitle("Email","c1" ) );
-        temp.add(new ColumnTitle("PhoneNumber","c2" ) );
+        temp.add(new ColumnTitle("phoneNumber","c2" ) );
         temp.add(new ColumnTitle("Provider","c3" ) );
         temp.add(new ColumnTitle("Role","c4" ) );
         temp.add(new ColumnTitle("State","c5" ) );
@@ -139,8 +182,4 @@ public class UserService extends BaseService<User>{
 
         return temp;
     }
-
-
-
-
 }

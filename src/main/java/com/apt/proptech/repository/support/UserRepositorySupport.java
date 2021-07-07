@@ -1,21 +1,21 @@
 package com.apt.proptech.repository.support;
 
 import com.apt.proptech.domain.User;
-
 import com.apt.proptech.domain.enums.UserRole;
+import com.apt.proptech.domain.enums.UserState;
 import com.apt.proptech.util.CommonUtil;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-
-//중요!  QueryDsl에서 QUser에서 추출된 user 클래스를 생성해야 한다.
 import static com.apt.proptech.domain.QUser.user;
 
 
@@ -31,48 +31,90 @@ public class UserRepositorySupport extends QuerydslRepositorySupport {
     }
 
 
+
     public User findOneByName(String name){
         return queryFactory.selectFrom(user).where(user.name.eq(name))
                 .fetchOne();
     }
 
-
-    public List<User> findUserNameAndDate(String value, String startDate, String endDate ){
-        return  queryFactory.selectFrom(user).where(containsName(value), betweenDate(startDate,endDate) ,lessThenDate(startDate, endDate)).fetch();
+    //모든 데이터 조회 (엑셀 데이터 추출 용)
+    public List<User> findUserTypeAndDate(String type, String value, String startDate, String endDate ){
+        return  queryFactory.selectFrom(user).where(eqTypeAndValue(type, value), betweenDate(startDate,endDate) ).fetch();
     }
 
-    private BooleanExpression containsName(String value){
+
+
+    // PageImpl은 Spring Data에서 이미 선언되어 있는 도메인
+    public PageImpl<User> findUserTypeAndDatePage(String type, String value, String startDate, String endDate , Pageable pageable){
+
+        JPAQuery<User> query = queryFactory.selectFrom(user).where(eqTypeAndValue(type, value), betweenDate(startDate,endDate));
+
+        Long totalCount = query.fetchCount();
+
+        List<User> result = getQuerydsl().applyPagination(pageable, query).fetch();
+
+        return new PageImpl<>(result, pageable, totalCount);
+    }
+
+
+    private BooleanExpression eqTypeAndValue(String type, String value){
+
+        if(type.equals("Role") ){
+            return eqRole(value);
+        }else if(type.equals("State")) {
+            return eqState(value);
+        }else if(type.equals("Name")){
+            return eqName(value);
+        }else{
+            return null;
+        }
+    }
+
+
+    private BooleanExpression eqName(String value){
         if(CommonUtil.null2str(value).equals("") ) {
             return  null;
         }
-        return user.name.contains(value);
+        return user.name.eq(value);
     }
 
-
-
-
-    private BooleanExpression eqRole (String str){
-        if(CommonUtil.null2str(str).equals("") ) {
+    private BooleanExpression eqState(String value){
+        if(CommonUtil.null2str(value).equals("") ) {
             return  null;
         }
 
-        if("ROLE_ADMIN".contains(str) ){
-            UserRole role = UserRole.ROLE_ADMIN;
-            return user.userRole.eq(role);
-        }else if("ROLE_USER".contains(str)) {
-            UserRole role = UserRole.ROLE_USER;
-            return user.userRole.eq(role);
-        }else if("ROLE_MANAGER".contains(str) ){
-            UserRole role = UserRole.ROLE_MANAGER;
-            return user.userRole.eq(role);
-        }else if("ROLE_STAFF".contains(str) ){
-            UserRole role = UserRole.ROLE_STAFF;
-            return user.userRole.eq(role);
-        }else if("ROLE_PARTNER".contains(str) ) {
-            UserRole role = UserRole.ROLE_PARTNER;
-            return user.userRole.eq(role);
+        value = value.toUpperCase();
+
+        if("UN_AUTH".equals(value) ){
+            return user.userState.eq(UserState.UN_AUTH);
+        }else if("AUTH".equals(value)){
+            return user.userState.eq(UserState.AUTH);
+        }else if("RETIRED".equals(value)){
+            return user.userState.eq(UserState.RETIRED);
+        } else{
+            return  null;
+        }
+    }
+
+
+    private BooleanExpression eqRole (String value){
+        if(CommonUtil.null2str(value).equals("") ) {
+            return  null;
+        }
+
+        value = value.toUpperCase();
+
+        if("ROLE_ADMIN".equals(value) ){
+            return user.userRole.eq(UserRole.ROLE_ADMIN);
+        }else if("ROLE_USER".equals(value)) {
+            return user.userRole.eq(UserRole.ROLE_USER);
+        }else if("ROLE_MANAGER".equals(value) ){
+            return user.userRole.eq(UserRole.ROLE_MANAGER);
+        }else if("ROLE_STAFF".equals(value) ){
+            return user.userRole.eq(UserRole.ROLE_STAFF);
+        }else if("ROLE_PARTNER".equals(value) ) {
+            return user.userRole.eq(UserRole.ROLE_PARTNER);
         }else{
-            //모든 경우에 해당되지 않을때
             return  null;
         }
     }
@@ -85,19 +127,13 @@ public class UserRepositorySupport extends QuerydslRepositorySupport {
         if(!CommonUtil.null2str(startDate).equals("") &&  !CommonUtil.null2str(endDate).equals("") ){
             LocalDateTime start = CommonUtil.toStringLocalDateTime(startDate);
             LocalDateTime end = CommonUtil.toStringLocalDateTime(endDate);
-
             return  user.regDate.between(start,end);
-        }else{
-            return  null;
-        }
-    }
-
-    private  BooleanExpression lessThenDate(String startDate, String endDate){
-
-        if(CommonUtil.null2str(startDate).equals("") && !CommonUtil.null2str(startDate).equals("")){
+        }else if(CommonUtil.null2str(startDate).equals("") && !CommonUtil.null2str(endDate).equals("")){
             LocalDateTime end = CommonUtil.toStringLocalDateTime(endDate);
             return  user.regDate.before(end);
-
+        } else if(!CommonUtil.null2str(startDate).equals("") && CommonUtil.null2str(endDate).equals(""))  {
+            LocalDateTime start = CommonUtil.toStringLocalDateTime(startDate);
+            return  user.regDate.after(start);
         }else{
             return  null;
         }

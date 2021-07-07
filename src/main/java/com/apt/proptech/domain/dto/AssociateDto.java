@@ -2,7 +2,15 @@ package com.apt.proptech.domain.dto;
 
 import com.apt.proptech.domain.Associate;
 import com.apt.proptech.util.CommonUtil;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class AssociateDto {
 
     private String name;
