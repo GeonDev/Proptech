@@ -105,8 +105,6 @@ public class MainController {
         session.setAttribute( "profileImg",principal.getUser().getProfileImg());
         session.setAttribute( "userName",principal.getUser().getUsername());
 
-        session.setAttribute( "totalAlerts","");
-        session.setAttribute( "totalMessages","");
         model.addAttribute("contentName","Main");
 
         return "main";
