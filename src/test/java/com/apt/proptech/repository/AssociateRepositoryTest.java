@@ -19,7 +19,7 @@ class AssociateRepositoryTest {
     private AssociateRepository associateRepository;
 
 
-
+    @Test
     @Transactional
     void AddressTest() {
 
@@ -35,7 +35,7 @@ class AssociateRepositoryTest {
         } );
     }
 
-
+    @Test
     @Transactional
     void NameTest() {
 
