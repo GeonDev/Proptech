@@ -15,20 +15,6 @@ function getTablePage(pageNum) {
 
     var endDate = $("#datetimepicker2 input").val();
 
-
-    //칼럼 셀렉터에서 선택된 내용을 가지고 옴
-    var selectedColumn = $("#inputGroupSelect3 option:selected");
-
-
-    var column = "";
-    $(selectedColumn).each(function(index, selectedColumn){
-        column = column +"#"+ $(this).val()
-     });
-
-    column = column.substr(1);
-
-
-
     var url = "/table";
 
      if(contentName == "User List" ){
@@ -37,9 +23,45 @@ function getTablePage(pageNum) {
         url =  url + "/associate-list?";
      }
 
-     url = url + "page=" + targetPage+ "&size=" + pageSize+ "&type=" + searchType + "&value="+searchValue + "&start="+startDate + "&end="+endDate+ "&column"+column;
+     var selectedColumn = $("#inputGroupSelect3 option:selected");
+
+     var selected = "";
+     $(selectedColumn).each(function(index, selectedColumn){
+         selected += "-" + $(this).val();
+     });
+
+    selected = selected.substr(1);
+
+     url = url + "page=" + targetPage+ "&size=" + pageSize+ "&type=" + searchType + "&value="+searchValue + "&start="+startDate + "&end="+endDate+ "&selected="+selected
 
     window.location.href = url;
+}
+
+function getTableExcel(){
+
+
+    var searchType = $("#inputGroupSelect1 option:selected").val();
+
+    var searchValue = $("#inputGroupText1").val();
+
+    var contentName = $("#contentTitle").html();
+
+    var startDate =  $("#datetimepicker1 input").val();
+
+    var endDate = $("#datetimepicker2 input").val();
+
+    var url = "/table";
+
+     if(contentName == "User List" ){
+        url =  url + "/user-excel?";
+     } else if(contentName == "Associate List"){
+        url =  url + "/associate-excel?";
+     }
+
+    url = url + "type=" + searchType + "&value="+searchValue + "&start="+startDate + "&end="+endDate;
+
+    window.location.href = url;
+
 }
 
 
@@ -50,16 +72,14 @@ function getParameterByName(name) {
         return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-//GSON : 이미 그려진 에서 컬럼을 삭제하는 기능
+
 function setupTableColumn(selectedColumn) {
 
         const table = document.getElementById('dataTable');
-              for(var i = 0; i < table.rows.length; i++)  {
-                table.rows[i].deleteCell(-1);
-              }
+      for(var i = 0; i < table.rows.length; i++)  {
+        table.rows[i].deleteCell(-1);
+      }
 }
-
-
 
 $(function(){
 

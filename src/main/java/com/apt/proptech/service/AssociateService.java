@@ -3,11 +3,13 @@ package com.apt.proptech.service;
 
 import com.apt.proptech.domain.Associate;
 
+import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.dto.AssociateDto;
 import com.apt.proptech.domain.dto.ColumnTitle;
 import com.apt.proptech.domain.dto.Pagination;
 
 import com.apt.proptech.repository.AssociateRepository;
+import com.apt.proptech.repository.support.AssociateRepositorySupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +23,9 @@ public class AssociateService extends BaseService<Associate>{
 
     @Autowired
     private AssociateRepository associateRepository;
+
+    @Autowired
+    private AssociateRepositorySupport associateRepositorySupport;
 
 
     @Override
@@ -94,6 +99,16 @@ public class AssociateService extends BaseService<Associate>{
 
         return items;
     }
+
+    public List<AssociateDto> getExcalDate( String type, String value, String startDate, String endDate ){
+        List<Associate> temp = associateRepositorySupport.findAssociateTypeAndDate(type, value, startDate, endDate);
+        List <AssociateDto> items = new ArrayList<>();
+        temp.forEach( o->{items.add( new AssociateDto(o)); });
+
+        return  items;
+    }
+
+
 
     private List<AssociateDto> convertDomain( List<Associate> data){
         List<AssociateDto> result = new ArrayList<AssociateDto>();
