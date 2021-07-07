@@ -27,7 +27,7 @@ function getTablePage(pageNum) {
 
      var selected = "";
      $(selectedColumn).each(function(index, selectedColumn){
-         selected += "#" + $(this).val();
+         selected += "-" + $(this).val();
      });
 
     selected = selected.substr(1);
@@ -35,6 +35,33 @@ function getTablePage(pageNum) {
      url = url + "page=" + targetPage+ "&size=" + pageSize+ "&type=" + searchType + "&value="+searchValue + "&start="+startDate + "&end="+endDate+ "&selected="+selected
 
     window.location.href = url;
+}
+
+function getTableExcel(){
+
+
+    var searchType = $("#inputGroupSelect1 option:selected").val();
+
+    var searchValue = $("#inputGroupText1").val();
+
+    var contentName = $("#contentTitle").html();
+
+    var startDate =  $("#datetimepicker1 input").val();
+
+    var endDate = $("#datetimepicker2 input").val();
+
+    var url = "/table";
+
+     if(contentName == "User List" ){
+        url =  url + "/user-excel?";
+     } else if(contentName == "Associate List"){
+        url =  url + "/associate-excel?";
+     }
+
+    url = url + "type=" + searchType + "&value="+searchValue + "&start="+startDate + "&end="+endDate;
+
+    window.location.href = url;
+
 }
 
 
