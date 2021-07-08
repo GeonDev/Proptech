@@ -87,7 +87,6 @@ public class TableController {
 
         //선택된 칼럼만 활성화
         String[] selectArr = selected.split("-");
-
         for(String col : selectArr){
             model.addAttribute(col, true );
         }
