@@ -1,6 +1,6 @@
 package com.apt.proptech.config;
 
-import com.apt.proptech.hendler.MessageNotiInterceptor;
+import com.apt.proptech.hendler.MessageAlertInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import java.util.List;
 public class WebConfig  implements WebMvcConfigurer {
 
     @Autowired
-    private MessageNotiInterceptor messageNotiInterceptor;
+    private MessageAlertInterceptor messageNotiInterceptor;
 
 
     @Bean

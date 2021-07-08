@@ -180,3 +180,22 @@ CREATE TABLE `web_menu` (
   `modi_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
+
+CREATE TABLE `message` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `message` varchar(1024) DEFAULT NULL,
+  `sand_user_id` bigint(20) DEFAULT NULL,
+  `receive_user_id` bigint(20) DEFAULT NULL,
+  `sand_date` date DEFAULT NULL,
+  `read_date` date DEFAULT NULL,
+   PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `alert` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `message` varchar(1024) DEFAULT NULL,
+  `receive_user_id` bigint(20) DEFAULT NULL,
+  `sand_date` date DEFAULT NULL,
+  `read_date` date DEFAULT NULL,
+   PRIMARY KEY (`id`)
+);

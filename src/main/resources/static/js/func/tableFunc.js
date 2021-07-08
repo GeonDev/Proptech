@@ -75,7 +75,7 @@ function getParameterByName(name) {
 
 function setupTableColumn(selectedColumn) {
 
-        const table = document.getElementById('dataTable');
+      const table = document.getElementById('dataTable');
       for(var i = 0; i < table.rows.length; i++)  {
         table.rows[i].deleteCell(-1);
       }
@@ -87,13 +87,24 @@ $(function(){
     	var value = getParameterByName('value');
     	var pageSize = getParameterByName('size');
 
+        //이전에 선택한 칼럽을 불러오기
+        var selectedColumn = getParameterByName("selected");
+        if(selectedColumn != ""){
+            var colArr = selectedColumn.split("-");
+            $("#inputGroupSelect3").selectpicker('val', colArr);
+        }
+
     	if( pageSize == ""){
     	    pageSize = 10;
     	}
 
+
     	$("#inputGroupSelect1").val(type).trigger('change');
     	$("#inputGroupSelect2").val(pageSize).trigger('change');
     	$("#inputGroupText1").val(value);
+
+
+
 
     	$('#datetimepicker1').datetimepicker({ format: 'YYYY-MM-DD'});
     	$('#datetimepicker2').datetimepicker({ format: 'YYYY-MM-DD', useCurrent: false });

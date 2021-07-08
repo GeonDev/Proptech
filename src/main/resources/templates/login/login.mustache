@@ -13,11 +13,13 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4"><b> Welcome Back!</b></h1>
                             </div>
-                            <form action="/loginProc" method="post">
+
+                            <!-- form 내부에 있는 버튼을 눌렀을 경우 지정된 URL로 request 수행 -->
+                            <form id="loginProc" action="/loginProc" method="post">
 
                                 <div class="form-group">
-                                    <input type="text" name="username" class="form-control form-control-user"
-                                        placeholder="Enter ID">
+                                    <input type="text" id="userID" name="username" class="form-control form-control-user"
+                                        placeholder="Enter ID" onclick="rememberName()">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="password" class="form-control form-control-user"
@@ -33,17 +35,19 @@
                                             Me</label>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary btn-user btn-block">
-                                    Login
-                                </button>
-                                <hr>
-                                <a href="/oauth2/authorization/google" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Login with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                </a>
                             </form>
+
+                            <button class="btn btn-primary btn-user btn-block" onclick="loginFunc()">
+                                Login
+                            </button>
+                            <hr>
+                            <a href="/oauth2/authorization/google" class="btn btn-google btn-user btn-block">
+                                <i class="fab fa-google fa-fw"></i> Login with Google
+                            </a>
+                            <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                            </a>
+
                             <hr>
                             <div class="text-center">
                                 <a class="small" href="/forgot">Forgot Password?</a>

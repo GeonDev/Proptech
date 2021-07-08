@@ -31,7 +31,7 @@ public class AssociateService extends BaseService<Associate>{
     @Override
     public Associate addItem(Associate object) {
 
-        Associate associate=  Associate.builder()
+        Associate associate = Associate.builder()
                 .name(object.getName())
                 .operateFeeRatio(object.getOperateFeeRatio())
                 .endExpectDate(object.getEndExpectDate())

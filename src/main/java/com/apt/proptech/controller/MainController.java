@@ -35,8 +35,8 @@ public class MainController {
     static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
 
     @GetMapping("/")
-    public String index(Model model ){
-        return "index";
+    public String index(){
+        return "redirect:/main";
     }
 
     @GetMapping("/login")
@@ -44,12 +44,14 @@ public class MainController {
 
         model.addAttribute("error",error);
         model.addAttribute("exception",exception);
+        model.addAttribute("loginLayout" , true);
         return "login/login";
     }
 
     @GetMapping("/register")
-    public String registerView( ){
+    public String registerView(Model model ){
 
+        model.addAttribute("regLayout", true);
         return "login/register";
     }
 
@@ -60,6 +62,7 @@ public class MainController {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setUserRole(UserRole.ROLE_USER);
         userService.addItem(user);
+
         return "redirect:/";
     }
 
@@ -104,6 +107,9 @@ public class MainController {
         //세션은 단순 화면 표시용 기능 -> 실제 연산은 시큐리티 세션으로 처리
         session.setAttribute( "profileImg",principal.getUser().getProfileImg());
         session.setAttribute( "userName",principal.getUser().getUsername());
+
+        //메시지 조회용으로 User ID 저장
+        session.setAttribute( "userId",principal.getUser().getId());
 
         model.addAttribute("contentName","Main");
 
