@@ -65,15 +65,12 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
 			oAuth2UserInfo = new NaverUserInfo((Map)oAuth2User.getAttributes().get("response"));
 		} else {
-			LOGGER.debug(" 지원하지 않는 소셜 로그인 입니다.");
+			LOGGER.info(" 지원하지 않는 소셜 로그인 입니다.");
 		}
 
-		Optional<User> userOptional;
-		userOptional = userRepository.findByProviderAndProviderId(oAuth2UserInfo.getProvider(), oAuth2UserInfo.getProviderId());
+		User user  = userRepository.findByProviderAndProviderId(oAuth2UserInfo.getProvider(), oAuth2UserInfo.getProviderId());
 
-		User user;
-		if (userOptional.isPresent()) {
-			user = userOptional.get();
+		if (user!=null) {
 
 			//로그인 히스토리 기록
 			LoginHistory loginHistory = LoginHistory.builder()
@@ -95,9 +92,9 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 					.provider(oAuth2UserInfo.getProvider())
 					.providerId(oAuth2UserInfo.getProviderId())
 					.build();
-
+			userRepository.save(user);
 		}
-		userRepository.save(user);
+
 
 
 		return new PrincipalDetails(user, oAuth2User.getAttributes());

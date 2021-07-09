@@ -1,11 +1,6 @@
-var regUser = {
-    init : function () {
-        var _this = this;
-        $('#btn-reg').on('click', function () {
-            _this.save();
-        });
-    },
-    save : function () {
+
+
+function save() {
         var username = $("#inputUserName").val();
         var name = $("#inputName").val();
         var email = $("#InputEmail").val();
@@ -24,7 +19,15 @@ var regUser = {
 
         $("form").attr("action", "/register");
         $("form").submit();
-    }
-};
+}
 
-regUser.init();
+
+
+$(function(){
+
+        $('#btn-reg').on('click', function () {
+            save();
+        });
+
+
+});

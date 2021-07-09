@@ -36,43 +36,25 @@ public class MessageAlertInterceptor implements HandlerInterceptor {
         //세션이 있을때 만 정보를 가지고 온다.
         HttpSession session = request.getSession(false);
 
-        if( session!=null){
-            User user = userService.getItem((Long)session.getAttribute("userId") );
-
+        if( session!= null){
             //읽지 않은 알람, 메세지가 있는 지 확인한다.
-            List<Alert> alertList = alertService.getAlertListNotRead(user);
-            List<Message> messageList =  messageService.getMessageListNotRead(user);
+            List<Alert> alertList = alertService.getAlertListNotRead((String)session.getAttribute("userName"));
+            List<Message> messageList =  messageService.getMessageListNotRead((String)session.getAttribute("userName"));
 
-            if(alertList.size() == 0){
-                modelAndView.addObject("totalAlerts","");
+            if(alertList.isEmpty()){
+                session.setAttribute("totalAlerts","");
             }else{
-                modelAndView.addObject("totalAlerts",alertList.size());
-                modelAndView.addObject("alertList",alertList);
+                session.setAttribute("totalAlerts",alertList.size());
+                session.setAttribute("alertList",alertList);
             }
 
-            if(messageList.size() == 0){
-                modelAndView.addObject("totalMessages","");
+            if(messageList.isEmpty()){
+                session.setAttribute("totalMessages","");
             }else{
-                modelAndView.addObject("totalMessages",messageList.size());
-                modelAndView.addObject("messageList",messageList);
+                session.setAttribute("totalMessages",messageList.size());
+                session.setAttribute("messageList",messageList);
             }
-
-
-        }else{
-
-            //메세지 전달 - 오류 방지용
-            modelAndView.addObject("totalAlerts","");
-            modelAndView.addObject("totalMessages","");
         }
-
-
-
-
     }
 
-    //view가 렌더링 완료 된 후 실행
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-            throws Exception {
-
-    }
 }

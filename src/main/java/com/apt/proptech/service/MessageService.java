@@ -3,6 +3,7 @@ package com.apt.proptech.service;
 import com.apt.proptech.domain.Message;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.repository.MessageRepository;
+import com.apt.proptech.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,17 @@ public class MessageService {
     @Autowired
     private MessageRepository messageRepository;
 
-    public List<Message> getMessageListNotRead(User receiveUser ){
-        return  messageRepository.findTop10ByReceiveUserAndReadDateIsNull(receiveUser);
+    @Autowired
+    private UserRepository userRepository;
+
+    public List<Message> getMessageListNotRead(String userName ){
+
+        User receiveUser = userRepository.findByUsername(userName);
+        if(receiveUser != null){
+            return  messageRepository.findTop10ByReceiveUserAndReadDateIsNull(receiveUser);
+        }else{
+            return null;
+        }
     }
 
     @Transactional

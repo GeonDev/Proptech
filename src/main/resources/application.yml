@@ -9,7 +9,8 @@ jasypt:
 spring:
   devtools:
     livereload:
-      enabled: true
+      restart:
+        enabled: true
   mustache:
     expose-session-attributes: true
   profiles:

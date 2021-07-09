@@ -32,10 +32,10 @@ public class PrincipalDetailsService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByUsername(username);
 		if(user == null) {
-			LOGGER.debug("Fail Login");
+			LOGGER.info("Fail Login -> CAN NOT FIND USER INFO");
 			return null;
 		}else {
-			LOGGER.debug("success Login");
+			LOGGER.info("success Login");
 
 			//로그인 히스토리 기록
 			LoginHistory loginHistory = LoginHistory.builder()
