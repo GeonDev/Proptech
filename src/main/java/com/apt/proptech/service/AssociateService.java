@@ -8,6 +8,7 @@ import com.apt.proptech.domain.dto.AssociateDto;
 import com.apt.proptech.domain.dto.ColumnTitle;
 import com.apt.proptech.domain.dto.Pagination;
 
+import com.apt.proptech.domain.enums.AssociateRound;
 import com.apt.proptech.repository.AssociateRepository;
 import com.apt.proptech.repository.support.AssociateRepositorySupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,13 +101,24 @@ public class AssociateService extends BaseService<Associate>{
         return items;
     }
 
-    public List<AssociateDto> getExcalDate( String type, String value, String startDate, String endDate ){
+    public List<AssociateDto> getExcelDate( String type, String value, String startDate, String endDate ){
         List<Associate> temp = associateRepositorySupport.findAssociateTypeAndDate(type, value, startDate, endDate);
         List <AssociateDto> items = new ArrayList<>();
         temp.forEach( o->{items.add( new AssociateDto(o)); });
 
         return  items;
     }
+
+    public List<AssociateDto> getAssociateExceptRound(AssociateRound round){
+        List<Associate> temp = associateRepository.findByAssociateRoundNot(round);
+        List <AssociateDto> items = new ArrayList<>();
+        temp.forEach( o->{items.add( new AssociateDto(o)); });
+
+        return  items;
+
+    }
+
+
 
 
 

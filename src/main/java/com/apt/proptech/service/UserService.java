@@ -4,6 +4,8 @@ import com.apt.proptech.domain.dto.ColumnTitle;
 import com.apt.proptech.domain.dto.Pagination;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.dto.UserDto;
+import com.apt.proptech.domain.enums.UserRole;
+import com.apt.proptech.domain.enums.UserState;
 import com.apt.proptech.repository.UserRepository;
 import com.apt.proptech.repository.support.UserRepositorySupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,8 @@ public class UserService extends BaseService<User>{
     @Autowired
     private UserRepositorySupport userRepositorySupport;
 
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @Override
@@ -33,9 +36,11 @@ public class UserService extends BaseService<User>{
 
         User user = User.builder()
                 .username(object.getUsername())
-                .password(encoder.encode(object.getPassword()))
+                .password(bCryptPasswordEncoder.encode(object.getPassword()))
                 .name(object.getName())
                 .email(object.getEmail())
+                .userRole(object.getUserRole())
+                .userState(object.getUserState())
                 .build();
 
         baseRepository.save(user);
@@ -57,6 +62,7 @@ public class UserService extends BaseService<User>{
         user.setEmail(object.getEmail());
         user.setPassword(object.getPassword());
         user.setProfileImg(object.getProfileImg());
+        user.setPhoneNumber(object.getPhoneNumber());
 
         baseRepository.save(user);
 
@@ -134,7 +140,7 @@ public class UserService extends BaseService<User>{
     }
 
 
-    public List<UserDto> getExcalDate(String type, String value, String startDate, String endDate){
+    public List<UserDto> getExcelDate(String type, String value, String startDate, String endDate){
         List<User> temp = userRepositorySupport.findUserTypeAndDate(type,value,startDate,endDate);
 
         List<UserDto> items = new ArrayList<>();
@@ -143,8 +149,14 @@ public class UserService extends BaseService<User>{
         return  items;
     }
 
+    public List<UserDto> getUserRoleAndExceptState(UserRole role, UserState state){
+        List<User> temp =userRepository.findByUserRoleAndUserStateNot(role, state);
 
+        List<UserDto> items = new ArrayList<>();
+        temp.forEach(o->{ items.add(new UserDto(o)); });
 
+        return  items;
+    }
 
     private List<UserDto> convertDomain( List<User> data){
         List<UserDto> result = new ArrayList<UserDto>();
@@ -182,4 +194,8 @@ public class UserService extends BaseService<User>{
 
         return temp;
     }
+
+
+
+
 }

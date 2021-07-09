@@ -17,9 +17,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findAllByNameContaining(String name);
 
-    Optional<User> findByUsernameAndPassword(String username, String password);
+    User findByUsernameAndPassword(String username, String password);
 
-    Optional<User> findByProviderAndProviderId(String provider, String providerId);
+    User findByProviderAndProviderId(String provider, String providerId);
 
     @Query(value = "SELECT * FROM user WHERE user.user_role =:role ORDER BY id DESC" ,nativeQuery = true)
     Page<User> findAllByUserRoles(@Param("role") String role, Pageable pageable);
@@ -30,9 +30,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT * FROM user, company, account WHERE user.company_id = company.id AND user.id = account.user_id " , nativeQuery = true)
     List<User> findAllByPartnerInfo();
 
+    //유저 ID로 겹칠수 없다.
     User findByUsername(String username);
 
-    List<User> findByRegDateBetween(LocalDateTime start, LocalDateTime end);
 
+    List<User> findByUserRoleAndUserStateNot(UserRole role, UserState state);
 
 }

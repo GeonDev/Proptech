@@ -30,8 +30,10 @@ public class WebConfig  implements WebMvcConfigurer {
 
         //인터럽트를 수행할 URL
         List<String> checkUrlList = new ArrayList<>();
-        checkUrlList.add("/main");
+        checkUrlList.add("/dashboard/**");
         checkUrlList.add("/table/**");
+        checkUrlList.add("/chart/**");
+
 
         //인터럽트를 수행 하지 않는 URL
         List<String> excludeUrlList = new ArrayList<>();

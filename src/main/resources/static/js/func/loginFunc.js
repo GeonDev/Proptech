@@ -1,7 +1,7 @@
 
 
 function rememberName() {
-    var userId = $("#userID").val();
+    var userId = $("#userId").val();
 
     if($("#customCheck").is(":checked") == true){
         console.log(userId);
@@ -14,7 +14,7 @@ function rememberName() {
 }
 
 function loginFunc() {
-    var userId = $("#userID").val();
+    var userId = $("#userId").val();
 
     if($("#customCheck").is(":checked") == true){
         localStorage.setItem("userName",userId);
@@ -28,7 +28,7 @@ function loginFunc() {
 $(function(){
 
     if( localStorage.userName){
-        $("#userID").val(localStorage.userName);
+        $("#userId").val(localStorage.userName);
         $("#customCheck").prop("checked", true);
     }
 

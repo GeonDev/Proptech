@@ -158,7 +158,7 @@ public class TableController {
 
 
 
-        List<UserDto> data = userService.getExcalDate(type, value, startDate, endDate);
+        List<UserDto> data = userService.getExcelDate(type, value, startDate, endDate);
         model.addAttribute("data", data);
 
         //ExcelDownloader에서 어떤 데이터 인지 구분하기 위하여 전달
@@ -174,7 +174,7 @@ public class TableController {
                                @RequestParam(value = "start", required = false, defaultValue = "") String startDate,
                                @RequestParam(value = "end", required = false, defaultValue = "") String endDate){
 
-        List<AssociateDto> data = associateService.getExcalDate(type, value, startDate, endDate);
+        List<AssociateDto> data = associateService.getExcelDate(type, value, startDate, endDate);
         model.addAttribute("data", data);
 
 

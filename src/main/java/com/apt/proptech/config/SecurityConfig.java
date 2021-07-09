@@ -32,8 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable().headers().frameOptions().disable();
 		http.authorizeRequests()
 			//.antMatchers("/user/**").authenticated()
-			.antMatchers("/login/**", "/css/**", "/js/**", "/img/**", "/h2-console/**","/vendor/**" ).permitAll()
-			.antMatchers("/main").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF') or hasRole('ROLE_MANAGER') or hasRole('ROLE_PARTNER')")
+			.antMatchers("/login/**","/register","/forgot" ,"/css/**", "/js/**", "/img/**", "/h2-console/**","/vendor/**" ).permitAll()
+			.antMatchers("/dashboard/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF') or hasRole('ROLE_MANAGER') or hasRole('ROLE_PARTNER')")
+				.antMatchers("/table/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF') or hasRole('ROLE_MANAGER') or hasRole('ROLE_PARTNER')")
+				.antMatchers("/chart/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF') or hasRole('ROLE_MANAGER') or hasRole('ROLE_PARTNER')")
 		.and()
 			.formLogin()
 			.loginPage("/login")
