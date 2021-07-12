@@ -23,8 +23,11 @@ public class UserDto {
     private String role;
     private String state;
     private String registerDate;
+    private String lastLoginDate;
     private String retiredDate;
     private String modiPasswordDate;
+
+
 
 
     // 머스테치를 사용하면 필드값이 null이 들어올수 없다.
@@ -39,6 +42,10 @@ public class UserDto {
         this.registerDate = CommonUtil.toDateStr(user.getRegDate());
         this.retiredDate = CommonUtil.toDateStr(user.getRetiredDate());
         this.modiPasswordDate = CommonUtil.toDateStr(user.getModiPasswordDate());
+
+
+
+
     }
 
 

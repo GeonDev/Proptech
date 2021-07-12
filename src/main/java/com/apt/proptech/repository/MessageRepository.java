@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
-    List<Message> findTop10ByReceiveUserAndReadDateIsNull(User receiveUser);
+    List<Message> findTop10ByReceiveUserAndReadDateIsNullOrderByIdDesc(User receiveUser);
 
 }

@@ -81,9 +81,9 @@ public class CommonUtil {
     }
 
     public static String toDateStr(Date date) {
-        if (date == null)
+        if (date == null){
             return "";
-        else {
+        }else {
             SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
             return sdf.format(new Date(date.getTime()));
         }
@@ -91,9 +91,9 @@ public class CommonUtil {
 
 
     public static String toDateStr(LocalDateTime date) {
-        if (date == null)
+        if (date == null){
             return "";
-        else {
+        }else {
             return date.format(DateTimeFormatter.ofPattern("YYYY-MM-dd"));
         }
     }

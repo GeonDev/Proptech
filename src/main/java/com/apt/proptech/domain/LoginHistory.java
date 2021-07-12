@@ -29,9 +29,7 @@ public class LoginHistory {
     @Enumerated(EnumType.STRING)
     private IpChecked ipChecked;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-
 }

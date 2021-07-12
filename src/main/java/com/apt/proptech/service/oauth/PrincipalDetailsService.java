@@ -35,7 +35,7 @@ public class PrincipalDetailsService implements UserDetailsService{
 			LOGGER.info("Fail Login -> CAN NOT FIND USER INFO");
 			return null;
 		}else {
-			LOGGER.info("success Login");
+			LOGGER.info("success Login -> FIND USER INFO");
 
 			//로그인 히스토리 기록
 			LoginHistory loginHistory = LoginHistory.builder()

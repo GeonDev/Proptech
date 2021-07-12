@@ -1,10 +1,12 @@
 package com.apt.proptech.repository;
 
 import com.apt.proptech.domain.Account;
+import com.apt.proptech.domain.LoginHistory;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.enums.UserRole;
 import com.apt.proptech.domain.enums.UserState;
 import com.apt.proptech.repository.support.UserRepositorySupport;
+import com.apt.proptech.util.CommonUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +15,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -25,7 +29,11 @@ class UserRepositoryTest {
     private AccountRepository accountRepository;
 
     @Autowired
+    private LoginHistoryRepository loginHistoryRepository;
+
+    @Autowired
     private UserRepositorySupport userRepositorySupport;
+
 
 
     @Transactional
@@ -52,14 +60,17 @@ class UserRepositoryTest {
     }
 
     @Test
+    @Transactional
     void test(){
+        List<User> list = userRepository.findAll();
+
+        list.forEach(o->{
+            LoginHistory history = loginHistoryRepository.findTopByUserOrderByIdDesc(o);
+            if(history!=null ){
+                System.out.println(history.getLoginDate() );
+            } });
 
 
-        List<User> list = userRepository.findByUserRoleAndUserStateNot(UserRole.ROLE_USER, UserState.RETIRED);
-
-        list.forEach( o->{
-            System.out.println(o.getName());
-        });
 
     }
 

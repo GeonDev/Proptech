@@ -32,14 +32,14 @@ public class PurchaseProp extends BaseTimeEntity{
     @Enumerated(EnumType.STRING)
     private PropType propType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "associate_id")
     private Associate associateInfo;
 
-    @OneToMany(mappedBy = "prop")
+    @OneToMany(mappedBy = "prop", fetch = FetchType.LAZY)
     private List<LocatedPos> locatedList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "prop")
+    @OneToMany(mappedBy = "prop", fetch = FetchType.LAZY)
     private List<PropPrice> priceList = new ArrayList<>();;
 
 }

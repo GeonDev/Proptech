@@ -93,6 +93,8 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 					.providerId(oAuth2UserInfo.getProviderId())
 					.build();
 			userRepository.save(user);
+
+			LOGGER.info("CAN NOT FIND USER INFO ->NEW OAuth User SAVE");
 		}
 
 

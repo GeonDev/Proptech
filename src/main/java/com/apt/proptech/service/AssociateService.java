@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,6 +110,7 @@ public class AssociateService extends BaseService<Associate>{
         return  items;
     }
 
+    @Transactional
     public List<AssociateDto> getAssociateExceptRound(AssociateRound round){
         List<Associate> temp = associateRepository.findByAssociateRoundNot(round);
         List <AssociateDto> items = new ArrayList<>();

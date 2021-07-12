@@ -2,7 +2,6 @@ package com.apt.proptech.hendler;
 
 import com.apt.proptech.domain.Alert;
 import com.apt.proptech.domain.Message;
-import com.apt.proptech.domain.User;
 import com.apt.proptech.service.AlertService;
 import com.apt.proptech.service.MessageService;
 import com.apt.proptech.service.UserService;

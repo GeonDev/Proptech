@@ -31,7 +31,7 @@ spring:
 spring:
   profiles: local
   datasource:
-    url: jdbc:h2:~/test
+    url: jdbc:h2:mem:test
     username: sa
     password:
     driver-class-name: org.h2.Driver
@@ -40,9 +40,9 @@ spring:
   jpa:
     show-sql: true
     propertice:
-  hibernate:
-    fomat_sql: true
-    ddl-auto: update
+      hibernate:
+        fomat_sql: true
+        ddl-auto: update
   h2:
    console:
     enabled: true
@@ -56,4 +56,9 @@ spring:
      username: ENC(LyzpWYaIfBHycYC0uOJw6w==)
      password: ENC(/j9TCvgQDkpQWHi2dq56ag==)
      driver-class-name: org.mariadb.jdbc.Driver
+   jpa:
+     show-sql: true
+     propertice:
+       hibernate:
+         fomat_sql: true
 ---

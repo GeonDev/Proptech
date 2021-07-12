@@ -22,7 +22,7 @@ public class OwnedHistory extends BaseTimeEntity{
     @Enumerated(EnumType.STRING)
     private OwnedState ownedState;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User owner;
 

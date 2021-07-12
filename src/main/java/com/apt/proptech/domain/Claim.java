@@ -28,10 +28,8 @@ public class Claim extends BaseTimeEntity{
 
     @ManyToOne
     @JoinColumn(name ="sale_prop_id")
-    private SaleProp saleProp;
+    private SaleProp sale;
 
-
-    @OneToMany
+    @OneToMany(mappedBy = "claim" ,fetch = FetchType.LAZY)
     private List<Receipt> receiptList = new ArrayList<>();
-
 }
