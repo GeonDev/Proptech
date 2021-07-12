@@ -13,17 +13,17 @@ import java.time.LocalDateTime;
 @ToString(exclude = {"sendUser, receiveUser"})
 public class Message {
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long Id;
+    Long id;
 
     String message;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "sand_user_id")
     User sendUser;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "receive_user_id")
     User receiveUser;
 

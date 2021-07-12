@@ -54,16 +54,16 @@ public class User extends BaseTimeEntity{
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private List<Account> accountList = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<LoginHistory> loginHistoryList = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private List<OwnedHistory> ownedHistoryList = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Receipt> receiptList = new ArrayList<>();
 
 }

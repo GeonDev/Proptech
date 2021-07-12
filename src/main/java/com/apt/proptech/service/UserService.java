@@ -1,13 +1,16 @@
 package com.apt.proptech.service;
 
+import com.apt.proptech.domain.LoginHistory;
 import com.apt.proptech.domain.dto.ColumnTitle;
 import com.apt.proptech.domain.dto.Pagination;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.dto.UserDto;
 import com.apt.proptech.domain.enums.UserRole;
 import com.apt.proptech.domain.enums.UserState;
+import com.apt.proptech.repository.LoginHistoryRepository;
 import com.apt.proptech.repository.UserRepository;
 import com.apt.proptech.repository.support.UserRepositorySupport;
+import com.apt.proptech.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -26,6 +29,9 @@ public class UserService extends BaseService<User>{
 
     @Autowired
     private UserRepositorySupport userRepositorySupport;
+
+    @Autowired
+    private LoginHistoryRepository loginHistoryRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -163,6 +169,12 @@ public class UserService extends BaseService<User>{
 
         for(User info : data ){
             UserDto temp = new UserDto(info);
+            LoginHistory history = loginHistoryRepository.findTopByUserOrderByIdDesc(info);
+            if(history!=null ){
+                temp.setLastLoginDate(CommonUtil.toDateStr(history.getLoginDate()));
+            }else{
+                temp.setLastLoginDate("");
+            }
             result.add(temp);
         }
 
@@ -190,7 +202,8 @@ public class UserService extends BaseService<User>{
         temp.add(new ColumnTitle("Role","c4" ) );
         temp.add(new ColumnTitle("State","c5" ) );
         temp.add(new ColumnTitle("Reg Date","c6" ) );
-        temp.add(new ColumnTitle("Retire Date","c7" ) );
+        temp.add(new ColumnTitle("Last Login Date","c7" ) );
+        temp.add(new ColumnTitle("Retire Date","c8" ) );
 
         return temp;
     }

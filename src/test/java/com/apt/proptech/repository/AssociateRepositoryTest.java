@@ -32,6 +32,13 @@ class AssociateRepositoryTest {
             System.out.println(o.getCity());
             System.out.println(o.getState());
             System.out.println(o.getAddress());
+
+            o.getSalePropList().forEach(v->{
+                v.getClaimList().forEach(t->{
+                    System.out.println( t.getId());
+                } );
+            } );
+
         } );
     }
 

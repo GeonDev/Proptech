@@ -18,7 +18,7 @@ public class LocatedPos {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="purchase_prop_id")
     private PurchaseProp prop;
 

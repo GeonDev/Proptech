@@ -24,7 +24,7 @@ public class MessageService {
 
         User receiveUser = userRepository.findByUsername(userName);
         if(receiveUser != null){
-            return  messageRepository.findTop10ByReceiveUserAndReadDateIsNull(receiveUser);
+            return  messageRepository.findTop10ByReceiveUserAndReadDateIsNullOrderByIdDesc(receiveUser);
         }else{
             return null;
         }

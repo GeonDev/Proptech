@@ -20,19 +20,18 @@ public class SaleProp extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     private String addressDetail;
 
     private int saleRound;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "associate_id")
     private Associate associate;
 
-    @OneToMany
+    @OneToMany(mappedBy = "sale", fetch = FetchType.LAZY)
     List<Claim> claimList = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "prop", fetch = FetchType.LAZY)
     List<OwnedHistory> ownedHistoryList = new ArrayList<>();
 
 }

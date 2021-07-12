@@ -25,8 +25,11 @@
                     <th>Reg Date</th>
                 {{/c6}}
                 {{#c7}}
-                    <th>Retire Date</th>
+                    <th>Last Login Date</th>
                 {{/c7}}
+                {{#c8}}
+                    <th>Retire Date</th>
+                {{/c8}}
             </tr>
             </thead>
 
@@ -55,8 +58,11 @@
                             <td>{{registerDate}}</td>
                         {{/c6}}
                         {{#c7}}
-                            <td>{{retiredDate}}</td>
+                            <td>{{lastLoginDate}}</td>
                         {{/c7}}
+                        {{#c8}}
+                            <td>{{retiredDate}}</td>
+                        {{/c8}}
                     </tr>
                 {{/pages.contents}}
             </tbody>

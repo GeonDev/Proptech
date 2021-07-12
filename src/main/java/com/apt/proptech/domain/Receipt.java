@@ -21,11 +21,11 @@ public class Receipt extends BaseTimeEntity{
 
     private String buyerIp;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "claim_id")
     private Claim claim;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 }

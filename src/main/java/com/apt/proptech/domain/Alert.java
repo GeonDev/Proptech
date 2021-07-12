@@ -15,11 +15,11 @@ public class Alert {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long Id;
+    Long id;
 
     String message;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "receive_user_id")
     User receiveUser;
 

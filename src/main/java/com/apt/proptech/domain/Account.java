@@ -25,7 +25,7 @@ public class Account extends BaseTimeEntity{
 
     private String bankName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
 

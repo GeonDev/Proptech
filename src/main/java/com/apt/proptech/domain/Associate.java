@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,6 +19,8 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
+@DynamicInsert
+@DynamicUpdate
 public class Associate extends BaseTimeEntity{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,26 +43,14 @@ public class Associate extends BaseTimeEntity{
 
     private String address;
 
-    @OneToMany
+    @OneToMany(mappedBy = "associateInfo",fetch = FetchType.LAZY)
     private List<PurchaseProp> purchasePropList = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy ="associate" ,fetch = FetchType.LAZY)
     private List<SaleProp> salePropList = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy ="associate" ,fetch = FetchType.LAZY )
     private List<Staff> staffList = new ArrayList<>();
-
-    //전체 참여자 수
-    @Transient
-    private int totalJoinUserCount;
-
-    //전체 사업 금액
-    @Transient
-    private int totalRequiredPaid;
-
-    //전체 미납 금액
-    @Transient
-    private int totalUnPaid;
 
 
 }

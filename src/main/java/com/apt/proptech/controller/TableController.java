@@ -42,7 +42,7 @@ public class TableController {
                              @RequestParam(value = "value", required = false, defaultValue = "") String value,
                              @RequestParam(value = "start", required = false, defaultValue = "") String startDate,
                              @RequestParam(value = "end", required = false, defaultValue = "") String endDate,
-                             @RequestParam(value = "selected", required = false, defaultValue = "c0-c1-c2-c3-c4-c5-c6-c7") String selected){
+                             @RequestParam(value = "selected", required = false, defaultValue = "c0-c1-c2-c3-c4-c5-c6-c7-c8") String selected){
 
         //Pagination<UserDto> pagination =  userService.getItemList(pageable,type,value);
         Pagination<UserDto> pagination =  userService.getItemList(pageable, type, value,startDate, endDate);
