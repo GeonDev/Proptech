@@ -46,12 +46,13 @@ CREATE TABLE associate (
   PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS claim;
-CREATE TABLE claim (
+DROP TABLE IF EXISTS claim_prop;
+CREATE TABLE claim_prop (
   id bigint(20) NOT NULL AUTO_INCREMENT,
   sale_prop_id bigint(20) DEFAULT NULL,
   payment bigint(20) DEFAULT NULL,
   round int(11) DEFAULT NULL,
+  description varchar(1024) DEFAULT NULL,
   reg_date date DEFAULT NULL,
   modi_date date DEFAULT NULL,
   PRIMARY KEY (id)

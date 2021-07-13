@@ -1,7 +1,7 @@
 package com.apt.proptech.domain.dto;
 
 import com.apt.proptech.domain.Associate;
-import com.apt.proptech.domain.Claim;
+import com.apt.proptech.domain.ClaimProp;
 import com.apt.proptech.domain.Receipt;
 import com.apt.proptech.domain.SaleProp;
 import com.apt.proptech.util.CommonUtil;
@@ -9,8 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Transient;
 
 @Data
 @NoArgsConstructor
@@ -54,25 +52,40 @@ public class AssociateDto {
         this.registerDate = CommonUtil.toDateStr(associate.getRegDate());
         this.modifiedDate = CommonUtil.toDateStr(associate.getModiDate());
 
+        this.totalJoinUserCount = 0;
+        this.totalRequiredPaid = 0;
+        this.totalPaid = 0;
+        this.totalUnPaid = 0;
 
-  /*      //전체 사업 금액
+        //전체 사업 금액
         for (SaleProp sale : associate.getSalePropList()){
-            for(Claim claim : sale.getClaimList()){
-                this.totalRequiredPaid += claim.getPayment();
+            if(sale !=null ){
+                for(ClaimProp claim : sale.getClaimPropList()){
+                    if(claim!= null ){
+                        this.totalRequiredPaid += claim.getPayment();
+                    }
+                }
             }
         }
 
         //전체 납입 금액
         for (SaleProp sale : associate.getSalePropList()){
-            for(Claim claim : sale.getClaimList()){
-               for(Receipt receipt : claim.getReceiptList()){
-                   this.totalPaid += receipt.getPayment();
-               }
+            if(sale !=null ){
+                for(ClaimProp claim : sale.getClaimPropList()){
+                    if(claim !=null ){
+                        for(Receipt receipt : claim.getReceiptList()){
+                            if(receipt !=null ){
+                                this.totalPaid += receipt.getPayment();
+                            }
+                        }
+                    }
+                }
             }
+
         }
 
         //전체 미납금액
         this.totalUnPaid =  this.totalRequiredPaid -  this.totalPaid;
-  */
+
     }
 }

@@ -23,17 +23,20 @@
                         <th>Fee(%)</th>
                     {{/c5}}
                     {{#c6}}
-                        <th>Modified</th>
+                        <th>Total Required Paid</th>
                     {{/c6}}
                     {{#c7}}
-                        <th>City</th>
+                        <th>Total Paid</th>
                     {{/c7}}
                     {{#c8}}
-                        <th>State</th>
+                        <th>City</th>
                     {{/c8}}
                     {{#c9}}
-                        <th>Address</th>
+                        <th>State</th>
                     {{/c9}}
+                    {{#c10}}
+                        <th>Address</th>
+                    {{/c10}}
                 </tr>
             </thead>
 
@@ -59,17 +62,20 @@
                     <td>{{feeRatio}}</td>
                 {{/c5}}
                 {{#c6}}
-                    <td>{{modifiedDate}}</td>
+                    <td>{{totalRequiredPaid}}</td>
                 {{/c6}}
                 {{#c7}}
-                    <td>{{city}}</td>
+                    <td>{{totalPaid}}</td>
                 {{/c7}}
                 {{#c8}}
-                    <td>{{state}}</td>
+                    <td>{{city}}</td>
                 {{/c8}}
                 {{#c9}}
-                    <td>{{address}}</td>
+                    <td>{{state}}</td>
                 {{/c9}}
+                {{#c10}}
+                    <td>{{address}}</td>
+                {{/c10}}
                 </tr>
             {{/pages.contents}}
             </tbody>

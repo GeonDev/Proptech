@@ -23,7 +23,7 @@ public class Receipt extends BaseTimeEntity{
 
     @ManyToOne
     @JoinColumn(name = "claim_id")
-    private Claim claim;
+    private ClaimProp claimProp;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

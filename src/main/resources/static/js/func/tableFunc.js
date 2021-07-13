@@ -32,7 +32,7 @@ function getTablePage(pageNum) {
 
     selected = selected.substr(1);
 
-     url = url + "page=" + targetPage+ "&size=" + pageSize+ "&type=" + searchType + "&value="+searchValue + "&start="+startDate + "&end="+endDate+ "&selected="+selected
+    url = url + "page=" + targetPage+ "&size=" + pageSize+ "&type=" + searchType + "&value="+searchValue + "&start="+startDate + "&end="+endDate+ "&selected="+selected
 
     window.location.href = url;
 }
@@ -90,6 +90,7 @@ $(function(){
         //이전에 선택한 칼럽을 불러오기
         var selectedColumn = getParameterByName("selected");
         if(selectedColumn != ""){
+            //selectpicker 값은 배열로 전달해야 한다.
             var colArr = selectedColumn.split("-");
             $("#inputGroupSelect3").selectpicker('val', colArr);
         }
@@ -111,6 +112,4 @@ $(function(){
 
     	$("#datetimepicker1").on("change.datetimepicker", function (e) { $('#datetimepicker2').datetimepicker('minDate', e.date); });
     	$("#datetimepicker2").on("change.datetimepicker", function (e) { $('#datetimepicker1').datetimepicker('maxDate', e.date); });
-
-
 });

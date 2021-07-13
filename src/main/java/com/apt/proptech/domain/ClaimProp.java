@@ -1,9 +1,6 @@
 package com.apt.proptech.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,7 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Claim extends BaseTimeEntity{
+@ToString(exclude = "saleProp")
+public class ClaimProp extends BaseTimeEntity{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,8 +26,8 @@ public class Claim extends BaseTimeEntity{
 
     @ManyToOne
     @JoinColumn(name ="sale_prop_id")
-    private SaleProp sale;
+    private SaleProp saleProp;
 
-    @OneToMany(mappedBy = "claim" ,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "claimProp" ,fetch = FetchType.LAZY)
     private List<Receipt> receiptList = new ArrayList<>();
 }

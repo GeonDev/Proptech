@@ -153,10 +153,11 @@ public class AssociateService extends BaseService<Associate>{
         temp.add(new ColumnTitle("End Expect Date","c3" ) );
         temp.add(new ColumnTitle("End Real Date","c4" ) );
         temp.add(new ColumnTitle("Fee(%)","c5" ) );
-        temp.add(new ColumnTitle("Modified","c6" ) );
-        temp.add(new ColumnTitle("City","c7" ) );
-        temp.add(new ColumnTitle("State","c8" ) );
-        temp.add(new ColumnTitle("Address","c9" ) );
+        temp.add(new ColumnTitle("Total Required Paid","c6" ) );
+        temp.add(new ColumnTitle("Total Paid","c7" ) );
+        temp.add(new ColumnTitle("City","c8" ) );
+        temp.add(new ColumnTitle("State","c9" ) );
+        temp.add(new ColumnTitle("Address","c10" ) );
 
         return temp;
     }

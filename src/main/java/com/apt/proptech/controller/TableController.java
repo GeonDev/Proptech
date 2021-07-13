@@ -72,7 +72,6 @@ public class TableController {
             model.addAttribute("endDate",endDate);
         }
 
-
         //페이지 타이틀 이름
         model.addAttribute("contentName","User List");
 
@@ -100,7 +99,7 @@ public class TableController {
                                    @RequestParam(value = "value", required = false, defaultValue = "") String value,
                                    @RequestParam(value = "start", required = false, defaultValue = "") String startDate,
                                    @RequestParam(value = "end", required = false, defaultValue = "") String endDate,
-                                   @RequestParam(value = "selected", required = false, defaultValue = "c0-c1-c2-c3-c4-c5-c6-c7-c8-c9") String selected){
+                                   @RequestParam(value = "selected", required = false, defaultValue = "c0-c1-c2-c3-c4-c5-c6-c7-c8-c9-c10") String selected){
 
         Pagination<AssociateDto> pagination =  associateService.getItemList(pageable,type,value);
 

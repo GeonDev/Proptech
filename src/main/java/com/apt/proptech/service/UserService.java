@@ -114,7 +114,6 @@ public class UserService extends BaseService<User>{
                 .nextPageNum(setNextPageNum(userPage.getNumber(), userPage.isLast()))
                 .searchType(setSearchType())
                 .columnTitles(setColumns())
-                .totalColumnCount(8)
                 .build();
 
         return items;
@@ -139,7 +138,6 @@ public class UserService extends BaseService<User>{
                 .nextPageNum(setNextPageNum(userPage.getNumber(), userPage.isLast()))
                 .searchType(setSearchType())
                 .columnTitles(setColumns())
-                .totalColumnCount(8)
                 .build();
 
         return items;
