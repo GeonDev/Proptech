@@ -1,10 +1,7 @@
 package com.apt.proptech.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
+@ToString(exclude = "associate")
 public class SaleProp extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,10 +26,10 @@ public class SaleProp extends BaseTimeEntity {
     @JoinColumn(name = "associate_id")
     private Associate associate;
 
-    @OneToMany(mappedBy = "sale", fetch = FetchType.LAZY)
-    List<Claim> claimList = new ArrayList<>();
+    @OneToMany(mappedBy = "saleProp", fetch = FetchType.LAZY)
+    List<ClaimProp> claimPropList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "prop", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "saleProp", fetch = FetchType.LAZY)
     List<OwnedHistory> ownedHistoryList = new ArrayList<>();
 
 }

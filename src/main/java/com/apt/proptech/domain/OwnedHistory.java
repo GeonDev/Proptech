@@ -26,8 +26,8 @@ public class OwnedHistory extends BaseTimeEntity{
     @JoinColumn(name = "user_id")
     private User owner;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "sale_prop_id")
-    private SaleProp prop;
+    private SaleProp saleProp;
 
 }

@@ -121,6 +121,8 @@ public class ExcelDownloader extends AbstractView {
                 "End Expect Date" ,
                 "End Real Date" ,
                 "Fee(%)",
+                "Total Required Paid",
+                "Total Paid",
                 "City",
                 "State",
                 "Address"
@@ -150,6 +152,8 @@ public class ExcelDownloader extends AbstractView {
                 row.createCell(i++).setCellValue(item.getExpectDate() );
                 row.createCell(i++).setCellValue(item.getRealDate());
                 row.createCell(i++).setCellValue(item.getFeeRatio());
+                row.createCell(i++).setCellValue(item.getTotalRequiredPaid());
+                row.createCell(i++).setCellValue(item.getTotalPaid());
                 row.createCell(i++).setCellValue(item.getCity());
                 row.createCell(i++).setCellValue(item.getState());
                 row.createCell(i++).setCellValue(item.getAddress());

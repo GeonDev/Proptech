@@ -43,7 +43,7 @@ public class Associate extends BaseTimeEntity{
 
     private String address;
 
-    @OneToMany(mappedBy = "associateInfo",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "associate",fetch = FetchType.LAZY)
     private List<PurchaseProp> purchasePropList = new ArrayList<>();
 
     @OneToMany(mappedBy ="associate" ,fetch = FetchType.LAZY)

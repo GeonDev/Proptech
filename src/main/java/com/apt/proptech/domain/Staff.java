@@ -1,10 +1,7 @@
 package com.apt.proptech.domain;
 
 import com.apt.proptech.domain.enums.StaffRole;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -15,6 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@ToString(exclude = "associate")
 public class Staff extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
