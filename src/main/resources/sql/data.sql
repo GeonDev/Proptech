@@ -15,11 +15,11 @@ INSERT INTO associate (id, name, associate_round, operate_fee_ratio, end_expect_
 	(3, '테스트 조합', 'CREATE', 0.2, '2025-08-03', '2026-06-28', '김포', '서울', '대구', '2021-06-28', NULL);
 
 
-DELETE FROM claim;
-INSERT INTO claim (id, sale_prop_id, payment, round, reg_date, modi_date) VALUES
-	(1, 1, 30000, 1, '2021-06-03', NULL),
-	(2, 1, 50000, 2, '2021-06-03', NULL),
-	(3, 1, 50000, 3, '2021-06-03', NULL);
+DELETE FROM claim_prop;
+INSERT INTO claim_prop (id, sale_prop_id, payment, round, description, reg_date, modi_date) VALUES
+	(1, 1, 30000, 1, '1차 가입비', '2021-06-03', NULL),
+	(2, 1, 50000, 2, '2차 가입비', '2021-06-03', NULL),
+	(3, 1, 50000, 3, '3차 가입비', '2021-06-03', NULL);
 
 
 DELETE FROM company;
