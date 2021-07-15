@@ -96,7 +96,28 @@ public class AssociateService extends BaseService<Associate>{
                 .nextPageNum(setNextPageNum(associatesPages.getNumber(), associatesPages.isLast()))
                 .searchType(setSearchType())
                 .columnTitles(setColumns())
-                .totalColumnCount(10)
+                .build();
+
+        return items;
+    }
+
+    public Pagination getItemList(Pageable pageable, String type, String value, String startDate, String endDate) {
+
+        Page<Associate> associatesPages = associateRepositorySupport.findUserTypeAndDatePage(type, value, startDate, endDate, pageable);
+
+        Pagination<AssociateDto> items = Pagination.<AssociateDto>builder()
+                .isFirstPage(associatesPages.isFirst())
+                .isLastPage(associatesPages.isLast())
+                .totalPages(associatesPages.getTotalPages())
+                .totalElements(associatesPages.getTotalElements())
+                .currentPage(associatesPages.getNumber()+1)
+                .currentElements(associatesPages.getNumberOfElements()+1)
+                .contents(convertDomain(associatesPages.getContent()))
+                .pageNumbers(setPageNumber(associatesPages.getNumber(), associatesPages.getSize(), associatesPages.getTotalPages()))
+                .prePageNum(setPrePageNum(associatesPages.getNumber(), associatesPages.isFirst()) )
+                .nextPageNum(setNextPageNum(associatesPages.getNumber(), associatesPages.isLast()))
+                .searchType(setSearchType())
+                .columnTitles(setColumns())
                 .build();
 
         return items;

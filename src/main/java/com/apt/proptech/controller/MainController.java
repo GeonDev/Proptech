@@ -26,7 +26,6 @@ import java.util.Iterator;
 @Controller
 public class MainController {
 
-
     @Autowired
     private UserService userService;
 
