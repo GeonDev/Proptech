@@ -32,4 +32,10 @@ $(function(){
         $("#customCheck").prop("checked", true);
     }
 
+    $("#inputPass").keydown(function (key) {
+        if (key.keyCode == 13) {
+            loginFunc();
+        }
+    });
+
 });

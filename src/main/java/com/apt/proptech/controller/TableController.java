@@ -44,7 +44,6 @@ public class TableController {
                              @RequestParam(value = "end", required = false, defaultValue = "") String endDate,
                              @RequestParam(value = "selected", required = false, defaultValue = "c0-c1-c2-c3-c4-c5-c6-c7-c8") String selected){
 
-        //Pagination<UserDto> pagination =  userService.getItemList(pageable,type,value);
         Pagination<UserDto> pagination =  userService.getItemList(pageable, type, value,startDate, endDate);
 
         //페이지 이동 버튼 체크 -> 머스테치는 값이 존재하는지로 if를 체크 한다.
@@ -56,21 +55,9 @@ public class TableController {
             model.addAttribute("isLastPage", true);
         }
 
-        if (startDate.equals("")){
-            //오늘 날짜를 전달 (필터 초기값 세팅용)
-            SimpleDateFormat format = new SimpleDateFormat( "yyyy-MM-dd");
-            model.addAttribute("startDate",format.format(System.currentTimeMillis()));
-        }else{
-            model.addAttribute("startDate",startDate);
-        }
 
-        if (endDate.equals("")){
-            //오늘 날짜를 전달 (필터 초기값 세팅용)
-            SimpleDateFormat format = new SimpleDateFormat( "yyyy-MM-dd");
-            model.addAttribute("endDate",format.format(System.currentTimeMillis()));
-        }else{
-            model.addAttribute("endDate",endDate);
-        }
+        model.addAttribute("startDate",startDate);
+        model.addAttribute("endDate",endDate);
 
         //페이지 타이틀 이름
         model.addAttribute("contentName","User List");
@@ -101,7 +88,7 @@ public class TableController {
                                    @RequestParam(value = "end", required = false, defaultValue = "") String endDate,
                                    @RequestParam(value = "selected", required = false, defaultValue = "c0-c1-c2-c3-c4-c5-c6-c7-c8-c9-c10") String selected){
 
-        Pagination<AssociateDto> pagination =  associateService.getItemList(pageable,type,value);
+        Pagination<AssociateDto> pagination =  associateService.getItemList(pageable,type,value,startDate, endDate);
 
         //페이지 이동 버튼 체크 -> 머스테치는 값이 존재하는지로 if를 체크 한다.
         if(pagination.isFirstPage() ){
@@ -113,22 +100,8 @@ public class TableController {
         }
 
 
-        if (startDate.equals("")){
-            //오늘 날짜를 전달 (필터 초기값 세팅용)
-            SimpleDateFormat format = new SimpleDateFormat( "yyyy-MM-dd");
-            model.addAttribute("startDate",format.format(System.currentTimeMillis()));
-        }else{
-            model.addAttribute("startDate",startDate);
-        }
-
-        if (endDate.equals("")){
-            //오늘 날짜를 전달 (필터 초기값 세팅용)
-            SimpleDateFormat format = new SimpleDateFormat( "yyyy-MM-dd");
-            model.addAttribute("endDate",format.format(System.currentTimeMillis()));
-        }else{
-            model.addAttribute("endDate",endDate);
-        }
-
+        model.addAttribute("startDate",startDate);
+        model.addAttribute("endDate",endDate);
 
         model.addAttribute("contentName","Associate List");
 
@@ -144,7 +117,6 @@ public class TableController {
             model.addAttribute(col, true );
         }
 
-
         return "main";
     }
 
@@ -154,8 +126,6 @@ public class TableController {
                           @RequestParam(value = "value", required = false, defaultValue = "") String value,
                           @RequestParam(value = "start", required = false, defaultValue = "") String startDate,
                           @RequestParam(value = "end", required = false, defaultValue = "") String endDate){
-
-
 
         List<UserDto> data = userService.getExcelDate(type, value, startDate, endDate);
         model.addAttribute("data", data);

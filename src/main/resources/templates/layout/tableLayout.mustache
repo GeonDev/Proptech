@@ -67,15 +67,18 @@
             </div>
         </div>
 
+        <!-- GSON :  표시할 칼럼 선택 -->
         <div class="row ml-2">
             <div class="col-xl-7 col-md-6">
                 <div class="alert ">
-                    <b>COLUMN :</b>&nbsp;&nbsp;
-                    <select class="selectpicker" multiple data-actions-box="true" id="inputGroupSelect3" data-width="auto">
-                        {{#pages.columnTitles}}
-                            <option value="{{order}}" selected>{{title}}</option>
-                        {{/pages.columnTitles}}
-                    </select>
+                    <div class="row">
+                        <b>COLUMN :</b>&nbsp;&nbsp;
+                        <select class="selectpicker" multiple data-actions-box="true" id="inputGroupSelect3" data-width="50%">
+                            {{#pages.columnTitles}}
+                                <option value="{{order}}" selected>{{title}}</option>
+                            {{/pages.columnTitles}}
+                        </select>
+                    </div>
                 </div>
             </div>
 
