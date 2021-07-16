@@ -1,19 +1,17 @@
 package com.apt.proptech.domain.dto;
 
-import com.apt.proptech.domain.Associate;
-import com.apt.proptech.domain.ClaimProp;
-import com.apt.proptech.domain.Receipt;
-import com.apt.proptech.domain.SaleProp;
+import com.apt.proptech.domain.*;
 import com.apt.proptech.util.CommonUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collections;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class AssociateDto {
 
     private String name;
@@ -38,6 +36,9 @@ public class AssociateDto {
 
     //전체 미납 금액
     private int totalUnPaid;
+
+    //전체 필요(토지구매) 금액
+    private int totalPurchasePaid;
 
 
     public AssociateDto(Associate associate){
@@ -84,8 +85,18 @@ public class AssociateDto {
 
         }
 
+
         //전체 미납금액
         this.totalUnPaid =  this.totalRequiredPaid -  this.totalPaid;
+
+        //전체 필요(토지 구매) 금액
+        for(PurchaseProp prod : associate.getPurchasePropList()){
+            if(prod !=null ){
+                Collections.sort(prod.getPriceList(), (o1, o2) -> { return (int)(o2.getId() - o1.getId()); } );
+                this.totalPurchasePaid += prod.getPriceList().get(0).getPrice();
+            }
+        }
+
 
     }
 }
