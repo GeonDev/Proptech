@@ -208,3 +208,31 @@ CREATE TABLE web_menu (
   modi_date date DEFAULT NULL,
   PRIMARY KEY (id)
 );
+
+CREATE OR REPLACE VIEW V_ASSOCIATE_SUMMARY AS
+SELECT id, name, associate_round, operate_fee_ratio, end_expect_date, end_real_date, city, state, address, reg_date,  totalClaimPay, TotalReceiptPay, TotalpurchasePay
+FROM associate
+      LEFT JOIN (SELECT associate_id,
+                    Sum(claimpay)totalClaimPay,
+                    Sum(receiptpay)TotalReceiptPay
+             FROM   sale_prop
+                    LEFT JOIN (SELECT sale_prop_id,
+                                      Sum(claim_prop.payment)claimpay,
+                                      Sum(receipt.payment)receiptPay
+                               FROM   claim_prop
+                                      LEFT JOIN receipt
+                                             ON claim_prop.id = receipt.claim_id
+                               GROUP  BY sale_prop_id)A
+                           ON sale_prop.id = A.sale_prop_id)sale
+         ON associate.id = sale.associate_id
+       LEFT JOIN (SELECT Sum(A.price) TotalpurchasePay,
+                         purchase_prop.associate_id
+                  FROM   purchase_prop
+                         LEFT JOIN (SELECT *
+                                    FROM   prop_price
+                                    WHERE  id IN (SELECT Max(id)
+                                                  FROM   prop_price
+                                                  GROUP  BY purchase_prop_id))A
+                                ON purchase_prop.id =
+                 A.purchase_prop_id)purchase
+              ON associate.id = purchase.associate_id;

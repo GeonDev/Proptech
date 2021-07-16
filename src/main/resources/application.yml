@@ -7,6 +7,9 @@ jasypt:
 
 
 spring:
+  jpa:
+    show-sql: true
+
   devtools:
     livereload:
       restart:
@@ -56,9 +59,5 @@ spring:
      username: ENC(LyzpWYaIfBHycYC0uOJw6w==)
      password: ENC(/j9TCvgQDkpQWHi2dq56ag==)
      driver-class-name: org.mariadb.jdbc.Driver
-   jpa:
-     show-sql: true
-     propertice:
-       hibernate:
-         fomat_sql: true
+
 ---

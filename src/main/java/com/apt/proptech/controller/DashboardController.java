@@ -4,7 +4,9 @@ import com.apt.proptech.domain.enums.AssociateRound;
 import com.apt.proptech.domain.enums.UserRole;
 import com.apt.proptech.domain.enums.UserState;
 import com.apt.proptech.domain.oauth.PrincipalDetails;
+import com.apt.proptech.repository.ReceiptRepository;
 import com.apt.proptech.service.AssociateService;
+import com.apt.proptech.service.ReceiptService;
 import com.apt.proptech.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,9 @@ public class DashboardController {
     @Autowired
     private AssociateService associateService;
 
+    @Autowired
+    private ReceiptService receiptService;
+
 
     @GetMapping("/main")
     public String Dashboard(Model model , @AuthenticationPrincipal PrincipalDetails principal, HttpSession session){
@@ -40,13 +45,13 @@ public class DashboardController {
         model.addAttribute("contentName","Dashboard");
         model.addAttribute("dashboardLayout", true);
 
-        model.addAttribute("totalUserCount" , userService.getUserRoleAndExceptState(UserRole.ROLE_USER, UserState.UN_AUTH ).size());
+        model.addAttribute("totalUserCount" , userService.getUserRoleAndExceptState(UserRole.ROLE_USER, UserState.UN_AUTH ));
 
-        model.addAttribute("totalAssociateCount" , associateService.getAssociateExceptRound(AssociateRound.INACTIVE).size());
+        model.addAttribute("totalAssociateCount" , associateService.getAssociateExceptRound(AssociateRound.INACTIVE));
+
+        model.addAttribute("totalFund" , receiptService.getTotalPaid());
+
+
         return "main";
     }
-
-
-
-
 }

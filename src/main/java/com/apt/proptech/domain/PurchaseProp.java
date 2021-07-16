@@ -26,8 +26,6 @@ public class PurchaseProp extends BaseTimeEntity{
     private String address;
     private String addressDetail;
 
-    private Long price;
-
     private LocalDateTime purchaseDate;
 
     @Enumerated(EnumType.STRING)
