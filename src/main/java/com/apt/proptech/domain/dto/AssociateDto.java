@@ -1,6 +1,7 @@
 package com.apt.proptech.domain.dto;
 
 import com.apt.proptech.domain.*;
+import com.apt.proptech.domain.enums.PropType;
 import com.apt.proptech.util.CommonUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,12 +35,12 @@ public class AssociateDto {
     //전체 납입 금액
     private int totalPaid;
 
-    //전체 미납 금액
-    private int totalUnPaid;
 
     //전체 필요(토지구매) 금액
-    private int totalPurchasePaid;
+    private int totalPurchaseNeedPaid;
 
+    //토지 구매에 사용한 금액
+    private int totalPurchasePaid;
 
     public AssociateDto(Associate associate){
         this.name = associate.getName();
@@ -56,7 +57,7 @@ public class AssociateDto {
         this.totalJoinUserCount = 0;
         this.totalRequiredPaid = 0;
         this.totalPaid = 0;
-        this.totalUnPaid = 0;
+  
 
         //전체 사업 금액
         for (SaleProp sale : associate.getSalePropList()){
@@ -86,14 +87,21 @@ public class AssociateDto {
         }
 
 
-        //전체 미납금액
-        this.totalUnPaid =  this.totalRequiredPaid -  this.totalPaid;
-
         //전체 필요(토지 구매) 금액
         for(PurchaseProp prod : associate.getPurchasePropList()){
             if(prod !=null ){
                 Collections.sort(prod.getPriceList(), (o1, o2) -> { return (int)(o2.getId() - o1.getId()); } );
-                this.totalPurchasePaid += prod.getPriceList().get(0).getPrice();
+                this.totalPurchaseNeedPaid += prod.getPriceList().get(0).getPrice();
+            }
+        }
+
+        //토지 구매에 사용한 금액
+        for(PurchaseProp prod : associate.getPurchasePropList()){
+            if(prod !=null ){
+                Collections.sort(prod.getPriceList(), (o1, o2) -> { return (int)(o2.getId() - o1.getId()); } );
+                if(prod.getPropType() == PropType.PURCHASED ){
+                    this.totalPurchasePaid += prod.getPriceList().get(0).getPrice();
+                }
             }
         }
 

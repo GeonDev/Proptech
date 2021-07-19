@@ -29,17 +29,20 @@
                         <th>전체 지불 금액</th>
                     {{/c7}}
                     {{#c8}}
-                        <th>전체 토지구매 비용</th>
+                        <th>전체 토지 비용</th>
                     {{/c8}}
                     {{#c9}}
-                        <th>시</th>
+                        <th>토지 구매 사용 비용</th>
                     {{/c9}}
                     {{#c10}}
-                        <th>구</th>
+                        <th>시</th>
                     {{/c10}}
                     {{#c11}}
-                        <th>주소</th>
+                        <th>구</th>
                     {{/c11}}
+                    {{#c12}}
+                        <th>주소</th>
+                    {{/c12}}
                 </tr>
             </thead>
 
@@ -71,17 +74,20 @@
                     <td>{{totalPaid}}</td>
                 {{/c7}}
                 {{#c8}}
-                    <td>{{totalPurchasePaid}}</td>
+                    <td>{{totalPurchaseNeedPaid}}</td>
                 {{/c8}}
                 {{#c9}}
-                    <td>{{city}}</td>
+                    <td>{{totalPurchasePaid}}</td>
                 {{/c9}}
                 {{#c10}}
-                    <td>{{state}}</td>
+                    <td>{{city}}</td>
                 {{/c10}}
                 {{#c11}}
-                    <td>{{address}}</td>
+                    <td>{{state}}</td>
                 {{/c11}}
+                {{#c12}}
+                    <td>{{address}}</td>
+                {{/c12}}
                 </tr>
             {{/pages.contents}}
             </tbody>

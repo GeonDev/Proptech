@@ -1,9 +1,6 @@
 package com.apt.proptech.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -25,6 +22,7 @@ public class PropPrice extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "purchase_prop_id")
+    @ToString.Exclude
     private PurchaseProp prop;
 
 }

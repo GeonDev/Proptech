@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@ToString(exclude = "saleProp")
 public class ClaimProp extends BaseTimeEntity{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +25,7 @@ public class ClaimProp extends BaseTimeEntity{
 
     @ManyToOne
     @JoinColumn(name ="sale_prop_id")
+    @ToString.Exclude
     private SaleProp saleProp;
 
     @OneToMany(mappedBy = "claimProp" ,fetch = FetchType.LAZY)

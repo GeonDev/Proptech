@@ -17,17 +17,8 @@ public class MessageService {
     @Autowired
     private MessageRepository messageRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
     public List<Message> getMessageListNotRead(String userName ){
-
-        User receiveUser = userRepository.findByUsername(userName);
-        if(receiveUser != null){
-            return  messageRepository.findTop10ByReceiveUserAndReadDateIsNullOrderByIdDesc(receiveUser);
-        }else{
-            return null;
-        }
+        return  messageRepository.findByNotCheckedMessage(userName);
     }
 
     @Transactional

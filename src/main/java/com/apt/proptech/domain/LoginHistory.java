@@ -1,10 +1,7 @@
 package com.apt.proptech.domain;
 
 import com.apt.proptech.domain.enums.IpChecked;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -31,5 +28,6 @@ public class LoginHistory {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @ToString.Exclude
     private User user;
 }

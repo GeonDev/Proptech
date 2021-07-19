@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@ToString(exclude = {"sendUser, receiveUser"})
 public class Message {
 
     @Id
@@ -21,10 +20,12 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "sand_user_id")
+    @ToString.Exclude
     User sendUser;
 
     @ManyToOne
     @JoinColumn(name = "receive_user_id")
+    @ToString.Exclude
     User receiveUser;
 
     LocalDateTime sandDate;

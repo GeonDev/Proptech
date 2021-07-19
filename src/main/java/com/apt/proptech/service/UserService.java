@@ -158,13 +158,8 @@ public class UserService extends BaseService<User>{
         return  items;
     }
 
-    public List<UserDto> getUserRoleAndExceptState(UserRole role, UserState state){
-        List<User> temp =userRepository.findByUserRoleAndUserStateNot(role, state);
-
-        List<UserDto> items = new ArrayList<>();
-        temp.forEach(o->{ items.add(new UserDto(o)); });
-
-        return  items;
+    public int getUserRoleAndExceptStateCount(UserRole role, UserState state){
+        return  userRepository.findByUserRoleAndUserStateNot(role, state).size();
     }
 
     private List<UserDto> convertDomain( List<User> data){
