@@ -51,11 +51,11 @@ public class AssociateRepositorySupport extends QuerydslRepositorySupport {
 
     private BooleanExpression eqTypeAndValue(String type, String value){
 
-        if(type.equals("Round") ){
+        if(type.equals("단계") ){
             return eqRound(value);
-        }else if(type.equals("Address")) {
+        }else if(type.equals("주소")) {
             return containAddress(value);
-        }else if(type.equals("Name")){
+        }else if(type.equals("이름")){
             return eqName(value);
         }else{
             return null;

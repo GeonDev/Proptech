@@ -51,11 +51,11 @@ DELETE FROM prop_price;
 
 
 DELETE FROM purchase_prop;
-INSERT INTO purchase_prop (id, associate_id, city, state, zip_code, address, address_detail, price, purchase_date, prop_type) VALUES
-	(1, 1, '서울', '강남구', NULL, NULL, NULL, 30000, NULL, 'REQUIRED'),
-	(2, 1, '서울', '강남구', NULL, NULL, NULL, 50000, NULL, 'REQUIRED'),
-	(3, 1, '서울', '강남구', NULL, NULL, NULL, 300, NULL, 'PURCHASED'),
-	(4, 1, '서울', '강남구', NULL, NULL, NULL, 34500, NULL, 'REQUIRED');
+INSERT INTO purchase_prop (id, associate_id, city, state, zip_code, address, address_detail, price, purchase_date, reg_date, modi_date, prop_type) VALUES
+	(1, 1, '서울', '강남구', NULL, NULL, NULL, 30000, NULL, '2021-03-03', NULL, 'REQUIRED'),
+	(2, 1, '서울', '강남구', NULL, NULL, NULL, 50000, NULL, '2021-03-10', NULL, 'REQUIRED'),
+	(3, 1, '서울', '강남구', NULL, NULL, NULL, 300, NULL, '2021-03-13', NULL, 'PURCHASED'),
+	(4, 1, '서울', '강남구', NULL, NULL, NULL, 34500, NULL, '2021-04-03', NULL, 'REQUIRED');
 
 
 DELETE FROM receipt;

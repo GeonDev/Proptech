@@ -5,38 +5,41 @@
             <thead>
                 <tr>
                     {{#c0}}
-                        <th>Name</th>
+                        <th>조합 명</th>
                     {{/c0}}
                     {{#c1}}
-                        <th>Round</th>
+                        <th>진행 단계</th>
                     {{/c1}}
                     {{#c2}}
-                        <th>Register</th>
+                        <th>설립 일</th>
                     {{/c2}}
                     {{#c3}}
-                        <th>End Expect Date</th>
+                        <th>예상 사업 종료일</th>
                     {{/c3}}
                     {{#c4}}
-                        <th>End Real Date</th>
+                        <th>실제 사업 종료일</th>
                     {{/c4}}
                     {{#c5}}
-                        <th>Fee(%)</th>
+                        <th>운영 수수료(%)</th>
                     {{/c5}}
                     {{#c6}}
-                        <th>Total Required Paid</th>
+                        <th>전체 사업 비용</th>
                     {{/c6}}
                     {{#c7}}
-                        <th>Total Paid</th>
+                        <th>전체 지불 금액</th>
                     {{/c7}}
                     {{#c8}}
-                        <th>City</th>
+                        <th>전체 토지구매 비용</th>
                     {{/c8}}
                     {{#c9}}
-                        <th>State</th>
+                        <th>시</th>
                     {{/c9}}
                     {{#c10}}
-                        <th>Address</th>
+                        <th>구</th>
                     {{/c10}}
+                    {{#c11}}
+                        <th>주소</th>
+                    {{/c11}}
                 </tr>
             </thead>
 
@@ -68,14 +71,17 @@
                     <td>{{totalPaid}}</td>
                 {{/c7}}
                 {{#c8}}
-                    <td>{{city}}</td>
+                    <td>{{totalPurchasePaid}}</td>
                 {{/c8}}
                 {{#c9}}
-                    <td>{{state}}</td>
+                    <td>{{city}}</td>
                 {{/c9}}
                 {{#c10}}
-                    <td>{{address}}</td>
+                    <td>{{state}}</td>
                 {{/c10}}
+                {{#c11}}
+                    <td>{{address}}</td>
+                {{/c11}}
                 </tr>
             {{/pages.contents}}
             </tbody>

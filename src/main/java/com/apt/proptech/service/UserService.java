@@ -1,5 +1,6 @@
 package com.apt.proptech.service;
 
+import com.apt.proptech.config.TableColumnConfig;
 import com.apt.proptech.domain.LoginHistory;
 import com.apt.proptech.domain.dto.ColumnTitle;
 import com.apt.proptech.domain.dto.Pagination;
@@ -35,6 +36,10 @@ public class UserService extends BaseService<User>{
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private TableColumnConfig tableConfig;
+
 
 
     @Override
@@ -182,10 +187,13 @@ public class UserService extends BaseService<User>{
 
     private List<String> setSearchType(){
         List<String> temp = new ArrayList<>();
-        temp.add("All");
-        temp.add("Role");
-        temp.add("State");
-        temp.add("Name");
+
+        List<String> column = tableConfig.getUserSearch();
+
+        for(int i =0; i< column.size(); i++ ){
+            temp.add(column.get(i));
+        }
+
         return temp;
     }
 
@@ -193,15 +201,11 @@ public class UserService extends BaseService<User>{
     private List<ColumnTitle> setColumns(){
         List<ColumnTitle> temp = new ArrayList<>();
 
-        temp.add(new ColumnTitle("Name","c0" ) );
-        temp.add(new ColumnTitle("Email","c1" ) );
-        temp.add(new ColumnTitle("phoneNumber","c2" ) );
-        temp.add(new ColumnTitle("Provider","c3" ) );
-        temp.add(new ColumnTitle("Role","c4" ) );
-        temp.add(new ColumnTitle("State","c5" ) );
-        temp.add(new ColumnTitle("Reg Date","c6" ) );
-        temp.add(new ColumnTitle("Last Login Date","c7" ) );
-        temp.add(new ColumnTitle("Retire Date","c8" ) );
+        List<String> column = tableConfig.getUserColumn();
+
+        for(int i =0; i< column.size(); i++ ){
+            temp .add(new ColumnTitle(column.get(i), "c"+i ) );
+        }
 
         return temp;
     }

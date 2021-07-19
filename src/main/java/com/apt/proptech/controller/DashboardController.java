@@ -45,9 +45,9 @@ public class DashboardController {
         model.addAttribute("contentName","Dashboard");
         model.addAttribute("dashboardLayout", true);
 
-        model.addAttribute("totalUserCount" , userService.getUserRoleAndExceptState(UserRole.ROLE_USER, UserState.UN_AUTH ));
+        model.addAttribute("totalUserCount" , userService.getUserRoleAndExceptState(UserRole.ROLE_USER, UserState.UN_AUTH ).size());
 
-        model.addAttribute("totalAssociateCount" , associateService.getAssociateExceptRound(AssociateRound.INACTIVE));
+        model.addAttribute("totalAssociateCount" , associateService.getAssociateExceptRound(AssociateRound.INACTIVE).size());
 
         model.addAttribute("totalFund" , receiptService.getTotalPaid());
 

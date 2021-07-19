@@ -59,11 +59,11 @@ public class UserRepositorySupport extends QuerydslRepositorySupport {
 
     private BooleanExpression eqTypeAndValue(String type, String value){
 
-        if(type.equals("Role") ){
+        if(type.equals("권한") ){
             return eqRole(value);
-        }else if(type.equals("State")) {
+        }else if(type.equals("상태")) {
             return eqState(value);
-        }else if(type.equals("Name")){
+        }else if(type.equals("사용자명")){
             return eqName(value);
         }else{
             return null;
