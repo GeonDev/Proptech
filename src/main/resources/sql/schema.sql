@@ -136,6 +136,8 @@ CREATE TABLE purchase_prop (
   address_detail varchar(50) DEFAULT NULL,
   price bigint(20) DEFAULT NULL,
   purchase_date date DEFAULT NULL,
+  reg_date date DEFAULT NULL,
+  modi_date date DEFAULT NULL,
   prop_type varchar(50) DEFAULT 'REQUIRED',
   PRIMARY KEY (id)
 );
@@ -209,6 +211,9 @@ CREATE TABLE web_menu (
   PRIMARY KEY (id)
 );
 
+
+-- N+1 문제를 해결하는 방법으로 VIEW를 생성하는 것을 고려함
+--
 CREATE OR REPLACE VIEW V_ASSOCIATE_SUMMARY AS
 SELECT id, name, associate_round, operate_fee_ratio, end_expect_date, end_real_date, city, state, address, reg_date,  totalClaimPay, TotalReceiptPay, TotalpurchasePay
 FROM associate

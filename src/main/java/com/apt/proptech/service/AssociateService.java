@@ -1,6 +1,7 @@
 package com.apt.proptech.service;
 
 
+import com.apt.proptech.config.TableColumnConfig;
 import com.apt.proptech.domain.Associate;
 
 import com.apt.proptech.domain.User;
@@ -28,6 +29,9 @@ public class AssociateService extends BaseService<Associate>{
 
     @Autowired
     private AssociateRepositorySupport associateRepositorySupport;
+
+    @Autowired
+    private TableColumnConfig tableConfig;
 
 
     @Override
@@ -142,9 +146,6 @@ public class AssociateService extends BaseService<Associate>{
     }
 
 
-
-
-
     private List<AssociateDto> convertDomain( List<Associate> data){
         List<AssociateDto> result = new ArrayList<AssociateDto>();
 
@@ -158,27 +159,24 @@ public class AssociateService extends BaseService<Associate>{
 
     private List<String> setSearchType(){
         List<String> temp = new ArrayList<>();
-        temp.add("All");
-        temp.add("Round");
-        temp.add("Address");
-        temp.add("Name");
+
+        List<String> column = tableConfig.getAssociateSearch();
+
+        for(int i =0; i< column.size(); i++ ){
+            temp.add(column.get(i));
+        }
+
         return temp;
     }
 
     private List<ColumnTitle> setColumns(){
         List<ColumnTitle> temp = new ArrayList<>();
 
-        temp.add(new ColumnTitle("Name","c0" ) );
-        temp.add(new ColumnTitle("Round","c1" ) );
-        temp.add(new ColumnTitle("Register","c2" ) );
-        temp.add(new ColumnTitle("End Expect Date","c3" ) );
-        temp.add(new ColumnTitle("End Real Date","c4" ) );
-        temp.add(new ColumnTitle("Fee(%)","c5" ) );
-        temp.add(new ColumnTitle("Total Required Paid","c6" ) );
-        temp.add(new ColumnTitle("Total Paid","c7" ) );
-        temp.add(new ColumnTitle("City","c8" ) );
-        temp.add(new ColumnTitle("State","c9" ) );
-        temp.add(new ColumnTitle("Address","c10" ) );
+        List<String> column = tableConfig.getAssociateColumn();
+
+        for(int i =0; i< column.size(); i++ ){
+            temp .add(new ColumnTitle(column.get(i), "c"+i ) );
+        }
 
         return temp;
     }
