@@ -14,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@ToString(exclude = "associate")
 public class PurchaseProp extends BaseTimeEntity{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,6 +32,7 @@ public class PurchaseProp extends BaseTimeEntity{
 
     @ManyToOne
     @JoinColumn(name = "associate_id")
+    @ToString.Exclude
     private Associate associate;
 
     @OneToMany(mappedBy = "prop", fetch = FetchType.LAZY)

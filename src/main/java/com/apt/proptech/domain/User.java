@@ -52,6 +52,7 @@ public class User extends BaseTimeEntity{
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
+    @ToString.Exclude
     private Company company;
 
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)

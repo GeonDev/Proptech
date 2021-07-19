@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@ToString(exclude = "user")
 public class Account extends BaseTimeEntity{
 
     @Id
@@ -27,6 +26,7 @@ public class Account extends BaseTimeEntity{
 
     @ManyToOne
     @JoinColumn(name="user_id")
+    @ToString.Exclude
     private User user;
 
     @Enumerated(EnumType.STRING)

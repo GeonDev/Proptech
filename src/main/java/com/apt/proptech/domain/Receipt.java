@@ -1,9 +1,6 @@
 package com.apt.proptech.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -23,9 +20,11 @@ public class Receipt extends BaseTimeEntity{
 
     @ManyToOne
     @JoinColumn(name = "claim_id")
+    @ToString.Exclude
     private ClaimProp claimProp;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @ToString.Exclude
     private User user;
 }

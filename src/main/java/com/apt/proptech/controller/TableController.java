@@ -1,6 +1,5 @@
 package com.apt.proptech.controller;
 
-import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.dto.AssociateDto;
 import com.apt.proptech.domain.dto.Pagination;
 import com.apt.proptech.domain.dto.UserDto;
@@ -21,9 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.View;
 
-import java.text.SimpleDateFormat;
-import java.util.List;
 
+import java.util.List;
 
 @Controller
 @RequestMapping("/table")
@@ -86,7 +84,7 @@ public class TableController {
                                    @RequestParam(value = "value", required = false, defaultValue = "") String value,
                                    @RequestParam(value = "start", required = false, defaultValue = "") String startDate,
                                    @RequestParam(value = "end", required = false, defaultValue = "") String endDate,
-                                   @RequestParam(value = "selected", required = false, defaultValue = "c0-c1-c2-c3-c4-c5-c6-c7-c8-c9-c10-c11") String selected){
+                                   @RequestParam(value = "selected", required = false, defaultValue = "c0-c1-c2-c3-c4-c5-c6-c7-c8-c9-c10-c11-c12") String selected){
 
         Pagination<AssociateDto> pagination =  associateService.getItemList(pageable,type,value,startDate, endDate);
 

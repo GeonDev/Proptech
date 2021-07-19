@@ -1,6 +1,6 @@
 package com.apt.proptech.repository.support;
 
-import com.apt.proptech.domain.Associate;
+import com.apt.proptech.domain.*;
 import com.apt.proptech.domain.enums.AssociateRound;
 import com.apt.proptech.util.CommonUtil;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -31,7 +31,15 @@ public class AssociateRepositorySupport extends QuerydslRepositorySupport {
 
     //모든 데이터 조회 (엑셀 데이터 추출 용)
     public List<Associate> findAssociateTypeAndDate(String type, String value, String startDate, String endDate){
-        return queryFactory.selectFrom(associate).where(eqTypeAndValue(type, value), betweenDate(startDate, endDate)).fetch();
+        QPurchaseProp purchaseProp = QPurchaseProp.purchaseProp;
+        QSaleProp saleProp = QSaleProp.saleProp;
+        QStaff staff = QStaff.staff;
+        QClaimProp claimProp = QClaimProp.claimProp;
+        QReceipt receipt = QReceipt.receipt;
+
+
+        return queryFactory.selectFrom(associate).where(eqTypeAndValue(type, value), betweenDate(startDate, endDate))
+                .fetch();
     }
 
 

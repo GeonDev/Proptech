@@ -28,7 +28,6 @@ public class WebMenu extends BaseTimeEntity {
 
     private Long parentId;
 
-
     private int orderSeq;
 
 }

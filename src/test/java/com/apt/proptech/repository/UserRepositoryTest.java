@@ -69,9 +69,6 @@ class UserRepositoryTest {
             if(history!=null ){
                 System.out.println(history.getLoginDate() );
             } });
-
-
-
     }
 
 

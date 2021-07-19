@@ -15,21 +15,11 @@ import java.util.Optional;
 @Service
 public class AlertService {
 
-    @Autowired
-    private UserRepository userRepository;
-
      @Autowired
      private AlertRepository alertRepository;
 
     public List<Alert> getAlertListNotRead(String userName ){
-
-        User receiveUser = userRepository.findByUsername( userName);
-
-        if(receiveUser != null ){
-            return alertRepository.findTop10ByReceiveUserAndReadDateIsNull(receiveUser);
-        }else{
-            return  null;
-        }
+        return  alertRepository.findByNotCheckedMessage(userName);
     }
 
     @Transactional

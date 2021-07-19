@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@ToString(exclude = "receiveUser")
 public class Alert {
 
     @Id
@@ -21,6 +20,7 @@ public class Alert {
 
     @ManyToOne
     @JoinColumn(name = "receive_user_id")
+    @ToString.Exclude
     User receiveUser;
 
     LocalDateTime sandDate;

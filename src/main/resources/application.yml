@@ -8,6 +8,8 @@ jasypt:
 
 spring:
   jpa:
+    properties:
+      hibernate.default_batch_fetch_size: 1000
     show-sql: true
 
   devtools:

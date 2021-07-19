@@ -135,14 +135,9 @@ public class AssociateService extends BaseService<Associate>{
         return  items;
     }
 
-    @Transactional
-    public List<AssociateDto> getAssociateExceptRound(AssociateRound round){
-        List<Associate> temp = associateRepository.findByAssociateRoundNot(round);
-        List <AssociateDto> items = new ArrayList<>();
-        temp.forEach( o->{items.add( new AssociateDto(o)); });
 
-        return  items;
-
+    public int getAssociateExceptRoundCount(AssociateRound round){
+        return  associateRepository.findByAssociateRoundNot(round).size();
     }
 
 

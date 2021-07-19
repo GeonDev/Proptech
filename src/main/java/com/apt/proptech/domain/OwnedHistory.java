@@ -1,10 +1,7 @@
 package com.apt.proptech.domain;
 
 import com.apt.proptech.domain.enums.OwnedState;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -24,10 +21,12 @@ public class OwnedHistory extends BaseTimeEntity{
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @ToString.Exclude
     private User owner;
 
     @ManyToOne
     @JoinColumn(name = "sale_prop_id")
+    @ToString.Exclude
     private SaleProp saleProp;
 
 }

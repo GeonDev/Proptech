@@ -12,7 +12,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@ToString(exclude = "associate")
 public class Staff extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +22,12 @@ public class Staff extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "associate_id")
+    @ToString.Exclude
     private Associate associate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @ToString.Exclude
     private User user;
 
 }
