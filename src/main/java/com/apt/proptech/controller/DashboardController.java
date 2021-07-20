@@ -49,7 +49,7 @@ public class DashboardController {
 
         model.addAttribute("totalAssociateCount" , associateService.getAssociateExceptRoundCount(AssociateRound.INACTIVE));
 
-        model.addAttribute("totalFund" , receiptService.getTotalPaid());
+        model.addAttribute("totalPaid" , receiptService.getTotalPaid());
 
 
 

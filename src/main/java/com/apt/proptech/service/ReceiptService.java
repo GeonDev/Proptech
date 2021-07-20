@@ -13,7 +13,13 @@ public class ReceiptService {
 
 
     public Long getTotalPaid(){
-        return  receiptRepository.getTotalReceiptPaid();
+         Long totalPaid =  receiptRepository.getTotalReceiptPaid();
+
+         if(totalPaid!= null){
+             return totalPaid;
+         }
+
+        return 0l;
     }
 
 

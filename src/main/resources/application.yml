@@ -7,11 +7,6 @@ jasypt:
 
 
 spring:
-  jpa:
-    properties:
-      hibernate.default_batch_fetch_size: 1000
-    show-sql: true
-
   devtools:
     livereload:
       restart:
@@ -42,24 +37,29 @@ spring:
     driver-class-name: org.h2.Driver
     schema: classpath*:sql/schema.sql
     data: classpath*:sql/data.sql
+  h2:
+    console:
+      enabled: false
   jpa:
     show-sql: true
-    propertice:
+    properties:
       hibernate:
-        fomat_sql: true
-        ddl-auto: update
-  h2:
-   console:
-    enabled: true
+        format_sql: true
+        default_batch_fetch_size: 1000
 ---
 
- spring:
-   profiles: dev
-   datasource:
-     sql-script-encoding: UTF-8
-     url: jdbc:mariadb://localhost:3306/proptech
-     username: ENC(LyzpWYaIfBHycYC0uOJw6w==)
-     password: ENC(/j9TCvgQDkpQWHi2dq56ag==)
-     driver-class-name: org.mariadb.jdbc.Driver
-
+spring:
+  profiles: dev
+  jpa:
+    show-sql: true
+    properties:
+     hibernate:
+       format_sql: true
+       default_batch_fetch_size: 1000
+  datasource:
+    sql-script-encoding: UTF-8
+    url: jdbc:mariadb://localhost:3306/proptech
+    username: ENC(LyzpWYaIfBHycYC0uOJw6w==)
+    password: ENC(/j9TCvgQDkpQWHi2dq56ag==)
+    driver-class-name: org.mariadb.jdbc.Driver
 ---
