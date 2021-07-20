@@ -1,5 +1,7 @@
 package com.apt.proptech.repository.support;
 
+import com.apt.proptech.domain.QCompany;
+import com.apt.proptech.domain.QLoginHistory;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.enums.UserRole;
 import com.apt.proptech.domain.enums.UserState;
@@ -30,27 +32,22 @@ public class UserRepositorySupport extends QuerydslRepositorySupport {
         this.queryFactory = queryFactory;
     }
 
-
-
-    public User findOneByName(String name){
-        return queryFactory.selectFrom(user).where(user.name.eq(name))
-                .fetchOne();
-    }
-
     //모든 데이터 조회 (엑셀 데이터 추출 용)
     public List<User> findUserTypeAndDate(String type, String value, String startDate, String endDate ){
         return  queryFactory.selectFrom(user).where(eqTypeAndValue(type, value), betweenDate(startDate,endDate) ).fetch();
     }
 
-
-
     // PageImpl은 Spring Data에서 이미 선언되어 있는 도메인
     public PageImpl<User> findUserTypeAndDatePage(String type, String value, String startDate, String endDate , Pageable pageable){
+        QLoginHistory loginHistory = QLoginHistory.loginHistory;
+        QCompany company = QCompany.company;
 
-        JPAQuery<User> query = queryFactory.selectFrom(user).where(eqTypeAndValue(type, value), betweenDate(startDate,endDate));
+        JPAQuery<User> query = queryFactory.selectFrom(user)
+                .where(eqTypeAndValue(type, value), betweenDate(startDate,endDate));
 
         Long totalCount = query.fetchCount();
 
+        //pageable 수행
         List<User> result = getQuerydsl().applyPagination(pageable, query).fetch();
 
         return new PageImpl<>(result, pageable, totalCount);

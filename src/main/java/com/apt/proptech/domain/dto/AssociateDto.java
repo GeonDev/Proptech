@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -83,28 +85,24 @@ public class AssociateDto {
                     }
                 }
             }
-
         }
 
 
         //전체 필요(토지 구매) 금액
         for(PurchaseProp prod : associate.getPurchasePropList()){
             if(prod !=null ){
-                Collections.sort(prod.getPriceList(), (o1, o2) -> { return (int)(o2.getId() - o1.getId()); } );
-                this.totalPurchaseNeedPaid += prod.getPriceList().get(0).getPrice();
-            }
-        }
+                List<PropPrice> priceList = prod.getPriceList();
+                PropPrice price = priceList.stream().max(Comparator.comparing(PropPrice::getId).reversed()).orElse(null);
 
-        //토지 구매에 사용한 금액
-        for(PurchaseProp prod : associate.getPurchasePropList()){
-            if(prod !=null ){
-                Collections.sort(prod.getPriceList(), (o1, o2) -> { return (int)(o2.getId() - o1.getId()); } );
-                if(prod.getPropType() == PropType.PURCHASED ){
-                    this.totalPurchasePaid += prod.getPriceList().get(0).getPrice();
+                if(price != null){
+                    this.totalPurchaseNeedPaid += price.getPrice();
+
+                    //토지 구매에 사용한 금액
+                    if(prod.getPropType() == PropType.PURCHASED ){
+                        this.totalPurchasePaid += price.getPrice();
+                    }
                 }
             }
         }
-
-
     }
 }

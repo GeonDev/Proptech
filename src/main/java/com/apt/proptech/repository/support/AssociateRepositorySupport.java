@@ -45,6 +45,13 @@ public class AssociateRepositorySupport extends QuerydslRepositorySupport {
 
 
     public PageImpl<Associate> findUserTypeAndDatePage(String type, String value, String startDate, String endDate , Pageable pageable){
+        QPurchaseProp purchaseProp = QPurchaseProp.purchaseProp;
+        QSaleProp saleProp = QSaleProp.saleProp;
+        QStaff staff = QStaff.staff;
+        QClaimProp claimProp = QClaimProp.claimProp;
+        QReceipt receipt = QReceipt.receipt;
+
+
 
         JPAQuery<Associate> query = queryFactory.selectFrom(associate).where( eqTypeAndValue(type, value), betweenDate(startDate, endDate));
 
