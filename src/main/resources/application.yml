@@ -1,11 +1,14 @@
 server:
   port: 8081
-
+---
 jasypt:
   encryptor:
     bean: jasyptEncryptor
-
-
+---
+spring:
+  profiles:
+    active: dev
+---
 spring:
   devtools:
     livereload:
@@ -13,8 +16,6 @@ spring:
         enabled: true
   mustache:
     expose-session-attributes: true
-  profiles:
-    active: dev
   security:
     oauth2:
       client:
@@ -25,7 +26,13 @@ spring:
             scope:
             - email
             - profile
-
+  datasource:
+    hikari:
+      connectionTimeout: 30000
+      maximumPoolSize: 10
+      maxLifetime: 1800000
+      idleTimeout: 12000
+      leakDetectionThreshold: 2000
 
 ---
 spring:
@@ -37,6 +44,13 @@ spring:
     driver-class-name: org.h2.Driver
     schema: classpath*:sql/schema.sql
     data: classpath*:sql/data.sql
+    hikari:
+      connectionTimeout: 30000
+      maximumPoolSize: 10
+      maxLifetime: 1800000
+      idleTimeout: 12000
+      leakDetectionThreshold: 2000
+
   h2:
     console:
       enabled: false
