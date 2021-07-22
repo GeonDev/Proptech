@@ -31,8 +31,6 @@ public class CustomFailureHandler extends SimpleUrlAuthenticationFailureHandler 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 
-        String msg = "Invaild Username or Password";
-
         User user = userRepository.findByUsername(request.getParameter("username") );
 
         if(user!=null){
@@ -51,6 +49,7 @@ public class CustomFailureHandler extends SimpleUrlAuthenticationFailureHandler 
 
         }
 
+        String msg = "Invaild Username or Password";
 
         if(exception instanceof BadCredentialsException){
             //비밀번호 오류
