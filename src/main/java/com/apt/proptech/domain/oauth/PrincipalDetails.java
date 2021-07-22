@@ -1,6 +1,7 @@
 package com.apt.proptech.domain.oauth;
 
 import com.apt.proptech.domain.User;
+import com.apt.proptech.domain.enums.UserState;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,6 +42,9 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 
 	@Override
 	public boolean isAccountNonExpired() {
+		if(user.getUserState() == UserState.RETIRED){
+			return false;
+		}
 		return true;
 	}
 
@@ -58,6 +62,10 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 	// 계정이 활성화(사용가능) 상태 인지 반환
 	@Override
 	public boolean isEnabled() {
+		if(user.getFailLoginCount() >= 5){
+			return  false;
+		}
+
 		return true;
 	}
 

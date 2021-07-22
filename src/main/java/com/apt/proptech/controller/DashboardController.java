@@ -38,10 +38,6 @@ public class DashboardController {
     @GetMapping("/main")
     public String Dashboard(Model model , @AuthenticationPrincipal PrincipalDetails principal, HttpSession session){
 
-        //세션은 단순 화면 표시용 기능 -> 실제 연산은 시큐리티 세션으로 처리
-        session.setAttribute( "profileImg",principal.getUser().getProfileImg());
-        session.setAttribute( "userName",principal.getUser().getUsername());
-
         model.addAttribute("contentName","Dashboard");
         model.addAttribute("dashboardLayout", true);
 

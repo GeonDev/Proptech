@@ -34,6 +34,9 @@ public class User extends BaseTimeEntity{
     private String profileImg;
     private String phoneNumber;
 
+    //로그인 실패 횟수 5회 초과시 잠금
+    private Integer failLoginCount;
+
     //OAuth를 위한 필드
     private String provider;
     private String providerId;

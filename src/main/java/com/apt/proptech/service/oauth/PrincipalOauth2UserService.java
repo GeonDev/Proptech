@@ -70,19 +70,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
 		User user  = userRepository.findByProviderAndProviderId(oAuth2UserInfo.getProvider(), oAuth2UserInfo.getProviderId());
 
-		if (user!=null) {
-
-			//로그인 히스토리 기록
-			LoginHistory loginHistory = LoginHistory.builder()
-					.loginIp(CommonUtil.getUserIp())
-					.user(user)
-					.isLogin(true)
-					.loginDate(LocalDateTime.now())
-					.build();
-
-			loginHistoryRepository.save(loginHistory);
-
-		} else {
+		if (user==null) {
 			// user의 패스워드가 null이기 때문에 OAuth 유저는 일반적인 로그인을 할 수 없음.
 			user = User.builder()
 					.username(oAuth2UserInfo.getProvider() + "_" + oAuth2UserInfo.getProviderId())
