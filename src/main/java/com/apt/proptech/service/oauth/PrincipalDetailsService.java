@@ -25,29 +25,16 @@ public class PrincipalDetailsService implements UserDetailsService{
 	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
-	private LoginHistoryRepository loginHistoryRepository;
+
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByUsername(username);
 		if(user == null) {
-			LOGGER.info("Fail Login -> CAN NOT FIND USER INFO");
+			LOGGER.info("Fail -> CAN NOT FIND USER INFO");
 			return null;
 		}else {
-			LOGGER.info("success Login -> FIND USER INFO");
-
-			//로그인 히스토리 기록
-			LoginHistory loginHistory = LoginHistory.builder()
-					.loginIp(CommonUtil.getUserIp())
-					.user(user)
-					.isLogin(true)
-					.loginDate(LocalDateTime.now())
-					.build();
-
-			loginHistoryRepository.save(loginHistory);
-
-
+			LOGGER.info("SUCCESS-> FIND USER INFO");
 			return new PrincipalDetails(user);
 		}
 	}

@@ -1,6 +1,9 @@
 package com.apt.proptech.config;
 
+import com.apt.proptech.hendler.CustomSuccessHandler;
+import com.apt.proptech.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -10,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 
 @Configuration // IoC 빈(bean)을 등록
@@ -18,6 +22,11 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+
+	//로그인 실패시 이후 처리를 담당하는 핸들러
+	private final AuthenticationSuccessHandler customSuccessHandler;
+
+	//로그인 실패시 이후 처리를 담당하는 핸들러
 	private final AuthenticationFailureHandler customFailureHandler;
 
 	@Bean
@@ -32,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable().headers().frameOptions().disable();
 		http.authorizeRequests()
 			//.antMatchers("/user/**").authenticated()
-			.antMatchers("/login/**","/register","/forgot" ,"/css/**", "/js/**", "/img/**", "/h2-console/**","/vendor/**" ).permitAll()
+			.antMatchers("/login/**","/register","/forgot" ,"/css/**", "/js/**", "/img/**", "/vendor/**" ).permitAll()
 			.antMatchers("/dashboard/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF') or hasRole('ROLE_MANAGER') or hasRole('ROLE_PARTNER')")
 				.antMatchers("/table/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF') or hasRole('ROLE_MANAGER') or hasRole('ROLE_PARTNER')")
 				.antMatchers("/chart/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF') or hasRole('ROLE_MANAGER') or hasRole('ROLE_PARTNER')")
@@ -41,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.loginPage("/login")
 			.loginProcessingUrl("/loginProc")
 			.defaultSuccessUrl("/")
+			.successHandler(customSuccessHandler)
 			.failureHandler(customFailureHandler)
 		.and()
 			.oauth2Login()

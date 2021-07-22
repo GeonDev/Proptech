@@ -12,6 +12,7 @@ CREATE TABLE account (
   user_id bigint(20) DEFAULT NULL,
   description varchar(50) DEFAULT NULL,
   account varchar(50) DEFAULT NULL,
+  fail_login_count int(11) DEFAULT 0,
   bank_name varchar(50) DEFAULT NULL,
   account_state varchar(50) DEFAULT 'ACTIVE',
   use_date date DEFAULT NULL,

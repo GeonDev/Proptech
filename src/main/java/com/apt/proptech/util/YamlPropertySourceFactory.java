@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 
-
+//yml 파일을 파싱해주는 팩토리 클래스
 public class YamlPropertySourceFactory implements PropertySourceFactory {
     @Override
     public PropertySource<?> createPropertySource(@Nullable String name, EncodedResource resource) throws IOException {

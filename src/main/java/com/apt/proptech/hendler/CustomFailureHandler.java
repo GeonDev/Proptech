@@ -1,9 +1,13 @@
 package com.apt.proptech.hendler;
 
-import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.InsufficientAuthenticationException;
-import org.springframework.security.authentication.LockedException;
+import com.apt.proptech.domain.LoginHistory;
+import com.apt.proptech.domain.User;
+import com.apt.proptech.repository.LoginHistoryRepository;
+import com.apt.proptech.repository.UserRepository;
+import com.apt.proptech.service.UserService;
+import com.apt.proptech.util.CommonUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.*;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
@@ -13,14 +17,40 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Component
 public class CustomFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private LoginHistoryRepository loginHistoryRepository;
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 
         String msg = "Invaild Username or Password";
+
+        User user = userRepository.findByUsername(request.getParameter("username") );
+
+        if(user!=null){
+            user.setFailLoginCount(user.getFailLoginCount()+1 );
+            userRepository.save(user);
+
+            //로그인 히스토리 기록
+            LoginHistory loginHistory = LoginHistory.builder()
+                    .loginIp(CommonUtil.getUserIp())
+                    .user(user)
+                    .isLogin(false)
+                    .loginDate(LocalDateTime.now())
+                    .build();
+
+            loginHistoryRepository.save(loginHistory);
+
+        }
+
 
         if(exception instanceof BadCredentialsException){
             //비밀번호 오류
@@ -32,8 +62,11 @@ public class CustomFailureHandler extends SimpleUrlAuthenticationFailureHandler 
             //계정 인증 실패
             msg = "Reject Authentication";
         }else if(exception instanceof LockedException){
-            //계정 잠김
-            msg = "Locked Account";
+            //계정 잠김( 계정 탈퇴 상태)
+            msg = "Locked Account(Retired) ";
+        }else if(exception instanceof DisabledException){
+            //계정 잠김 (로그실 실패 횟수 초과)
+            msg = "Locked Account(login Fail Count Over)";
         }
 
         setDefaultFailureUrl("/login?error=true&exception="+msg);
