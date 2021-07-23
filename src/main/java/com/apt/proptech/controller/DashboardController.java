@@ -43,11 +43,14 @@ public class DashboardController {
 
         model.addAttribute("totalUserCount" , userService.getUserRoleAndExceptStateCount(UserRole.ROLE_USER, UserState.UN_AUTH ));
 
-        model.addAttribute("totalAssociateCount" , associateService.getAssociateExceptRoundCount(AssociateRound.INACTIVE));
+        model.addAttribute("totalAssociateCount" , associateService.getAssociateExceptRoundCount(AssociateRound.FINISH));
 
         model.addAttribute("totalPaid" , receiptService.getTotalPaid());
 
+        model.addAttribute("totalTaskPercent" , associateService.getTotalTaskPercent(0));
 
+        //대쉬보드 레이아웃을 불러옴
+        model.addAttribute("DashboardLayout","true");
 
         return "main";
     }

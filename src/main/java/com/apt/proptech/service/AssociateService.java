@@ -127,6 +127,11 @@ public class AssociateService extends BaseService<Associate>{
         return items;
     }
 
+    public String getTotalTaskPercent(int round){
+        return  associateRepository.findAssociateTaskPercent(round);
+    }
+
+
     public List<AssociateDto> getExcelDate( String type, String value, String startDate, String endDate ){
         List<Associate> temp = associateRepositorySupport.findAssociateTypeAndDate(type, value, startDate, endDate);
         List <AssociateDto> items = new ArrayList<>();
@@ -175,5 +180,8 @@ public class AssociateService extends BaseService<Associate>{
 
         return temp;
     }
+
+
+
 
 }

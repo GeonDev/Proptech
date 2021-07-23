@@ -111,7 +111,7 @@ public class AssociateRepositorySupport extends QuerydslRepositorySupport {
         }else if("SALE".equals(value) ){
             return  associate.associateRound.eq(AssociateRound.SALE);
         }else if ("INACTIVE".equals(value)){
-            return  associate.associateRound.eq(AssociateRound.INACTIVE);
+            return  associate.associateRound.eq(AssociateRound.FINISH);
         }else{
             return null;
         }
