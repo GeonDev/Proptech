@@ -30,6 +30,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT * FROM user, company, account WHERE user.company_id = company.id AND user.id = account.user_id " , nativeQuery = true)
     List<User> findAllByPartnerInfo();
 
+    @Query("SELECT u.id FROM User u")
+    List<String> findAllByUserId();
+
     //유저 ID로 겹칠수 없다.
     User findByUsername(String username);
 

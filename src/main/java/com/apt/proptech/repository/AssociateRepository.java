@@ -24,4 +24,17 @@ public interface AssociateRepository extends JpaRepository<Associate, Long> {
 
     List<Associate> findByAssociateRoundNot(AssociateRound round);
 
+    @Query(value = "SELECT ROUND((SUM(\n" +
+            "\t\tCASE \n" +
+            "\t\tWHEN associate_round = 'CREATE' Then 1\n" +
+            "\t\tWHEN associate_round = 'SIGNED' Then 2\n" +
+            "\t\tWHEN associate_round = 'SELECTION' Then 3\n" +
+            "\t\tWHEN associate_round = 'COMPLETION' Then 4\n" +
+            "\t\tWHEN associate_round = 'SALE' Then 5\n" +
+            "\t\tWHEN associate_round = 'FINISH' Then 5\n" +
+            "\t\tEND) /\n" +
+            "\t\t(COUNT(*)*6))*100, :round ) persent\t\t\n" +
+            "\t\tFROM associate ", nativeQuery = true)
+    String findAssociateTaskPercent(@Param("round") int round);
+
 }
