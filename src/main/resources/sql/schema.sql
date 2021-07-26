@@ -195,6 +195,7 @@ CREATE TABLE user (
   phone_number varchar(50) DEFAULT NULL,
   provider varchar(50) DEFAULT NULL,
   provider_id varchar(50) DEFAULT NULL,
+  fail_login_count int(11) DEFAULT 0,
   PRIMARY KEY (id),
   UNIQUE KEY username (username)
 );

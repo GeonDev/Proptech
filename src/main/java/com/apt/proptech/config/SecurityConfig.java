@@ -23,6 +23,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 
+	@Autowired
+	private CorsConfig corsConfig;
+
 	//로그인 실패시 이후 처리를 담당하는 핸들러
 	private final AuthenticationSuccessHandler customSuccessHandler;
 
@@ -37,8 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		//로그아웃은 디폴트 값으로 /logout 을 사용한다
-
-		http.csrf().disable().headers().frameOptions().disable();
+		//CORS 필터는 인증이 필요한 접근이 있을때 사용한다.
+		http.addFilter(corsConfig.corsFilter()).
+				csrf().disable().headers().frameOptions().disable();
 		http.authorizeRequests()
 			//.antMatchers("/user/**").authenticated()
 			.antMatchers("/login/**","/register","/forgot" ,"/css/**", "/js/**", "/img/**", "/vendor/**" ).permitAll()
