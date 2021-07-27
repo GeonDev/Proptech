@@ -81,7 +81,6 @@ public class MainController {
         return "redirect:/login";
     }
 
-
 }
 
 
