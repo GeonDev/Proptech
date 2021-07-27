@@ -49,9 +49,6 @@ public class DashboardController {
 
         model.addAttribute("totalTaskPercent" , associateService.getTotalTaskPercent(0));
 
-        //대쉬보드 레이아웃을 불러옴
-        model.addAttribute("DashboardLayout","true");
-
         return "main";
     }
 }
