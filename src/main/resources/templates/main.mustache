@@ -238,9 +238,13 @@
                 {{>layout/profileContent}}
             {{/profileContent}}
 
-            {{#errorContent}}
-                {{>contents/error}}
-            {{/errorContent}}
+            {{#error404}}
+                {{>error/error404}}
+            {{/error404}}
+
+            {{#error500}}
+                {{>error/error500}}
+            {{/error500}}
 
 
         </div>
