@@ -225,35 +225,56 @@ FROM   (SELECT *
                                  Sum(receiptpay)TotalReceiptPay
                           FROM   sale_prop
                                  LEFT JOIN (SELECT sale_prop_id,
-																	Sum(claim_prop.payment)claimpay,
-																	Sum(receipt.payment)   receiptPay
-															FROM   claim_prop
-																		LEFT JOIN receipt
-      																ON claim_prop.id =  receipt.claim_id
+                                                   Sum(claim_prop.payment)claimpay,
+                                                   Sum(receipt.payment)   receiptPay
+											FROM   claim_prop
+												   LEFT JOIN receipt
+      													ON claim_prop.id =  receipt.claim_id
 															GROUP  BY sale_prop_id)A
-											ON sale_prop.id = A.sale_prop_id)sale
+									ON sale_prop.id = A.sale_prop_id)sale
 					ON associate.id = sale.associate_id) info
-LEFT JOIN (SELECT A.associate_id,
-						A.totalpurchaseneedpaid,
-						B.totalpurchasepaid
-				FROM
-				 (SELECT associate_id,
-					Sum(pay)totalPurchaseNeedPaid
-					FROM   (SELECT purchase_prop.associate_id,
-										Max(prop_price.price)pay
-								FROM  purchase_prop
-					LEFT JOIN prop_price ON purchase_prop.id = prop_price.purchase_prop_id
-                GROUP  BY purchase_prop.id)A
-            GROUP  BY A.associate_id)A
-JOIN (SELECT associate_id,
-        Sum(pay)totalPurchasePaid
-      FROM   (SELECT purchase_prop.associate_id,
-                Max(prop_price.price)pay
-        FROM   purchase_prop
-        LEFT JOIN prop_price ON purchase_prop.id =
-     prop_price.purchase_prop_id
-WHERE  purchase_prop.prop_type = 'PURCHASED'
-        GROUP  BY purchase_prop.id)B
-        GROUP  BY B.associate_id)B
-ON A.associate_id = b.associate_id)paid
-ON info.id = paid.associate_id
+               LEFT JOIN (SELECT A.associate_id,
+					      	     A.totalpurchaseneedpaid,
+						         B.totalpurchasepaid
+				           FROM
+                             (SELECT associate_id,
+                                Sum(pay)totalPurchaseNeedPaid
+                              FROM   (SELECT purchase_prop.associate_id,
+                                             Max(prop_price.price)pay
+                                      FROM  purchase_prop
+                                            LEFT JOIN prop_price
+                                                 ON purchase_prop.id = prop_price.purchase_prop_id
+                                      GROUP  BY purchase_prop.id)A
+                              GROUP  BY A.associate_id)A
+                           JOIN (SELECT associate_id,
+                                        Sum(pay)totalPurchasePaid
+                                 FROM
+                                    (SELECT purchase_prop.associate_id,
+                                            Max(prop_price.price)pay
+                                     FROM   purchase_prop
+                                            LEFT JOIN prop_price
+                                                 ON purchase_prop.id = prop_price.purchase_prop_id
+                                     WHERE  purchase_prop.prop_type = 'PURCHASED'
+                                     GROUP  BY purchase_prop.id)B
+                                 GROUP  BY B.associate_id)B
+                             ON A.associate_id = b.associate_id)paid
+                    ON info.id = paid.associate_id;
+
+CREATE OR REPLACE view v_user_summary
+AS
+  SELECT user.name,
+         user.email,
+         user.phone_number,
+         user.provider,
+         user.user_role,
+         user.user_state,
+         user.reg_date,
+         A.login_date,
+         user.retired_date
+  FROM   user
+         LEFT JOIN (SELECT login_history.user_id,
+                           Max(login_history.login_date)login_date
+                    FROM   login_history
+                    GROUP  BY login_history.user_id)A
+                ON user.id = A.user_id
+  ORDER  BY user.id

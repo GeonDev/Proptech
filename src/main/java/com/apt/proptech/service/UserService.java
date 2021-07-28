@@ -199,7 +199,7 @@ public class UserService extends BaseService<User>{
         List<String> column = tableConfig.getUserColumn();
 
         for(int i =0; i< column.size(); i++ ){
-            temp .add(new ColumnTitle(column.get(i), "c"+i ) );
+            temp.add(new ColumnTitle(column.get(i), "c"+i ) );
         }
 
         return temp;

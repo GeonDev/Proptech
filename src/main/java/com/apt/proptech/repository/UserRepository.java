@@ -21,22 +21,19 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByProviderAndProviderId(String provider, String providerId);
 
+    User findByUsername(String username);
+
+    List<User> findByUserRoleAndUserStateNot(UserRole role, UserState state);
+
     @Query(value = "SELECT * FROM user WHERE user.user_role =:role ORDER BY id DESC" ,nativeQuery = true)
     Page<User> findAllByUserRoles(@Param("role") String role, Pageable pageable);
 
     @Query(value = "SELECT * FROM user WHERE user.user_state =:state ORDER BY id DESC", nativeQuery = true)
     Page<User> findAllByUserState(@Param("state") String state , Pageable pageable);
 
-    @Query(value = "SELECT * FROM user, company, account WHERE user.company_id = company.id AND user.id = account.user_id " , nativeQuery = true)
-    List<User> findAllByPartnerInfo();
-
     @Query("SELECT u.id FROM User u")
     List<String> findAllByUserId();
 
-    //유저 ID로 겹칠수 없다.
-    User findByUsername(String username);
 
-
-    List<User> findByUserRoleAndUserStateNot(UserRole role, UserState state);
 
 }

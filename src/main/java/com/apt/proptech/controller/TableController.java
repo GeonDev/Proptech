@@ -1,6 +1,7 @@
 package com.apt.proptech.controller;
 
 import com.apt.proptech.domain.dto.AssociateDto;
+import com.apt.proptech.domain.dto.ColumnTitle;
 import com.apt.proptech.domain.dto.Pagination;
 import com.apt.proptech.domain.dto.UserDto;
 
@@ -40,7 +41,7 @@ public class TableController {
                              @RequestParam(value = "value", required = false, defaultValue = "") String value,
                              @RequestParam(value = "start", required = false, defaultValue = "") String startDate,
                              @RequestParam(value = "end", required = false, defaultValue = "") String endDate,
-                             @RequestParam(value = "selected", required = false, defaultValue = "c0-c1-c2-c3-c4-c5-c6-c7-c8") String selected){
+                             @RequestParam(value = "selected", required = false, defaultValue = "first") String selected){
 
         Pagination<UserDto> pagination =  userService.getItemList(pageable, type, value,startDate, endDate);
 
@@ -69,11 +70,22 @@ public class TableController {
         //유저 테이블 형식을 불러옴
         model.addAttribute("tableUser","tableUser");
 
-        //선택된 칼럼만 활성화
-        String[] selectArr = selected.split("-");
-        for(String col : selectArr){
-            model.addAttribute(col, true );
+        //값이 빈값이면 전체 칼럼 선택
+        if(selected.equals("first")){
+            List<ColumnTitle> titleList = pagination.getColumnTitles();
+            for(ColumnTitle title : titleList ){
+                model.addAttribute(title.getOrder(), true );
+            }
+        }else{
+            //선택된 칼럼만 활성화
+            String[] selectArr = selected.split("-");
+            for(String col : selectArr){
+                model.addAttribute(col, true );
+            }
         }
+
+
+
 
         return "main";
     }
@@ -84,7 +96,7 @@ public class TableController {
                                    @RequestParam(value = "value", required = false, defaultValue = "") String value,
                                    @RequestParam(value = "start", required = false, defaultValue = "") String startDate,
                                    @RequestParam(value = "end", required = false, defaultValue = "") String endDate,
-                                   @RequestParam(value = "selected", required = false, defaultValue = "c0-c1-c2-c3-c4-c5-c6-c7-c8-c9-c10-c11-c12") String selected){
+                                   @RequestParam(value = "selected", required = false, defaultValue = "first") String selected){
 
         Pagination<AssociateDto> pagination =  associateService.getItemList(pageable,type,value,startDate, endDate);
 
@@ -109,10 +121,18 @@ public class TableController {
 
         model.addAttribute("tableAssociate","tableAssociate");
 
-        String[] selectArr = selected.split("-");
-
-        for(String col : selectArr){
-            model.addAttribute(col, true );
+        //값이 빈값이면 전체 칼럼 선택
+        if(selected.equals("first")){
+            List<ColumnTitle> titleList = pagination.getColumnTitles();
+            for(ColumnTitle title : titleList ){
+                model.addAttribute(title.getOrder(), true );
+            }
+        }else{
+            //선택된 칼럼만 활성화
+            String[] selectArr = selected.split("-");
+            for(String col : selectArr){
+                model.addAttribute(col, true );
+            }
         }
 
         return "main";

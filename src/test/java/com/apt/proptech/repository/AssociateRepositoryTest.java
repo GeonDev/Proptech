@@ -3,6 +3,9 @@ package com.apt.proptech.repository;
 import com.apt.proptech.domain.Associate;
 import com.apt.proptech.domain.ClaimProp;
 import com.apt.proptech.domain.SaleProp;
+import com.apt.proptech.domain.dto.AssociateDto;
+import com.apt.proptech.domain.dto.Pagination;
+import com.apt.proptech.service.AssociateService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +21,8 @@ import java.util.List;
 class AssociateRepositoryTest {
 
     @Autowired
-    private AssociateRepository associateRepository;
+    private AssociateService associateService;
+
 
     @Autowired
     private SalePropRepository salePropRepository;
@@ -47,10 +51,9 @@ class AssociateRepositoryTest {
     void NameTest() {
 
         Pageable page = PageRequest.of(0,10);
-        Page<Associate> list = associateRepository.findByNameContaining("조합", page);
+         Pagination<AssociateDto> list = associateService.getItemList(page, "", "", "", "");
 
-        list.forEach(o ->{
-            System.out.println(o.getId() );
+        list.getContents().forEach(o ->{
             System.out.println(o.getName() );
             System.out.println(o.getCity());
             System.out.println(o.getState());

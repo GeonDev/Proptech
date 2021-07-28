@@ -21,12 +21,15 @@ public interface LoginHistoryRepository extends JpaRepository<LoginHistory, Long
 
    @Transactional
    @Modifying(flushAutomatically = true, clearAutomatically = true)
-   @Query(value = "DELETE FROM login_history WHERE user_id IN :userIds AND login_date < :date " ,nativeQuery = true )
+   @Query(value = "DELETE FROM login_history " +
+                   "WHERE user_id IN :userIds " +
+                   "AND login_date < :date " ,nativeQuery = true )
    Integer deleteAllUserLoginHistory(@Param("userIds") List<String> userIds, @Param("date") LocalDateTime date) ;
 
    @Transactional
    @Modifying(flushAutomatically = true, clearAutomatically = true)
-   @Query(value = "DELETE FROM login_history WHERE login_date < :date " ,nativeQuery = true )
+   @Query(value = "DELETE FROM login_history " +
+                  "WHERE login_date < :date " ,nativeQuery = true )
    Integer deleteAllUserLoginHistory( @Param("date") LocalDateTime date) ;
 
 }
