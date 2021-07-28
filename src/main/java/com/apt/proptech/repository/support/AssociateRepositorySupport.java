@@ -31,13 +31,6 @@ public class AssociateRepositorySupport extends QuerydslRepositorySupport {
 
     //모든 데이터 조회 (엑셀 데이터 추출 용)
     public List<Associate> findAssociateTypeAndDate(String type, String value, String startDate, String endDate){
-        QPurchaseProp purchaseProp = QPurchaseProp.purchaseProp;
-        QSaleProp saleProp = QSaleProp.saleProp;
-        QStaff staff = QStaff.staff;
-        QClaimProp claimProp = QClaimProp.claimProp;
-        QReceipt receipt = QReceipt.receipt;
-
-
         return queryFactory.selectFrom(associate).where(eqTypeAndValue(type, value), betweenDate(startDate, endDate))
                 .fetch();
     }
@@ -45,15 +38,11 @@ public class AssociateRepositorySupport extends QuerydslRepositorySupport {
 
 
     public PageImpl<Associate> findUserTypeAndDatePage(String type, String value, String startDate, String endDate , Pageable pageable){
-        QPurchaseProp purchaseProp = QPurchaseProp.purchaseProp;
-        QSaleProp saleProp = QSaleProp.saleProp;
-        QStaff staff = QStaff.staff;
-        QClaimProp claimProp = QClaimProp.claimProp;
-        QReceipt receipt = QReceipt.receipt;
 
-
-
-        JPAQuery<Associate> query = queryFactory.selectFrom(associate).where( eqTypeAndValue(type, value), betweenDate(startDate, endDate));
+        JPAQuery<Associate> query = queryFactory.selectFrom(associate)
+                .leftJoin(associate.purchasePropList)
+                .leftJoin(associate.salePropList).fetchJoin()
+                .where( eqTypeAndValue(type, value), betweenDate(startDate, endDate));
 
         Long totalCount  = query.fetchCount();
 

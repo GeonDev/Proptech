@@ -14,10 +14,20 @@ import java.util.List;
 
 public interface AssociateRepository extends JpaRepository<Associate, Long> {
 
-    @Query(value = "SELECT * FROM associate WHERE city =:address or state =:address or address =:address ORDER BY id DESC" ,nativeQuery = true)
+    @Query(value = "SELECT " +
+                    "* " +
+                    "FROM associate " +
+                    "WHERE city =:address " +
+                    "OR state =:address " +
+                    "OR address =:address " +
+                    "ORDER BY id DESC" ,nativeQuery = true)
     Page<Associate> findByAssociateAddress(@Param("address") String address, Pageable pageable);
 
-    @Query(value = "SELECT * FROM associate WHERE associate_round =:round ORDER BY id DESC" ,nativeQuery = true)
+    @Query(value = "SELECT " +
+                    "* " +
+                    "FROM associate " +
+                    "WHERE associate_round =:round " +
+                    "ORDER BY id DESC" ,nativeQuery = true)
     Page<Associate> findByRound(@Param("round") String round, Pageable pageable);
 
     Page<Associate> findByNameContaining(String name, Pageable pageable);

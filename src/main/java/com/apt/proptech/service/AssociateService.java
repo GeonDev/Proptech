@@ -175,7 +175,7 @@ public class AssociateService extends BaseService<Associate>{
         List<String> column = tableConfig.getAssociateColumn();
 
         for(int i =0; i< column.size(); i++ ){
-            temp .add(new ColumnTitle(column.get(i), "c"+i ) );
+            temp.add(new ColumnTitle(column.get(i), "c"+i ) );
         }
 
         return temp;

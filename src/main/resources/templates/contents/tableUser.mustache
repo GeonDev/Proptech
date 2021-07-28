@@ -4,32 +4,41 @@
             <thead>
             <tr>
                 {{#c0}}
-                    <th>사용자명</th>
+                    <th>아이디</th>
                 {{/c0}}
                 {{#c1}}
-                    <th>이메일</th>
+                    <th>사용자명</th>
                 {{/c1}}
                 {{#c2}}
-                    <th>전화번호</th>
+                    <th>이메일</th>
                 {{/c2}}
                 {{#c3}}
-                    <th>가입 형태</th>
+                    <th>전화번호</th>
                 {{/c3}}
                 {{#c4}}
-                    <th>권한</th>
+                    <th>가입 형태</th>
                 {{/c4}}
                 {{#c5}}
-                    <th>상태</th>
+                    <th>권한</th>
                 {{/c5}}
                 {{#c6}}
-                    <th>가입일</th>
+                    <th>대표 명</th>
                 {{/c6}}
                 {{#c7}}
-                    <th>로그인 일자</th>
+                    <th>사업자번호</th>
                 {{/c7}}
                 {{#c8}}
-                    <th>탈퇴일</th>
+                    <th>상태</th>
                 {{/c8}}
+                {{#c9}}
+                    <th>가입일</th>
+                {{/c9}}
+                {{#c10}}
+                    <th>로그인 일자</th>
+                {{/c10}}
+                {{#c11}}
+                    <th>탈퇴일</th>
+                {{/c11}}
             </tr>
             </thead>
 
@@ -37,32 +46,43 @@
                 {{#pages.contents}}
                     <tr>
                         {{#c0}}
-                        <td>{{name}}</td>
+                            <td>{{id}}</td>
                         {{/c0}}
                         {{#c1}}
-                            <td>{{email}}</td>
+                        <td>{{name}}</td>
                         {{/c1}}
                         {{#c2}}
-                            <td>{{phoneNumber}}</td>
+                            <td>{{email}}</td>
                         {{/c2}}
                         {{#c3}}
-                            <td>{{provider}}</td>
+                            <td>{{phoneNumber}}</td>
                         {{/c3}}
                         {{#c4}}
-                            <td>{{role}}</td>
+                            <td>{{provider}}</td>
                         {{/c4}}
                         {{#c5}}
-                            <td>{{state}}</td>
+                            <td>{{role}}</td>
                         {{/c5}}
+
                         {{#c6}}
-                            <td>{{registerDate}}</td>
+                            <td>{{ceoName}}</td>
                         {{/c6}}
                         {{#c7}}
-                            <td>{{lastLoginDate}}</td>
+                            <td>{{bizNum}}</td>
                         {{/c7}}
+
                         {{#c8}}
-                            <td>{{retiredDate}}</td>
+                            <td>{{state}}</td>
                         {{/c8}}
+                        {{#c9}}
+                            <td>{{registerDate}}</td>
+                        {{/c9}}
+                        {{#c10}}
+                            <td>{{lastLoginDate}}</td>
+                        {{/c10}}
+                        {{#c11}}
+                            <td>{{retiredDate}}</td>
+                        {{/c11}}
                     </tr>
                 {{/pages.contents}}
             </tbody>
