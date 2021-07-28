@@ -135,7 +135,9 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-bell fa-fw"></i>
                             <!-- Counter - Alerts -->
+                            {{#totalAlerts}}
                             <span class="badge badge-danger badge-counter">{{totalAlerts}}</span>
+                            {{/totalAlerts}}
                         </a>
                         <!-- Dropdown - Alerts -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -157,7 +159,9 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-envelope fa-fw"></i>
                             <!-- Counter - Messages -->
+                            {{#totalMessages}}
                             <span class="badge badge-danger badge-counter">{{totalMessages}}</span>
+                            {{/totalMessages}}
                         </a>
                         <!-- Dropdown - Messages -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -176,6 +180,7 @@
                     </li>
 
                     <div class="topbar-divider d-none d-sm-block"></div>
+
 
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
@@ -208,6 +213,7 @@
                         </div>
                     </li>
 
+
                 </ul>
 
             </nav>
@@ -238,6 +244,10 @@
                 {{>layout/profileContent}}
             {{/profileContent}}
 
+            {{#error403}}
+                {{>error/error404}}
+            {{/error403}}
+
             {{#error404}}
                 {{>error/error404}}
             {{/error404}}
@@ -245,6 +255,10 @@
             {{#error500}}
                 {{>error/error500}}
             {{/error500}}
+
+            {{#errorDefult}}
+                {{>error/errorDefult}}
+            {{/errorDefult}}
 
 
         </div>
