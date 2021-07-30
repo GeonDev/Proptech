@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
@@ -62,36 +63,24 @@ class UserRepositoryTest {
     @Test
     @Transactional
     void test(){
-        List<User> list = userRepository.findAll();
 
-        list.forEach(o->{
-            LoginHistory history = loginHistoryRepository.findTopByUserOrderByIdDesc(o);
-            if(history!=null ){
-                System.out.println(history.getLoginDate() );
-            } });
-    }
+        Pageable page = PageRequest.of(0,10);
 
+        PageImpl<User> userPage = userRepositorySupport.findUserTypeAndDatePage("", "", "", "", page);
 
+        System.out.println("전체 페이지 "+ userPage.getTotalPages() );
 
-    @Transactional
-    void joinQueryTest(){
-        List<User> user = userRepository.findAllByPartnerInfo();
+        List<User> temp = userPage.getContent();
 
-        user.forEach( o->{
-            System.out.println(o.getName());
-            System.out.println(o.getCompany().getCeoName());
-        });
-
-        for( Account a : user.get(0).getAccountList()   ){
-            System.out.println(a.getBankName());
+        for(int i =0; i<temp.size(); i++){
+            System.out.println(i+ "번째 ID"+ temp.get(i).getId() + " 이름 " + temp.get(i).getUsername());
         }
-        List<Account> accountList = accountRepository.findAll();
 
-        accountList.forEach(o->{
-            System.out.println(o.getBankName());
-            System.out.println(o.getAccount());
-        });
+
+
     }
+
+
 
 
 

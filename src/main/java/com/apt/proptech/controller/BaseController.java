@@ -26,15 +26,6 @@ public abstract class BaseController<Entity>  {
         return baseService.getItem(id);
     }
 
-
-    @GetMapping("")
-    public Pagination getItemList(@PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC, size = 10) Pageable pageable,
-                                  @RequestParam(value = "type", required = false, defaultValue = "") String type,
-                                  @RequestParam(value = "value", required = false, defaultValue = "") String value ){
-
-        return baseService.getItemList(pageable, type, value);
-    }
-
     @PutMapping("")
     public Entity updateItem(@RequestBody Entity entity ){
         return baseService.updateItem(entity);

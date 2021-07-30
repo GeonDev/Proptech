@@ -35,7 +35,6 @@ public class UserRepositorySupport extends QuerydslRepositorySupport {
     //모든 데이터 조회 (엑셀 데이터 추출 용)
     public List<User> findUserTypeAndDate(String type, String value, String startDate, String endDate ){
         return  queryFactory.selectFrom(user)
-                .leftJoin(user.loginHistoryList).fetchJoin()
                 .where(eqTypeAndValue(type, value), betweenDate(startDate,endDate) ).fetch();
     }
 
@@ -43,7 +42,6 @@ public class UserRepositorySupport extends QuerydslRepositorySupport {
     public PageImpl<User> findUserTypeAndDatePage(String type, String value, String startDate, String endDate , Pageable pageable){
 
         JPAQuery<User> query = queryFactory.selectFrom(user)
-                .leftJoin(user.loginHistoryList).fetchJoin()
                 .where(eqTypeAndValue(type, value), betweenDate(startDate,endDate));
 
         Long totalCount = query.fetchCount();

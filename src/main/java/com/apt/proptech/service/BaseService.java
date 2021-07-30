@@ -24,9 +24,6 @@ public abstract class BaseService<Entity> {
 
     public abstract Entity deleteItem(Long id );
 
-    // type : 검색 조건  value : 검색 값(입력값)
-    public abstract Pagination getItemList(Pageable pageable,String type, String value);
-
 
     public int setNextPageNum(int currentPage, boolean isLast ){
 

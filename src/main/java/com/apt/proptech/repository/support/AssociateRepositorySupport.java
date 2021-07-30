@@ -40,8 +40,6 @@ public class AssociateRepositorySupport extends QuerydslRepositorySupport {
     public PageImpl<Associate> findUserTypeAndDatePage(String type, String value, String startDate, String endDate , Pageable pageable){
 
         JPAQuery<Associate> query = queryFactory.selectFrom(associate)
-                .leftJoin(associate.purchasePropList)
-                .leftJoin(associate.salePropList).fetchJoin()
                 .where( eqTypeAndValue(type, value), betweenDate(startDate, endDate));
 
         Long totalCount  = query.fetchCount();
