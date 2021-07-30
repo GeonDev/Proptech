@@ -72,38 +72,6 @@ public class AssociateService extends BaseService<Associate>{
         return associate;
     }
 
-    @Override
-    public Pagination getItemList(Pageable pageable, String type, String value) {
-
-        Page<Associate> associatesPages = null;
-
-        if(type.equals("Round") ){
-            associatesPages = associateRepository.findByRound(value, pageable);
-        }else if(type.equals("Name")){
-            associatesPages = associateRepository.findByNameContaining(value, pageable );
-        }else if(type.equals("Address")){
-            associatesPages = associateRepository.findByAssociateAddress(value, pageable);
-        }else{
-            associatesPages = baseRepository.findAll(pageable);
-        }
-
-        Pagination<AssociateDto> items = Pagination.<AssociateDto>builder()
-                .isFirstPage(associatesPages.isFirst())
-                .isLastPage(associatesPages.isLast())
-                .totalPages(associatesPages.getTotalPages())
-                .totalElements(associatesPages.getTotalElements())
-                .currentPage(associatesPages.getNumber()+1)
-                .currentElements(associatesPages.getNumberOfElements()+1)
-                .contents(convertDomain(associatesPages.getContent()))
-                .pageNumbers(setPageNumber(associatesPages.getNumber(), associatesPages.getSize(), associatesPages.getTotalPages()))
-                .prePageNum(setPrePageNum(associatesPages.getNumber(), associatesPages.isFirst()) )
-                .nextPageNum(setNextPageNum(associatesPages.getNumber(), associatesPages.isLast()))
-                .searchType(setSearchType())
-                .columnTitles(setColumns())
-                .build();
-
-        return items;
-    }
 
     public Pagination getItemList(Pageable pageable, String type, String value, String startDate, String endDate) {
 

@@ -92,39 +92,6 @@ public class UserService extends BaseService<User>{
         return user;
     }
 
-    @Override
-    public Pagination getItemList(Pageable pageable, String type, String value) {
-
-        Page<User> userPage = null;
-
-        if(type.equals("Role")){
-            userPage = userRepository.findAllByUserRoles(value, pageable);
-        }else if(type.equals("State")){
-            userPage = userRepository.findAllByUserState(value, pageable);
-        }else{
-            userPage = baseRepository.findAll(pageable);
-        }
-
-        //화면에 표시하기 위한 Pagination 세팅
-        Pagination<UserDto> items = Pagination.<UserDto>builder()
-                .isFirstPage(userPage.isFirst())
-                .isLastPage(userPage.isLast())
-                .totalPages(userPage.getTotalPages())
-                .totalElements(userPage.getTotalElements())
-                .currentPage(userPage.getNumber()+1)
-                .currentElements(userPage.getNumberOfElements()+1)
-                .contents(convertDomain(userPage.getContent()))
-                .pageNumbers(setPageNumber(userPage.getNumber(), userPage.getSize(), userPage.getTotalPages()))
-                .prePageNum(setPrePageNum(userPage.getNumber(), userPage.isFirst()) )
-                .nextPageNum(setNextPageNum(userPage.getNumber(), userPage.isLast()))
-                .searchType(setSearchType())
-                .columnTitles(setColumns())
-                .build();
-
-        return items;
-    }
-
-
     public Pagination getItemList(Pageable pageable, String type, String value, String startDate, String endDate) {
 
         PageImpl<User> userPage = userRepositorySupport.findUserTypeAndDatePage(type, value, startDate, endDate, pageable);
