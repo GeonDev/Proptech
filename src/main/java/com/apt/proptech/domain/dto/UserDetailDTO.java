@@ -1,15 +1,20 @@
 package com.apt.proptech.domain.dto;
 
+import com.apt.proptech.domain.Account;
+import com.apt.proptech.domain.LoginHistory;
+import com.apt.proptech.domain.LoginIp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDetailDTO {
+public class UserDetailDto {
 
     private String id;
     private String name;
@@ -26,7 +31,10 @@ public class UserDetailDTO {
 
     private String retiredDate;
 
-    private String lastLoginDate;
+    private List<LoginHistory> loginHistoryList;
 
+    private List<LoginIp> loginIpList;
+
+    private List<Account> accountList;
 
 }

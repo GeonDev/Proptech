@@ -32,12 +32,11 @@ DELETE FROM located_pos;
 
 DELETE FROM login_history;
 
-INSERT INTO login_history (id, user_id, login_date, login_ip, is_login, ip_checked) VALUES
-	(1, 1, '2021-07-09', '0:0:0:0:0:0:0:1', 1, NULL),
-	(2, 1, '2021-07-09', '0:0:0:0:0:0:0:1', 1, NULL),
-	(3, 1, '2021-07-09', '0:0:0:0:0:0:0:1', 1, NULL),
-	(4, 1, '2021-07-09', '0:0:0:0:0:0:0:1', 1, NULL),
-	(5, 1, '2021-07-09', '0:0:0:0:0:0:0:1', 1, NULL);
+INSERT INTO login_history (id, user_id, login_date, is_login) VALUES
+	(1, 1, '2021-07-09',  1),
+	(2, 2, '2021-07-11',  1);
+
+
 
 DELETE FROM message;
 

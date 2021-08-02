@@ -39,6 +39,7 @@
                 {{#c11}}
                     <th>탈퇴일</th>
                 {{/c11}}
+                    <th>자세히</th>
             </tr>
             </thead>
 
@@ -46,7 +47,7 @@
                 {{#pages.contents}}
                     <tr>
                         {{#c0}}
-                            <td>{{id}}</td>
+                            <td>{{username}}</td>
                         {{/c0}}
                         {{#c1}}
                         <td>{{name}}</td>
@@ -83,6 +84,7 @@
                         {{#c11}}
                             <td>{{retiredDate}}</td>
                         {{/c11}}
+                        <td><button onclick="getDetailModalView('user' ,{{id}})"> VIEW</button> </td>
                     </tr>
                 {{/pages.contents}}
             </tbody>

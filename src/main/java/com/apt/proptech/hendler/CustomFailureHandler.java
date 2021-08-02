@@ -39,7 +39,6 @@ public class CustomFailureHandler extends SimpleUrlAuthenticationFailureHandler 
 
             //로그인 히스토리 기록
             LoginHistory loginHistory = LoginHistory.builder()
-                    .loginIp(CommonUtil.getUserIp())
                     .user(user)
                     .isLogin(false)
                     .loginDate(LocalDateTime.now())

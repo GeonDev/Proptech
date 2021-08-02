@@ -1,8 +1,10 @@
 package com.apt.proptech.hendler;
 
 import com.apt.proptech.domain.LoginHistory;
+import com.apt.proptech.domain.LoginIp;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.repository.LoginHistoryRepository;
+import com.apt.proptech.repository.LoginIpRepository;
 import com.apt.proptech.repository.UserRepository;
 import com.apt.proptech.service.UserService;
 import com.apt.proptech.util.CommonUtil;
@@ -23,6 +25,9 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private LoginIpRepository loginIpRepository;
 
     @Autowired
     private LoginHistoryRepository loginHistoryRepository;
@@ -45,13 +50,26 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
         //로그인 히스토리 기록
         LoginHistory loginHistory = LoginHistory.builder()
-                .loginIp(CommonUtil.getUserIp())
                 .user(user)
                 .isLogin(true)
                 .loginDate(LocalDateTime.now())
                 .build();
 
         loginHistoryRepository.save(loginHistory);
+        
+        //현재 IP를 받아온다.
+        String ip = CommonUtil.getUserIp();
+
+        LoginIp loginIp = loginIpRepository.findByUserAndIp(user, ip);
+        if(loginIp == null ){
+            LoginIp newIp = LoginIp.builder()
+                    .user(user)
+                    .ip(ip)
+                    .isActive(true)
+                    .build();
+
+            loginIpRepository.save(newIp);
+        }
 
 
         super.onAuthenticationSuccess(httpServletRequest, httpServletResponse, authentication);

@@ -17,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AssociateDto {
 
+    private Long id;
     private String name;
     private String round;
     private String expectDate;
@@ -45,6 +46,7 @@ public class AssociateDto {
     private int totalPurchasePaid;
 
     public AssociateDto(Associate associate){
+        this.id = associate.getId();
         this.name = associate.getName();
         this.round = associate.getAssociateRound().name();
         this.expectDate = CommonUtil.toDateStr(associate.getEndExpectDate());

@@ -86,11 +86,21 @@ CREATE TABLE login_history (
   id bigint(20) NOT NULL AUTO_INCREMENT,
   user_id bigint(20) DEFAULT NULL,
   login_date date DEFAULT NULL,
-  login_ip varchar(50) DEFAULT NULL,
-  is_login tinyint(4) DEFAULT NULL,
-  ip_checked varchar(50) DEFAULT NULL,
+  is_login tinyint(4) DEFAULT NULL
   PRIMARY KEY (id)
 );
+
+DROP TABLE IF EXISTS login_ip;
+CREATE TABLE login_ip (
+  id bigint(20) NOT NULL AUTO_INCREMENT,
+  user_id bigint(20) DEFAULT NULL,
+  ip  varchar(50) DEFAULT NULL,
+  is_active tinyint(4) DEFAULT NULL,
+  reg_date date DEFAULT NULL,
+  modi_date date DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
 
 DROP TABLE IF EXISTS message;
 CREATE TABLE message (
