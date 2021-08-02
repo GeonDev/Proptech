@@ -81,6 +81,21 @@ function setupTableColumn(selectedColumn) {
       }
 }
 
+
+function getDetailModalView(type, id ){
+
+    console.log(type );
+    console.log(id );
+    $('#modalBox').modal('show');
+
+    if(type == 'user' ){
+
+
+    }else if(type == 'associate' ){
+
+    }
+}
+
 $(function(){
 
     	var type = getParameterByName('type');
@@ -112,4 +127,20 @@ $(function(){
 
     	$("#datetimepicker1").on("change.datetimepicker", function (e) { $('#datetimepicker2').datetimepicker('minDate', e.date); });
     	$("#datetimepicker2").on("change.datetimepicker", function (e) { $('#datetimepicker1').datetimepicker('maxDate', e.date); });
+
+
+
+        //모달 열기
+    	$('#modalClose').on('click', function(){
+            $('#modalClose').modal('hide');
+
+        });
+
+        //모달 닫기 실행
+    	$('#modalClose').on('click', function(){
+            $('#modalClose').modal('hide');
+
+        });
+
+
 });

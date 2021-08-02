@@ -19,12 +19,8 @@ public class LoginHistory {
 
     private LocalDateTime loginDate;
 
-    private String loginIp;
-
+    //로그인 성공 여부
     private Boolean isLogin;
-
-    @Enumerated(EnumType.STRING)
-    private IpChecked ipChecked;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

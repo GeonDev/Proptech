@@ -9,6 +9,7 @@ import com.apt.proptech.domain.dto.UserDto;
 import com.apt.proptech.domain.enums.UserRole;
 import com.apt.proptech.domain.enums.UserState;
 import com.apt.proptech.repository.LoginHistoryRepository;
+import com.apt.proptech.repository.LoginIpRepository;
 import com.apt.proptech.repository.UserRepository;
 import com.apt.proptech.repository.support.UserRepositorySupport;
 import com.apt.proptech.util.CommonUtil;
@@ -33,6 +34,10 @@ public class UserService extends BaseService<User>{
 
     @Autowired
     private LoginHistoryRepository loginHistoryRepository;
+
+    @Autowired
+    private LoginIpRepository loginIpRepository;
+
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -120,7 +125,10 @@ public class UserService extends BaseService<User>{
         List<User> temp = userRepositorySupport.findUserTypeAndDate(type,value,startDate,endDate);
 
         List<UserDto> items = new ArrayList<>();
-        temp.forEach(o->{ items.add(new UserDto(o)); });
+        temp.forEach(o->{
+            LoginHistory history = loginHistoryRepository.findTopByUserOrderByIdDesc(o);
+            items.add(new UserDto(o,history));
+        });
 
         return  items;
     }
@@ -133,13 +141,9 @@ public class UserService extends BaseService<User>{
         List<UserDto> result = new ArrayList<UserDto>();
 
         for(User info : data ){
-            UserDto temp = new UserDto(info);
+
             LoginHistory history = loginHistoryRepository.findTopByUserOrderByIdDesc(info);
-            if(history!=null ){
-                temp.setLastLoginDate(CommonUtil.toDateStr(history.getLoginDate()));
-            }else{
-                temp.setLastLoginDate("");
-            }
+            UserDto temp = new UserDto(info, history);
             result.add(temp);
         }
 

@@ -19,7 +19,8 @@ import java.util.List;
 @Builder
 public class UserDto {
 
-    private String id;
+    private Long id;
+    private String username;
     private String name;
     private String email;
     private String phoneNumber;
@@ -39,8 +40,9 @@ public class UserDto {
 
     // 머스테치를 사용하면 필드값이 null이 들어올수 없다.
     // DTO를 이용하여 도메인의 일부 데이터만 전송하게 한다.
-    public UserDto(User user){
-        this.id = user.getUsername();
+    public UserDto(User user, LoginHistory history){
+        this.id = user.getId();
+        this.username = user.getUsername();
         this.name = user.getName();
         this.email = CommonUtil.null2str(user.getEmail());
         this.phoneNumber = CommonUtil.null2str(user.getPhoneNumber());
@@ -61,12 +63,12 @@ public class UserDto {
             this.bizNum = "";
         }
 
-        List<LoginHistory> historyList = user.getLoginHistoryList();
+        if(history !=null){
+            this.lastLoginDate = CommonUtil.toDateStr(history.getLoginDate());
+        }else{
+            this.lastLoginDate = "";
+        }
 
-        this.lastLoginDate = CommonUtil.toDateStr(historyList
-                                            .stream()
-                                            .max(Comparator.comparing(LoginHistory::getId).reversed())
-                                            .orElse(new LoginHistory()).getLoginDate() );
 
     }
 

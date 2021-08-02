@@ -43,6 +43,7 @@
                     {{#c12}}
                         <th>주소</th>
                     {{/c12}}
+                        <th>자세히</th>
                 </tr>
             </thead>
 
@@ -88,6 +89,7 @@
                 {{#c12}}
                     <td>{{address}}</td>
                 {{/c12}}
+                    <td><button onclick="getDetailModalView('associate' ,{{id}})"> VIEW</button> </td>
                 </tr>
             {{/pages.contents}}
             </tbody>

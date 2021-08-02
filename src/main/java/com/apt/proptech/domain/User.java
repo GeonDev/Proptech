@@ -64,6 +64,9 @@ public class User extends BaseTimeEntity{
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<LoginHistory> loginHistoryList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<LoginIp> loginIpList = new ArrayList<>();
+
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private List<OwnedHistory> ownedHistoryList = new ArrayList<>();
 
