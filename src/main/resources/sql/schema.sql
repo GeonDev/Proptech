@@ -86,7 +86,7 @@ CREATE TABLE login_history (
   id bigint(20) NOT NULL AUTO_INCREMENT,
   user_id bigint(20) DEFAULT NULL,
   login_date date DEFAULT NULL,
-  is_login tinyint(4) DEFAULT NULL
+  is_login tinyint(4) DEFAULT NULL,
   PRIMARY KEY (id)
 );
 
