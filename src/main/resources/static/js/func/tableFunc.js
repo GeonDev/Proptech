@@ -129,13 +129,6 @@ $(function(){
     	$("#datetimepicker2").on("change.datetimepicker", function (e) { $('#datetimepicker1').datetimepicker('maxDate', e.date); });
 
 
-
-        //모달 열기
-    	$('#modalClose').on('click', function(){
-            $('#modalClose').modal('hide');
-
-        });
-
         //모달 닫기 실행
     	$('#modalClose').on('click', function(){
             $('#modalClose').modal('hide');

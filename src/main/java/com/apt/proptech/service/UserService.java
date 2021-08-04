@@ -5,6 +5,7 @@ import com.apt.proptech.domain.LoginHistory;
 import com.apt.proptech.domain.dto.ColumnTitle;
 import com.apt.proptech.domain.dto.Pagination;
 import com.apt.proptech.domain.User;
+import com.apt.proptech.domain.dto.UserDetailDto;
 import com.apt.proptech.domain.dto.UserDto;
 import com.apt.proptech.domain.enums.UserRole;
 import com.apt.proptech.domain.enums.UserState;
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService extends BaseService<User>{
@@ -177,6 +179,10 @@ public class UserService extends BaseService<User>{
     }
 
 
+    private UserDetailDto getUserDetailInfo(String id ){
+        User user = userRepository.findById(Long.parseLong(id)).orElse(null);
 
+        return new UserDetailDto(user);
+    }
 
 }
