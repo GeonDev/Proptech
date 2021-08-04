@@ -72,5 +72,4 @@ public class User extends BaseTimeEntity{
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Receipt> receiptList = new ArrayList<>();
-
 }

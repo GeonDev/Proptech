@@ -174,17 +174,15 @@
 <!-- /.container-fluid -->
 
 <!-- modal Box -->
-<div id="modalBox" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div id="modalBox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
 
-        <!-- 테이블 내용 불러오기 -->
-        {{#tableUser}}
-            {{>contents/modal/modalUser}}
-        {{/tableUser}}
+        <div id ="result">
+            <!-- 테이블 내용 불러오기 ajax-->
+            <div class="modal-content">
 
-        {{#tableAssociate}}
-            {{>contents/modal/modalAssociate}}
-        {{/tableAssociate}}
+            </div>
+        </div>
     </div>
 </div>
 
