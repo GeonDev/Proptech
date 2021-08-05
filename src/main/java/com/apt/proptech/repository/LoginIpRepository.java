@@ -17,4 +17,8 @@ public interface LoginIpRepository extends JpaRepository<LoginIp, Long> {
 
     LoginIp findByUserAndIp(User user, String ip );
 
+    List<LoginIp> findTop5ByUserOrderByIdDesc(User user);
+
+
+
 }

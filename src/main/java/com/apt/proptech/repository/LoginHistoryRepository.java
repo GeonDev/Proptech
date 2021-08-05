@@ -2,8 +2,6 @@ package com.apt.proptech.repository;
 
 import com.apt.proptech.domain.LoginHistory;
 import com.apt.proptech.domain.User;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,6 +17,7 @@ public interface LoginHistoryRepository extends JpaRepository<LoginHistory, Long
    LoginHistory findTopByUserOrderByIdDesc(User user);
 
 
+
    @Transactional
    @Modifying(flushAutomatically = true, clearAutomatically = true)
    @Query(value = "DELETE FROM login_history " +
@@ -31,5 +30,7 @@ public interface LoginHistoryRepository extends JpaRepository<LoginHistory, Long
    @Query(value = "DELETE FROM login_history " +
                   "WHERE login_date < :date " ,nativeQuery = true )
    Integer deleteAllUserLoginHistory( @Param("date") LocalDateTime date) ;
+
+
 
 }

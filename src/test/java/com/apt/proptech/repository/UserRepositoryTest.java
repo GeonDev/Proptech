@@ -19,6 +19,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.LongToIntFunction;
 
 @SpringBootTest
 class UserRepositoryTest {
@@ -60,23 +61,20 @@ class UserRepositoryTest {
         } );
     }
 
+
     @Test
     @Transactional
-    void test(){
+    void UserDetailTest(){
 
-        Pageable page = PageRequest.of(0,10);
+        User user = userRepository.findByUsername("Admin");
 
-        PageImpl<User> userPage = userRepositorySupport.findUserTypeAndDatePage("", "", "", "", page);
+        System.out.println("---------------------------------------------");
 
-        System.out.println("전체 페이지 "+ userPage.getTotalPages() );
+        user.getLoginHistoryList().stream().forEach( loginHistory -> {
+            System.out.println(loginHistory.getId() +" " + loginHistory.getLoginDate() );
+        });
 
-        List<User> temp = userPage.getContent();
-
-        for(int i =0; i<temp.size(); i++){
-            System.out.println(i+ "번째 ID"+ temp.get(i).getId() + " 이름 " + temp.get(i).getUsername());
-        }
-
-
+        System.out.println("---------------------------------------------");
 
     }
 

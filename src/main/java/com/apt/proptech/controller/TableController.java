@@ -16,6 +16,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -154,6 +155,7 @@ public class TableController {
         return new ExcelDownloader();
     }
 
+
     @GetMapping("/associate-excel")
     public View associateExcel(Model model,
                                @RequestParam(value = "type", required = false, defaultValue = "") String type,
@@ -169,6 +171,22 @@ public class TableController {
         model.addAttribute("contentType", "Associate");
 
         return new ExcelDownloader();
+    }
+
+    @GetMapping(value = "/user-detail")
+    public String userDetailView(@RequestParam(value = "id") String id , Model model){
+
+
+
+        return "/contents/modal/modalUser";
+    }
+
+    @GetMapping(value = "/associate-detail")
+    public String associateDetailView(@RequestParam(value = "id") String id , Model model){
+
+
+
+        return "/contents/modal/modalAssociate";
     }
 
 }

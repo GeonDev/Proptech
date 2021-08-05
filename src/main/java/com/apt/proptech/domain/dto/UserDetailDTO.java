@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -22,7 +23,6 @@ public class UserDetailDto {
     private String email;
     private String profileImg;
     private String phoneNumber;
-    private String provider;
     private String role;
     private String state;
     private String registerDate;
@@ -46,8 +46,6 @@ public class UserDetailDto {
 
         this.phoneNumber = user.getPhoneNumber();
 
-        this.provider = user.getProvider();
-
         this.role = user.getUserRole().getTitle();
 
         this.state = user.getUserState().getTitle();
@@ -65,14 +63,37 @@ public class UserDetailDto {
             this.bizNum = "";
         }
 
-        if(user.getLoginHistoryList() != null ){
-            
+        if(user.getLoginHistoryList() != null && !user.getLoginHistoryList().isEmpty()){
+            List<LoginHistory> temp = user.getLoginHistoryList();
 
-            this.loginHistoryList =  user.getLoginHistoryList();
+            temp.sort((o1, o2) -> {return (int)(o2.getId() - o1.getId()); } );
+
+            if(temp.size() < 5){
+                for(LoginHistory history : temp  ){
+                    this.loginHistoryList.add(history);
+                }
+            }else{
+                for(int i=0; i< 5; i++){
+                    this.loginHistoryList.add(temp.get(i));
+                }
+            }
         }
 
-        if(user.getLoginIpList() != null ){
-            this.loginIpList =  user.getLoginIpList();
+        if(user.getLoginIpList() != null && !user.getLoginIpList().isEmpty()){
+            List<LoginIp> temp = user.getLoginIpList();
+
+            temp.sort((o1, o2) -> {return (int)(o2.getId() - o1.getId()); } );
+
+            if(temp.size() < 5){
+                for(LoginIp ip : temp  ){
+                    this.loginIpList.add(ip);
+                }
+            }else{
+                for(int i=0; i< 5; i++){
+                    this.loginIpList.add(temp.get(i));
+                }
+            }
+
         }
 
         if(user.getAccountList() != null ){
