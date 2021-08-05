@@ -89,9 +89,30 @@ function getDetailModalView(type, id ){
     $('#modalBox').modal('show');
 
     if(type == 'user' ){
+        var urlPath = "/table/user-detail?id=" + id;
 
+    	    $.ajax({
+    	     type: 'GET'
+    	     , url: urlPath
+    	     , dataType: 'text'
+    	     , success: function(data) {
+    	         console.log(data)
+    	    	 $( "#result .modal-content" ).html(data);
+    	     }
+    	    });
 
     }else if(type == 'associate' ){
+            var urlPath = "/table/associate-detail?id=" + id;
+
+        	    $.ajax({
+        	     type: 'GET'
+        	     , url: urlPath
+        	     , dataType: 'text'
+        	     , success: function(data) {
+        	         console.log(data)
+        	    	 $( "#result .modal-content" ).html(data);
+        	     }
+        	    });
 
     }
 }

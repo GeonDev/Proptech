@@ -30,8 +30,6 @@ class AssociateRepositoryTest {
     @Autowired
     private ClaimRepository claimRepository;
 
-
-    @Test
     @Transactional
     void paymentTest() {
 
@@ -46,20 +44,7 @@ class AssociateRepositoryTest {
         } );
     }
 
-    @Test
-    @Transactional
-    void NameTest() {
 
-        Pageable page = PageRequest.of(0,10);
-         Pagination<AssociateDto> list = associateService.getItemList(page, "", "", "", "");
-
-        list.getContents().forEach(o ->{
-            System.out.println(o.getName() );
-            System.out.println(o.getCity());
-            System.out.println(o.getState());
-            System.out.println(o.getAddress());
-        } );
-    }
 
 
 }

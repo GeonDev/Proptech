@@ -182,6 +182,7 @@ public class UserService extends BaseService<User>{
     private UserDetailDto getUserDetailInfo(String id ){
         User user = userRepository.findById(Long.parseLong(id)).orElse(null);
 
+
         return new UserDetailDto(user);
     }
 
