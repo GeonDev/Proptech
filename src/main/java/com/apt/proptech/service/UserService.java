@@ -1,14 +1,14 @@
 package com.apt.proptech.service;
 
 import com.apt.proptech.config.TableColumnConfig;
+import com.apt.proptech.domain.Account;
 import com.apt.proptech.domain.LoginHistory;
-import com.apt.proptech.domain.dto.ColumnTitle;
-import com.apt.proptech.domain.dto.Pagination;
+import com.apt.proptech.domain.LoginIp;
+import com.apt.proptech.domain.dto.*;
 import com.apt.proptech.domain.User;
-import com.apt.proptech.domain.dto.UserDetailDto;
-import com.apt.proptech.domain.dto.UserDto;
 import com.apt.proptech.domain.enums.UserRole;
 import com.apt.proptech.domain.enums.UserState;
+import com.apt.proptech.repository.AccountRepository;
 import com.apt.proptech.repository.LoginHistoryRepository;
 import com.apt.proptech.repository.LoginIpRepository;
 import com.apt.proptech.repository.UserRepository;
@@ -39,6 +39,10 @@ public class UserService extends BaseService<User>{
 
     @Autowired
     private LoginIpRepository loginIpRepository;
+
+    @Autowired
+    private AccountRepository accountRepository;
+
 
 
     @Autowired
@@ -178,12 +182,55 @@ public class UserService extends BaseService<User>{
         return temp;
     }
 
+    //유저 상세 정보 출력 - 모달 용
 
-    private UserDetailDto getUserDetailInfo(String id ){
+    public UserDetailDto getUserDetailInfo(String id ){
         User user = userRepository.findById(Long.parseLong(id)).orElse(null);
-
-
-        return new UserDetailDto(user);
+    return new UserDetailDto(user);
     }
+
+    public List<LoginIpDto> getLoginIpInfo(User user){
+        List<LoginIpDto> list = new ArrayList<>();
+
+        List<LoginIp> temp = loginIpRepository.findTop5ByUserOrderByIdDesc(user);
+
+        if(temp !=null && !temp.isEmpty() ){
+            for( LoginIp ip : temp ){
+                list.add( new LoginIpDto(ip));
+            }
+        }
+
+        return list;
+    }
+
+    public List<LoginHistoryDto> getLoginHistoryInfo(User user ){
+        List<LoginHistoryDto> list = new ArrayList<>();
+
+        List<LoginHistory> temp = loginHistoryRepository.findTop5ByUserOrderByIdDesc(user);
+
+        if(temp !=null && !temp.isEmpty() ){
+            for( LoginHistory history : temp ){
+                list.add( new LoginHistoryDto(history));
+            }
+        }
+
+        return  list;
+    }
+
+    public List<AccountDto> getAccountInfo(User user){
+        List<AccountDto> list = new ArrayList<>();
+
+        List<Account> temp = accountRepository.findByUserOrderByIdDesc(user);
+
+        if(temp != null && !temp.isEmpty() ){
+            for( Account account : temp){
+                list.add(new AccountDto( account) );
+            }
+        }
+
+        return list;
+    }
+
+
 
 }

@@ -62,7 +62,6 @@ class UserRepositoryTest {
     }
 
 
-    @Test
     @Transactional
     void UserDetailTest(){
 
@@ -76,10 +75,16 @@ class UserRepositoryTest {
 
         System.out.println("---------------------------------------------");
 
+        List<LoginHistory> list =  loginHistoryRepository.findTop5ByUserOrderByIdDesc(user);
+        list.stream().forEach(
+                loginHistory -> {
+                    System.out.println("repo -> "+ loginHistory.getId() +" " + loginHistory.getLoginDate());
+                }
+        );
+
+
     }
-
-
-
-
-
 }
+
+
+

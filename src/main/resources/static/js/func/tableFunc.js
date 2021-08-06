@@ -113,7 +113,6 @@ function getDetailModalView(type, id ){
         	    	 $( "#result .modal-content" ).html(data);
         	     }
         	    });
-
     }
 }
 

@@ -1,9 +1,8 @@
 package com.apt.proptech.controller;
 
-import com.apt.proptech.domain.dto.AssociateDto;
-import com.apt.proptech.domain.dto.ColumnTitle;
-import com.apt.proptech.domain.dto.Pagination;
-import com.apt.proptech.domain.dto.UserDto;
+import com.apt.proptech.domain.LoginHistory;
+import com.apt.proptech.domain.User;
+import com.apt.proptech.domain.dto.*;
 
 import com.apt.proptech.service.AssociateService;
 import com.apt.proptech.service.UserService;
@@ -176,7 +175,19 @@ public class TableController {
     @GetMapping(value = "/user-detail")
     public String userDetailView(@RequestParam(value = "id") String id , Model model){
 
+        User user = userService.getItem(Long.parseLong(id));
 
+        List<LoginHistoryDto> historyList = userService.getLoginHistoryInfo(user);
+
+        List<LoginIpDto> iplist = userService.getLoginIpInfo(user);
+
+        List<AccountDto> accountList = userService.getAccountInfo(user);
+
+        model.addAttribute("info", new UserDetailDto(user));
+
+        model.addAttribute("accountList" , accountList );
+        model.addAttribute("iplist" , iplist );
+        model.addAttribute("historyList" , historyList );
 
         return "/contents/modal/modalUser";
     }

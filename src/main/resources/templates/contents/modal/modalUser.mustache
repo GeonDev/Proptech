@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4">
-                  <img src="{{profileImg}}" alt="">
+                  <img class="img-fluid img-thumbnail" src="{{info.profileImg}}">
                 </div>
 
                 <div class="col-md-8">
@@ -18,35 +18,35 @@
                             <tbody>
                             <tr>
                                 <th scope="row"><b>ID : </b></th>
-                                <td> {{userName}} </td>
+                                <td> {{info.userName}} </td>
                             </tr>
 
                             <tr>
                                 <th scope="row"><b>이름 : </b></th>
-                                <td> {{name}} </td>
+                                <td> {{info.name}} </td>
                             </tr>
 
                             <tr>
                                 <th scope="row"><b>이메일 : </b></th>
-                                <td> {{email}} </td>
+                                <td> {{info.email}} </td>
                             </tr>
                             <tr>
                                 <th scope="row"><b>전화번호 : </b></th>
-                                <td> {{phoneNumber}} </td>
+                                <td> {{info.phoneNumber}} </td>
                             </tr>
 
                             <tr>
                                 <th scope="row"><b>등록일 : </b></th>
-                                <td> {{registerDate}} </td>
+                                <td> {{info.registerDate}} </td>
                             </tr>
 
                             <tr>
                                 <th scope="row"><b>권한 : </b></th>
-                                <td> {{role}} </td>
+                                <td> {{info.role}} </td>
                             </tr>
                             <tr>
                                 <th scope="row"><b>상태 : </b></th>
-                                <td> {{state}} </td>
+                                <td> {{info.state}} </td>
                             </tr>
 
                             </tbody>
@@ -57,24 +57,66 @@
                 </div>
             </div>
 
-            <h2> 가입된 조합</h2>
+            <hr>
+            <h3> 등록 계좌 정보</h3>
 
             <div class="row">
-                ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ
+                <table class="table">
+                    <thead>
+                        <th>은행명 </th>
+                        <th>계좌번호 </th>
+                        <th>상태 </th>
+                    </thead>
+
+                    <tbody>
+                        {{#accountList}}
+                            <td>{{bankName}} </td>
+                            <td>{{account}} </td>
+                            <td>{{accountState}} </td>
+                        {{/accountList}}
+                    </tbody>
+                </table>
 
             </div>
 
-            <h2> 최근 로그인 시간</h2>
+            <hr>
+
+            <h3> 최근 로그인 시간</h3>
 
             <div class="row">
-                ㄷㄷㄷㄷ
+                <table class="table">
+                    <thead>
+                        <th>로그인 일자 </th>
+                        <th>상태 </th>
+                    </thead>
+
+                    <tbody>
+                    {{#historyList}}
+                        <td>{{loginDate}} </td>
+                        <td>{{isLogin}} </td>
+                    {{/historyList}}
+                    </tbody>
+                </table>
 
             </div>
+            <hr>
 
-            <h2> 승인된 로그인 IP</h2>
+            <h3> 승인된 로그인 IP</h3>
 
             <div class="row">
-                ㄷㄷㄷㄷㄷㄷ
+                <table class="table">
+                    <thead>
+                    <th>로그인 IP </th>
+                    <th>상태 </th>
+                    </thead>
+
+                    <tbody>
+                    {{#iplist}}
+                        <td>{{ip}} </td>
+                        <td>{{isActive}} </td>
+                    {{/iplist}}
+                    </tbody>
+                </table>
 
             </div>
 
