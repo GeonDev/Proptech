@@ -26,7 +26,7 @@ public class CommonUtil {
         if (org == null || org.trim().length() == 0)
             return converted;
         else
-            return org.trim();
+            return org;
     }
 
     public static String null2str(String org) {
