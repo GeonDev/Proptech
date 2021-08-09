@@ -179,15 +179,21 @@ public class TableController {
 
         List<LoginHistoryDto> historyList = userService.getLoginHistoryInfo(user);
 
-        List<LoginIpDto> iplist = userService.getLoginIpInfo(user);
+        List<LoginIpDto> ipList = userService.getLoginIpInfo(user);
 
         List<AccountDto> accountList = userService.getAccountInfo(user);
 
-        model.addAttribute("info", new UserDetailDto(user));
+        model.addAttribute("info", new UserDto(user));
+
+
+        if(user.getCompany() !=null ){
+            model.addAttribute("isCompany" , true );
+        }
 
         model.addAttribute("accountList" , accountList );
-        model.addAttribute("iplist" , iplist );
+        model.addAttribute("ipList" , ipList );
         model.addAttribute("historyList" , historyList );
+
 
         return "/contents/modal/modalUser";
     }

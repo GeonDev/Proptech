@@ -4,11 +4,10 @@ import com.apt.proptech.domain.*;
 import com.apt.proptech.domain.enums.PropType;
 import com.apt.proptech.util.CommonUtil;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 

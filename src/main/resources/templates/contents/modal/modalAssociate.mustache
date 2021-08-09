@@ -1,9 +1,133 @@
 
-    <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">조합 상세 정보 </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">조합 상세 정보</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+</div>
+
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <img class="img-profile rounded-circle" style="width:200px;" src="{{info.profileImg}}">
+            </div>
+        </div>
+
+
+        <hr>
+        <div class="row">
+            <table class="table table-borderless">
+
+                <tbody>
+                <tr>
+                    <th scope="row"><b>ID : </b></th>
+                    <td> {{info.userName}} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><b>이름 : </b></th>
+                    <td> {{info.name}} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><b>이메일 : </b></th>
+                    <td> {{info.email}} </td>
+                </tr>
+                <tr>
+                    <th scope="row"><b>전화번호 : </b></th>
+                    <td> {{info.phoneNumber}} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><b>등록일 : </b></th>
+                    <td> {{info.registerDate}} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><b>권한 : </b></th>
+                    <td> {{info.role}} </td>
+                </tr>
+                <tr>
+                    <th scope="row"><b>상태 : </b></th>
+                    <td> {{info.state}} </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
     </div>
-    <div class="modal-body">
-        본문 내용
+
+    <hr>
+    <h3> 등록 계좌 정보</h3>
+
+    <div class="row">
+        <table class="table">
+            <thead>
+            <th>은행명 </th>
+            <th>계좌번호 </th>
+            <th>상태 </th>
+            </thead>
+
+            <tbody>
+            {{#accountList}}
+                <tr>
+                    <td>{{bankName}} </td>
+                    <td>{{account}} </td>
+                    <td>{{accountState}} </td>
+                </tr>
+            {{/accountList}}
+            </tbody>
+        </table>
+
     </div>
+
+    <hr>
+
+    <h3> 최근 로그인 시간</h3>
+
+    <div class="row">
+        <table class="table">
+            <thead>
+            <th>로그인 일자 </th>
+            <th>상태 </th>
+            </thead>
+
+            <tbody>
+            {{#historyList}}
+                <tr>
+                    <td>{{loginDate}} </td>
+                    <td>{{isLogin}} </td>
+                </tr>
+            {{/historyList}}
+            </tbody>
+        </table>
+
+    </div>
+    <hr>
+
+    <h3> 승인된 로그인 IP</h3>
+
+    <div class="row">
+        <table class="table">
+            <thead>
+            <th>로그인 IP </th>
+            <th>상태 </th>
+            </thead>
+
+            <tbody>
+            {{#iplist}}
+                <tr>
+                    <td>{{ip}} </td>
+                    <td>{{isActive}} </td>
+                </tr>
+            {{/iplist}}
+            </tbody>
+        </table>
+
+    </div>
+
+
+</div>
+</div>
 

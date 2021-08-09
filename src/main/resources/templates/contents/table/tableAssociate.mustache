@@ -14,10 +14,10 @@
                         <th>설립 일</th>
                     {{/c2}}
                     {{#c3}}
-                        <th>예상 사업 종료일</th>
+                        <th>종료일(예상)</th>
                     {{/c3}}
                     {{#c4}}
-                        <th>실제 사업 종료일</th>
+                        <th>종료일(확정)</th>
                     {{/c4}}
                     {{#c5}}
                         <th>운영 수수료(%)</th>
@@ -32,7 +32,7 @@
                         <th>전체 토지 비용</th>
                     {{/c8}}
                     {{#c9}}
-                        <th>토지 구매 사용 비용</th>
+                        <th>토지 구매 비용</th>
                     {{/c9}}
                     {{#c10}}
                         <th>시</th>
@@ -89,7 +89,11 @@
                 {{#c12}}
                     <td>{{address}}</td>
                 {{/c12}}
-                    <td><button class="btn btn-info" onclick="getDetailModalView('associate' ,{{id}})"> VIEW</button> </td>
+                    <td>
+                        <button class="btn btn-info" onclick="getDetailModalView('associate' ,{{id}})">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </td>
                 </tr>
             {{/pages.contents}}
             </tbody>
