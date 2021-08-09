@@ -182,13 +182,6 @@ public class UserService extends BaseService<User>{
         return temp;
     }
 
-    //유저 상세 정보 출력 - 모달 용
-
-    public UserDetailDto getUserDetailInfo(String id ){
-        User user = userRepository.findById(Long.parseLong(id)).orElse(null);
-    return new UserDetailDto(user);
-    }
-
     public List<LoginIpDto> getLoginIpInfo(User user){
         List<LoginIpDto> list = new ArrayList<>();
 

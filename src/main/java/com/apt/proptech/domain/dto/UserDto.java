@@ -22,6 +22,8 @@ public class UserDto {
     private Long id;
     private String username;
     private String name;
+    private String profileImg;
+
     private String email;
     private String phoneNumber;
     private String provider;
@@ -47,15 +49,16 @@ public class UserDto {
         this.email = CommonUtil.null2str(user.getEmail());
         this.phoneNumber = CommonUtil.null2str(user.getPhoneNumber());
         this.provider = CommonUtil.null2str(user.getProvider());
-        this.role = user.getUserRole().name();
-        this.state = user.getUserState().name();
+        this.role = user.getUserRole().getTitle();
+        this.state = user.getUserState().getTitle();
         this.registerDate = CommonUtil.toDateStr(user.getRegDate());
         this.retiredDate = CommonUtil.toDateStr(user.getRetiredDate());
         this.modiPasswordDate = CommonUtil.toDateStr(user.getModiPasswordDate());
 
-        Company company = user.getCompany();
+        this.profileImg = "";
 
-        if(company !=null ){
+        //회사 정보 출력
+        if(user.getCompany() !=null ){
             this.ceoName = user.getCompany().getCeoName();
             this.bizNum = user.getCompany().getBizRegNum();
         }else{
@@ -68,8 +71,33 @@ public class UserDto {
         }else{
             this.lastLoginDate = "";
         }
+    }
 
+    //모달창 출력을 위한 DTO 세팅
+    public UserDto(User user){
+        this.id = user.getId();
+        this.username = user.getUsername();
+        this.name = user.getName();
+        this.email = CommonUtil.null2str(user.getEmail());
+        this.phoneNumber = CommonUtil.null2str(user.getPhoneNumber());
+        this.provider = CommonUtil.null2str(user.getProvider());
+        this.role = user.getUserRole().getTitle();
+        this.state = user.getUserState().getTitle();
+        this.registerDate = CommonUtil.toDateStr(user.getRegDate());
+        this.retiredDate = CommonUtil.toDateStr(user.getRetiredDate());
+        this.modiPasswordDate = CommonUtil.toDateStr(user.getModiPasswordDate());
 
+        this.profileImg = user.getProfileImg();
+
+        this.lastLoginDate = "";
+
+        if(user.getCompany() !=null ){
+            this.ceoName = user.getCompany().getCeoName();
+            this.bizNum = user.getCompany().getBizRegNum();
+        }else{
+            this.ceoName = "";
+            this.bizNum = "";
+        }
     }
 
 
