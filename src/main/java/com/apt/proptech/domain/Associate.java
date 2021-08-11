@@ -29,6 +29,8 @@ public class Associate extends BaseTimeEntity{
 
     private String name;
 
+    private String logo;
+
     @Enumerated(EnumType.STRING)
     private AssociateRound associateRound;
 

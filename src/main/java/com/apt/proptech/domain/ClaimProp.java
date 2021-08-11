@@ -19,6 +19,7 @@ public class ClaimProp extends BaseTimeEntity{
 
     private Long payment;
 
+    //1차 납입인지, 2차 납입인지 구분
     private int round;
 
     private String description;

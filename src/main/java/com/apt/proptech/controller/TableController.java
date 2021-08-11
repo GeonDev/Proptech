@@ -1,11 +1,11 @@
 package com.apt.proptech.controller;
 
+import com.apt.proptech.domain.Associate;
 import com.apt.proptech.domain.LoginHistory;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.dto.*;
 
-import com.apt.proptech.service.AssociateService;
-import com.apt.proptech.service.UserService;
+import com.apt.proptech.service.*;
 import com.apt.proptech.util.ExcelDownloader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -32,7 +32,20 @@ public class TableController {
     private UserService userService;
 
     @Autowired
+    private LoginHistoryService loginHistoryService;
+
+    @Autowired
+    private LoginIpService loginIpService;
+
+    @Autowired
+    private AccountService accountService;
+
+    @Autowired
     private AssociateService associateService;
+
+    @Autowired
+    private PurchasePropService purchasePropService;
+
 
 
     @GetMapping("/user-list")
@@ -83,9 +96,6 @@ public class TableController {
                 model.addAttribute(col, true );
             }
         }
-
-
-
 
         return "main";
     }
@@ -177,12 +187,6 @@ public class TableController {
 
         User user = userService.getItem(Long.parseLong(id));
 
-        List<LoginHistoryDto> historyList = userService.getLoginHistoryInfo(user);
-
-        List<LoginIpDto> ipList = userService.getLoginIpInfo(user);
-
-        List<AccountDto> accountList = userService.getAccountInfo(user);
-
         model.addAttribute("info", new UserDto(user));
 
 
@@ -190,19 +194,24 @@ public class TableController {
             model.addAttribute("isCompany" , true );
         }
 
-        model.addAttribute("accountList" , accountList );
-        model.addAttribute("ipList" , ipList );
-        model.addAttribute("historyList" , historyList );
+        model.addAttribute("accountList" , accountService.getAccountInfo(user) );
+        model.addAttribute("ipList" , loginIpService.getLoginIpInfo(user) );
+        model.addAttribute("historyList" , loginHistoryService.getLoginHistoryInfo(user) );
 
-
+        //모달 페이지 전체를 보낸다.
         return "/contents/modal/modalUser";
     }
 
     @GetMapping(value = "/associate-detail")
     public String associateDetailView(@RequestParam(value = "id") String id , Model model){
 
+        //조합 기본 정보 출력
+        Associate associate = associateService.getItem(Long.parseLong(id));
 
+        model.addAttribute("purchaseList" , purchasePropService.getBuyedPurchasList(associate) );
 
+        model.addAttribute("info", new AssociateDto(associate));
+        //모달 페이지 전체를 보낸다.
         return "/contents/modal/modalAssociate";
     }
 

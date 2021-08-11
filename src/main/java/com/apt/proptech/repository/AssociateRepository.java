@@ -30,7 +30,7 @@ public interface AssociateRepository extends JpaRepository<Associate, Long> {
                     "ORDER BY id DESC" ,nativeQuery = true)
     Page<Associate> findByRound(@Param("round") String round, Pageable pageable);
 
-    Page<Associate> findByNameContaining(String name, Pageable pageable);
+
 
     List<Associate> findByAssociateRoundNot(AssociateRound round);
 
@@ -47,4 +47,6 @@ public interface AssociateRepository extends JpaRepository<Associate, Long> {
             "\t\tFROM associate ", nativeQuery = true)
     String findAssociateTaskPercent(@Param("round") int round);
 
+
+    Page<Associate> findByNameContaining(String name, Pageable pageable);
 }

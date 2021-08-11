@@ -1,11 +1,16 @@
 package com.apt.proptech.service;
 
+import com.apt.proptech.domain.LoginHistory;
+import com.apt.proptech.domain.User;
+import com.apt.proptech.domain.dto.LoginHistoryDto;
 import com.apt.proptech.repository.LoginHistoryRepository;
 import com.apt.proptech.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -22,6 +27,20 @@ public class LoginHistoryService {
         LocalDateTime date = LocalDateTime.now().minusMonths(month );
 
         return loginHistoryRepository.deleteAllUserLoginHistory(date);
+    }
+
+    public List<LoginHistoryDto> getLoginHistoryInfo(User user ){
+        List<LoginHistoryDto> list = new ArrayList<>();
+
+        List<LoginHistory> temp = loginHistoryRepository.findTop5ByUserOrderByIdDesc(user);
+
+        if(temp !=null && !temp.isEmpty() ){
+            for( LoginHistory history : temp ){
+                list.add( new LoginHistoryDto(history));
+            }
+        }
+
+        return  list;
     }
 
 
