@@ -182,47 +182,11 @@ public class UserService extends BaseService<User>{
         return temp;
     }
 
-    public List<LoginIpDto> getLoginIpInfo(User user){
-        List<LoginIpDto> list = new ArrayList<>();
 
-        List<LoginIp> temp = loginIpRepository.findTop5ByUserOrderByIdDesc(user);
 
-        if(temp !=null && !temp.isEmpty() ){
-            for( LoginIp ip : temp ){
-                list.add( new LoginIpDto(ip));
-            }
-        }
 
-        return list;
-    }
 
-    public List<LoginHistoryDto> getLoginHistoryInfo(User user ){
-        List<LoginHistoryDto> list = new ArrayList<>();
 
-        List<LoginHistory> temp = loginHistoryRepository.findTop5ByUserOrderByIdDesc(user);
-
-        if(temp !=null && !temp.isEmpty() ){
-            for( LoginHistory history : temp ){
-                list.add( new LoginHistoryDto(history));
-            }
-        }
-
-        return  list;
-    }
-
-    public List<AccountDto> getAccountInfo(User user){
-        List<AccountDto> list = new ArrayList<>();
-
-        List<Account> temp = accountRepository.findByUserOrderByIdDesc(user);
-
-        if(temp != null && !temp.isEmpty() ){
-            for( Account account : temp){
-                list.add(new AccountDto( account) );
-            }
-        }
-
-        return list;
-    }
 
 
 

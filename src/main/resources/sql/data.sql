@@ -1,94 +1,501 @@
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
-DELETE FROM account;
-INSERT INTO account (id, user_id, description, account, bank_name, account_state, use_date, reg_date, modi_date) VALUES
+DELETE FROM `account`;
+/*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` (`id`, `user_id`, `description`, `account`, `bank_name`, `account_state`, `use_date`, `reg_date`, `modi_date`) VALUES
 	(1, 6, NULL, '110-3345-4533', '신한은행', 'ACTIVE', '2021-06-03', '2021-06-03', NULL),
 	(2, 6, NULL, '110-4352-453', '신한은행', 'ACTIVE', '2021-08-01', '2019-06-12', NULL),
 	(3, 7, NULL, '70122-434-12', '국민은행', 'ACTIVE', '2019-06-03', '2018-06-03', NULL),
 	(4, 3, '대표계좌', '3412-5124-125', '우리은행', 'ACTIVE', '2021-06-04', '2021-06-04', NULL);
+/*!40000 ALTER TABLE `account` ENABLE KEYS */;
 
-DELETE FROM alert;
+DELETE FROM `alert`;
+/*!40000 ALTER TABLE `alert` DISABLE KEYS */;
+/*!40000 ALTER TABLE `alert` ENABLE KEYS */;
 
-DELETE FROM associate;
-INSERT INTO associate (id, name, associate_round, operate_fee_ratio, end_expect_date, end_real_date, city, state, address, reg_date, modi_date) VALUES
-	(1, '강남 조합', 'CREATE', 0.2, '2025-08-03', '2027-10-05', '서울', '강남구', '도산대로', '2021-06-28', NULL),
-	(3, '테스트 조합', 'CREATE', 0.2, '2025-08-03', '2026-06-28', '김포', '서울', '대구', '2021-06-28', NULL);
+DELETE FROM `associate`;
+/*!40000 ALTER TABLE `associate` DISABLE KEYS */;
+INSERT INTO `associate` (`id`, `name`, `associate_round`, `operate_fee_ratio`, `end_expect_date`, `end_real_date`, `city`, `state`, `address`, `reg_date`, `modi_date`, `logo`) VALUES
+	(1, '강남 조합', 'CREATE', 0.2, '2025-08-03', '2027-10-05', '서울', '강남구', '도산대로', '2021-06-28', NULL, NULL),
+	(3, '테스트 조합', 'CREATE', 0.2, '2025-08-03', '2026-06-28', '경기도', '김포', '하성면 석탄리', '2021-06-28', NULL, NULL);
+/*!40000 ALTER TABLE `associate` ENABLE KEYS */;
 
+DELETE FROM `claim_prop`;
+/*!40000 ALTER TABLE `claim_prop` DISABLE KEYS */;
+INSERT INTO `claim_prop` (`id`, `sale_prop_id`, `payment`, `round`, `description`, `reg_date`, `modi_date`) VALUES
+	(1, 1, 30000, 1, '1차 운영 금액', '2021-06-03', NULL),
+	(2, 1, 50000, 2, '2차 운영 금액', '2021-06-03', NULL),
+	(3, 1, 90000, 3, '3차 운영 금액', '2021-06-03', NULL),
+	(4, 2, 30000, 1, '1차 운영 금액', '2021-06-05', NULL),
+	(5, 2, 50000, 2, '2차 운영 금액', '2021-06-05', NULL);
+/*!40000 ALTER TABLE `claim_prop` ENABLE KEYS */;
 
-DELETE FROM claim_prop;
-INSERT INTO claim_prop (id, sale_prop_id, payment, round, description, reg_date, modi_date) VALUES
-	(1, 1, 30000, 1, '1차 가입비', '2021-06-03', NULL),
-	(2, 1, 50000, 2, '2차 가입비', '2021-06-03', NULL),
-	(3, 1, 50000, 3, '3차 가입비', '2021-06-03', NULL);
-
-
-DELETE FROM company;
-INSERT INTO company (id, ceo_name, biz_reg_num, address, zip_code, establish_date) VALUES
+DELETE FROM `company`;
+/*!40000 ALTER TABLE `company` DISABLE KEYS */;
+INSERT INTO `company` (`id`, `ceo_name`, `biz_reg_num`, `address`, `zip_code`, `establish_date`) VALUES
 	(1, '김CC', '12345631', '', '034342', '2021-06-03');
+/*!40000 ALTER TABLE `company` ENABLE KEYS */;
 
+DELETE FROM `located_pos`;
+/*!40000 ALTER TABLE `located_pos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `located_pos` ENABLE KEYS */;
 
-DELETE FROM located_pos;
+DELETE FROM `login_history`;
+/*!40000 ALTER TABLE `login_history` DISABLE KEYS */;
+INSERT INTO `login_history` (`id`, `user_id`, `login_date`, `is_login`) VALUES
+	(1, 1, '2021-06-25', 1),
+	(2, 1, '2021-06-25', 1),
+	(3, 1, '2021-06-25', 1),
+	(4, 1, '2021-06-25', 1),
+	(5, 1, '2021-06-25', 1),
+	(6, 1, '2021-06-25', 1),
+	(7, 1, '2021-06-25', 1),
+	(8, 1, '2021-06-25', 1),
+	(9, 1, '2021-06-25', 1),
+	(10, 1, '2021-06-25', 1),
+	(11, 1, '2021-06-25', 1),
+	(12, 1, '2021-06-25', 1),
+	(13, 1, '2021-06-25', 1),
+	(14, 1, '2021-06-25', 1),
+	(15, 1, '2021-06-25', 1),
+	(16, 1, '2021-06-25', 1),
+	(17, 1, '2021-06-25', 1),
+	(18, 1, '2021-06-25', 1),
+	(19, 1, '2021-06-25', 1),
+	(20, 1, '2021-06-25', 1),
+	(21, 1, '2021-06-25', 1),
+	(22, 1, '2021-06-25', 1),
+	(23, 1, '2021-06-25', 1),
+	(24, 1, '2021-06-25', 1),
+	(25, 1, '2021-06-25', 1),
+	(26, 1, '2021-06-25', 1),
+	(27, 1, '2021-06-25', 1),
+	(28, 1, '2021-06-25', 1),
+	(29, 1, '2021-06-25', 1),
+	(30, 1, '2021-06-25', 1),
+	(31, 1, '2021-06-25', 1),
+	(32, 1, '2021-06-28', 1),
+	(33, 1, '2021-06-28', 1),
+	(34, 1, '2021-06-28', 1),
+	(35, 1, '2021-06-28', 1),
+	(36, 1, '2021-06-28', 1),
+	(37, 1, '2021-06-28', 1),
+	(38, 1, '2021-06-28', 1),
+	(39, 1, '2021-06-28', 1),
+	(40, 1, '2021-06-28', 1),
+	(41, 1, '2021-06-28', 1),
+	(42, 1, '2021-06-28', 1),
+	(43, 1, '2021-06-28', 1),
+	(44, 1, '2021-06-28', 1),
+	(45, 1, '2021-06-28', 1),
+	(46, 1, '2021-06-28', 1),
+	(47, 1, '2021-06-28', 1),
+	(48, 1, '2021-06-28', 1),
+	(49, 1, '2021-06-28', 1),
+	(50, 1, '2021-06-28', 1),
+	(51, 1, '2021-06-28', 1),
+	(52, 1, '2021-06-28', 1),
+	(53, 1, '2021-06-28', 1),
+	(54, 1, '2021-06-28', 1),
+	(55, 1, '2021-06-28', 1),
+	(56, 1, '2021-06-28', 1),
+	(57, 1, '2021-06-28', 1),
+	(58, 1, '2021-06-28', 1),
+	(59, 1, '2021-06-28', 1),
+	(60, 1, '2021-06-28', 1),
+	(61, 1, '2021-06-28', 1),
+	(62, 1, '2021-06-28', 1),
+	(63, 1, '2021-06-29', 1),
+	(64, 1, '2021-06-29', 1),
+	(65, 1, '2021-06-29', 1),
+	(66, 1, '2021-06-29', 1),
+	(67, 1, '2021-06-29', 1),
+	(68, 1, '2021-06-29', 1),
+	(69, 1, '2021-06-29', 1),
+	(70, 1, '2021-06-29', 1),
+	(71, 1, '2021-06-29', 1),
+	(72, 1, '2021-06-29', 1),
+	(73, 1, '2021-06-29', 1),
+	(74, 1, '2021-06-29', 1),
+	(75, 1, '2021-06-29', 1),
+	(76, 1, '2021-06-29', 1),
+	(77, 1, '2021-06-29', 1),
+	(78, 1, '2021-06-29', 1),
+	(79, 1, '2021-06-29', 1),
+	(80, 1, '2021-06-29', 1),
+	(81, 1, '2021-06-29', 1),
+	(82, 1, '2021-06-29', 1),
+	(83, 1, '2021-06-29', 1),
+	(84, 1, '2021-06-29', 1),
+	(85, 1, '2021-06-29', 1),
+	(86, 1, '2021-06-29', 1),
+	(87, 1, '2021-06-29', 1),
+	(88, 1, '2021-06-29', 1),
+	(89, 1, '2021-06-29', 1),
+	(90, 1, '2021-06-29', 1),
+	(91, 1, '2021-06-29', 1),
+	(92, 1, '2021-06-29', 1),
+	(93, 1, '2021-06-29', 1),
+	(94, 1, '2021-06-29', 1),
+	(95, 1, '2021-06-29', 1),
+	(96, 1, '2021-06-29', 1),
+	(97, 1, '2021-06-29', 1),
+	(98, 1, '2021-06-29', 1),
+	(99, 1, '2021-06-29', 1),
+	(100, 1, '2021-06-29', 1),
+	(101, 1, '2021-06-29', 1),
+	(102, 1, '2021-06-29', 1),
+	(103, 1, '2021-06-29', 1),
+	(104, 1, '2021-06-29', 1),
+	(105, 1, '2021-06-29', 1),
+	(106, 1, '2021-06-29', 1),
+	(107, 1, '2021-06-29', 1),
+	(108, 1, '2021-06-29', 1),
+	(109, 1, '2021-06-29', 1),
+	(110, 1, '2021-06-29', 1),
+	(111, 1, '2021-06-29', 1),
+	(112, 1, '2021-06-29', 1),
+	(113, 1, '2021-06-29', 1),
+	(114, 1, '2021-06-29', 1),
+	(115, 1, '2021-06-29', 1),
+	(116, 1, '2021-06-29', 1),
+	(117, 1, '2021-06-29', 1),
+	(118, 1, '2021-06-29', 1),
+	(119, 1, '2021-06-29', 1),
+	(120, 1, '2021-06-30', 1),
+	(121, 1, '2021-06-30', 1),
+	(122, 1, '2021-06-30', 1),
+	(123, 1, '2021-06-30', 1),
+	(124, 1, '2021-06-30', 1),
+	(125, 1, '2021-06-30', 1),
+	(126, 1, '2021-06-30', 1),
+	(127, 1, '2021-06-30', 1),
+	(128, 1, '2021-06-30', 1),
+	(129, 1, '2021-06-30', 1),
+	(130, 1, '2021-06-30', 1),
+	(131, 1, '2021-06-30', 1),
+	(132, 1, '2021-06-30', 1),
+	(133, 1, '2021-06-30', 1),
+	(134, 1, '2021-06-30', 1),
+	(135, 1, '2021-06-30', 1),
+	(136, 1, '2021-06-30', 1),
+	(137, 1, '2021-06-30', 1),
+	(138, 1, '2021-07-01', 1),
+	(139, 1, '2021-07-01', 1),
+	(140, 1, '2021-07-01', 1),
+	(141, 1, '2021-07-01', 1),
+	(142, 1, '2021-07-01', 1),
+	(143, 1, '2021-07-01', 1),
+	(144, 1, '2021-07-01', 1),
+	(145, 1, '2021-07-05', 1),
+	(146, 1, '2021-07-05', 1),
+	(147, 1, '2021-07-05', 1),
+	(148, 1, '2021-07-05', 1),
+	(149, 1, '2021-07-05', 1),
+	(150, 1, '2021-07-05', 1),
+	(151, 1, '2021-07-05', 1),
+	(152, 1, '2021-07-05', 1),
+	(153, 1, '2021-07-05', 1),
+	(154, 1, '2021-07-05', 1),
+	(155, 1, '2021-07-05', 1),
+	(156, 1, '2021-07-06', 1),
+	(157, 1, '2021-07-06', 1),
+	(158, 1, '2021-07-06', 1),
+	(159, 1, '2021-07-06', 1),
+	(160, 1, '2021-07-06', 1),
+	(161, 1, '2021-07-06', 1),
+	(162, 1, '2021-07-06', 1),
+	(163, 1, '2021-07-06', 1),
+	(164, 1, '2021-07-06', 1),
+	(165, 1, '2021-07-06', 1),
+	(166, 1, '2021-07-06', 1),
+	(167, 1, '2021-07-06', 1),
+	(168, 1, '2021-07-06', 1),
+	(169, 1, '2021-07-06', 1),
+	(170, 1, '2021-07-08', 1),
+	(171, 1, '2021-07-08', 1),
+	(172, 1, '2021-07-08', 1),
+	(173, 1, '2021-07-08', 1),
+	(174, 1, '2021-07-08', 1),
+	(175, 1, '2021-07-08', 1),
+	(176, 1, '2021-07-08', 1),
+	(177, 1, '2021-07-08', 1),
+	(178, 1, '2021-07-09', 1),
+	(179, 1, '2021-07-09', 1),
+	(180, 1, '2021-07-09', 1),
+	(181, 1, '2021-07-09', 1),
+	(182, 1, '2021-07-09', 1),
+	(183, 1, '2021-07-09', 1),
+	(184, 1, '2021-07-09', 1),
+	(185, 1, '2021-07-09', 1),
+	(186, 1, '2021-07-09', 1),
+	(187, 1, '2021-07-09', 1),
+	(188, 1, '2021-07-09', 1),
+	(189, 13, '2021-07-09', 1),
+	(190, 13, '2021-07-09', 1),
+	(191, 14, '2021-07-09', 1),
+	(192, 14, '2021-07-09', 1),
+	(193, 15, '2021-07-09', 1),
+	(194, 15, '2021-07-09', 1),
+	(195, 1, '2021-07-09', 1),
+	(196, 1, '2021-07-09', 1),
+	(197, 15, '2021-07-09', 1),
+	(198, 15, '2021-07-09', 1),
+	(199, 15, '2021-07-09', 1),
+	(200, 15, '2021-07-09', 1),
+	(201, 16, '2021-07-09', 1),
+	(202, 16, '2021-07-09', 1),
+	(203, 16, '2021-07-09', 1),
+	(204, 16, '2021-07-09', 1),
+	(205, 16, '2021-07-09', 1),
+	(206, 16, '2021-07-09', 1),
+	(207, 16, '2021-07-09', 1),
+	(208, 17, '2021-07-09', 1),
+	(209, 17, '2021-07-09', 1),
+	(210, 1, '2021-07-09', 1),
+	(211, 15, '2021-07-09', 1),
+	(212, 18, '2021-07-09', 1),
+	(213, 18, '2021-07-09', 1),
+	(214, 19, '2021-07-09', 1),
+	(215, 1, '2021-07-09', 1),
+	(216, 1, '2021-07-09', 1),
+	(217, 1, '2021-07-09', 1),
+	(218, 1, '2021-07-09', 1),
+	(219, 1, '2021-07-09', 1),
+	(220, 1, '2021-07-09', 1),
+	(221, 1, '2021-07-09', 1),
+	(222, 1, '2021-07-09', 1),
+	(223, 1, '2021-07-09', 1),
+	(224, 1, '2021-07-09', 1),
+	(225, 1, '2021-07-09', 1),
+	(226, 1, '2021-07-12', 1),
+	(227, 1, '2021-07-12', 1),
+	(228, 1, '2021-07-12', 1),
+	(229, 1, '2021-07-12', 1),
+	(230, 1, '2021-07-12', 1),
+	(231, 1, '2021-07-12', 1),
+	(232, 1, '2021-07-13', 1),
+	(233, 1, '2021-07-13', 1),
+	(234, 1, '2021-07-13', 1),
+	(235, 1, '2021-07-13', 1),
+	(236, 1, '2021-07-13', 1),
+	(237, 1, '2021-07-13', 1),
+	(238, 1, '2021-07-16', 1),
+	(239, 1, '2021-07-16', 1),
+	(240, 1, '2021-07-16', 1),
+	(241, 1, '2021-07-16', 1),
+	(242, 1, '2021-07-16', 1),
+	(243, 1, '2021-07-16', 1),
+	(244, 1, '2021-07-16', 1),
+	(245, 1, '2021-07-16', 1),
+	(246, 1, '2021-07-16', 1),
+	(247, 1, '2021-07-16', 1),
+	(248, 1, '2021-07-19', 1),
+	(249, 1, '2021-07-19', 1),
+	(250, 1, '2021-07-19', 1),
+	(251, 1, '2021-07-19', 1),
+	(252, 1, '2021-07-19', 1),
+	(253, 1, '2021-07-19', 1),
+	(254, 1, '2021-07-19', 1),
+	(255, 1, '2021-07-19', 1),
+	(256, 1, '2021-07-19', 1),
+	(257, 1, '2021-07-19', 1),
+	(258, 1, '2021-07-19', 1),
+	(259, 1, '2021-07-19', 1),
+	(260, 1, '2021-07-19', 1),
+	(261, 1, '2021-07-19', 1),
+	(262, 1, '2021-07-19', 1),
+	(263, 1, '2021-07-19', 1),
+	(264, 1, '2021-07-19', 1),
+	(265, 1, '2021-07-19', 1),
+	(266, 1, '2021-07-22', 1),
+	(267, 1, '2021-07-22', 1),
+	(268, 1, '2021-07-22', 1),
+	(269, 1, '2021-07-22', 1),
+	(270, 1, '2021-07-22', 0),
+	(271, 1, '2021-07-22', 0),
+	(272, 1, '2021-07-22', 0),
+	(273, 1, '2021-07-22', 0),
+	(274, 1, '2021-07-22', 0),
+	(275, 1, '2021-07-22', 0),
+	(276, 1, '2021-07-22', 0),
+	(277, 1, '2021-07-22', 1),
+	(278, 1, '2021-07-23', 1),
+	(279, 1, '2021-07-23', 1),
+	(280, 1, '2021-07-23', 1),
+	(281, 1, '2021-07-23', 1),
+	(282, 1, '2021-07-23', 1),
+	(283, 1, '2021-07-23', 1),
+	(284, 1, '2021-07-23', 1),
+	(285, 1, '2021-07-23', 1),
+	(286, 1, '2021-07-28', 1),
+	(287, 1, '2021-07-28', 1),
+	(288, 1, '2021-07-28', 0),
+	(289, 1, '2021-07-28', 1),
+	(290, 1, '2021-07-28', 1),
+	(291, 1, '2021-07-28', 1),
+	(292, 1, '2021-07-28', 1),
+	(293, 1, '2021-07-28', 1),
+	(294, 1, '2021-07-28', 1),
+	(295, 1, '2021-07-28', 1),
+	(296, 1, '2021-07-28', 1),
+	(297, 1, '2021-07-28', 1),
+	(298, 1, '2021-07-28', 1),
+	(299, 1, '2021-07-28', 1),
+	(300, 1, '2021-07-28', 1),
+	(301, 1, '2021-07-28', 1),
+	(302, 1, '2021-07-30', 1),
+	(303, 1, '2021-07-30', 1),
+	(304, 1, '2021-07-30', 1),
+	(305, 1, '2021-07-30', 1),
+	(306, 1, '2021-07-30', 1),
+	(307, 1, '2021-07-30', 1),
+	(308, 1, '2021-07-30', 1),
+	(309, 1, '2021-08-02', 1),
+	(310, 1, '2021-08-02', 1),
+	(311, 1, '2021-08-02', 1),
+	(312, 1, '2021-08-02', 1),
+	(313, 1, '2021-08-02', 1),
+	(314, 1, '2021-08-02', 1),
+	(315, 1, '2021-08-02', 1),
+	(316, 1, '2021-08-02', 1),
+	(317, 1, '2021-08-02', 1),
+	(318, 1, '2021-08-02', 1),
+	(319, 1, '2021-08-02', 1),
+	(320, 1, '2021-08-02', 1),
+	(321, 1, '2021-08-02', 0),
+	(322, 1, '2021-08-02', 1),
+	(323, 1, '2021-08-04', 1),
+	(324, 1, '2021-08-05', 1),
+	(325, 1, '2021-08-05', 1),
+	(326, 1, '2021-08-05', 1),
+	(327, 1, '2021-08-05', 1),
+	(328, 1, '2021-08-05', 1),
+	(329, 1, '2021-08-05', 1),
+	(330, 1, '2021-08-05', 1),
+	(331, 1, '2021-08-05', 1),
+	(332, 1, '2021-08-05', 1),
+	(333, 1, '2021-08-05', 1),
+	(334, 1, '2021-08-05', 1),
+	(335, 1, '2021-08-05', 1),
+	(336, 1, '2021-08-05', 1),
+	(337, 1, '2021-08-05', 1),
+	(338, 1, '2021-08-05', 1),
+	(339, 1, '2021-08-05', 1),
+	(340, 1, '2021-08-06', 1),
+	(341, 1, '2021-08-06', 1),
+	(342, 1, '2021-08-06', 1),
+	(343, 1, '2021-08-06', 1),
+	(344, 1, '2021-08-06', 1),
+	(345, 1, '2021-08-09', 1),
+	(346, 1, '2021-08-09', 1),
+	(347, 1, '2021-08-09', 1),
+	(348, 1, '2021-08-09', 1),
+	(349, 1, '2021-08-09', 0),
+	(350, 1, '2021-08-09', 1),
+	(351, 1, '2021-08-09', 1),
+	(352, 1, '2021-08-09', 1),
+	(353, 1, '2021-08-09', 1),
+	(354, 1, '2021-08-09', 1),
+	(355, 1, '2021-08-09', 0),
+	(356, 1, '2021-08-09', 1),
+	(357, 1, '2021-08-09', 1),
+	(358, 1, '2021-08-09', 1),
+	(359, 1, '2021-08-09', 1),
+	(360, 1, '2021-08-09', 1),
+	(361, 1, '2021-08-09', 1),
+	(362, 1, '2021-08-11', 1);
+/*!40000 ALTER TABLE `login_history` ENABLE KEYS */;
 
+DELETE FROM `login_ip`;
+/*!40000 ALTER TABLE `login_ip` DISABLE KEYS */;
+INSERT INTO `login_ip` (`id`, `user_id`, `ip`, `is_active`, `reg_date`, `modi_date`) VALUES
+	(1, 1, '0:0:0:0:0:0:0:1', 1, '2021-08-02', '2021-08-02'),
+	(2, 1, '127.0.0.1', 1, '2021-08-02', '2021-08-02');
+/*!40000 ALTER TABLE `login_ip` ENABLE KEYS */;
 
-DELETE FROM login_history;
+DELETE FROM `message`;
+/*!40000 ALTER TABLE `message` DISABLE KEYS */;
+/*!40000 ALTER TABLE `message` ENABLE KEYS */;
 
-INSERT INTO login_history (id, user_id, login_date, is_login) VALUES
-	(1, 1, '2021-07-09',  1),
-	(2, 2, '2021-07-11',  1);
-
-
-
-DELETE FROM message;
-
-DELETE FROM owned_history;
-
-INSERT INTO owned_history (id, reg_date, modi_date, owned_state, user_id, sale_prop_id) VALUES
+DELETE FROM `owned_history`;
+/*!40000 ALTER TABLE `owned_history` DISABLE KEYS */;
+INSERT INTO `owned_history` (`id`, `reg_date`, `modi_date`, `owned_state`, `user_id`, `sale_prop_id`) VALUES
 	(1, '2021-06-03', NULL, 'OWNED', 6, 1);
+/*!40000 ALTER TABLE `owned_history` ENABLE KEYS */;
 
+DELETE FROM `prop_price`;
+/*!40000 ALTER TABLE `prop_price` DISABLE KEYS */;
+INSERT INTO `prop_price` (`id`, `price`, `reg_date`, `modi_date`, `reg_ip`, `description`, `purchase_prop_id`) VALUES
+	(1, 100, '2021-02-16', NULL, '127.0.0.1', '최초 거래값', 3),
+	(2, 300, '2021-05-16', '2021-05-16', '127.0.0.1', '제시가 증가', 3),
+	(3, 500, '2021-07-16', '2021-07-16', '127.0.0.1', '제시가 증가', 3),
+	(4, 1200, '2021-07-16', '2021-07-16', '127.0.0.1', '제시가 증가', 1),
+	(5, 2500, '2021-07-16', '2021-07-16', '127.0.0.1', '제시가 증가', 2),
+	(6, 800, '2021-07-16', '2021-07-16', '127.0.0.1', '제시가 증가', 4);
+/*!40000 ALTER TABLE `prop_price` ENABLE KEYS */;
 
-DELETE FROM prop_price;
+DELETE FROM `purchase_prop`;
+/*!40000 ALTER TABLE `purchase_prop` DISABLE KEYS */;
+INSERT INTO `purchase_prop` (`id`, `associate_id`, `city`, `state`, `zip_code`, `address`, `address_detail`, `purchase_date`, `prop_type`, `reg_date`, `modi_date`) VALUES
+	(1, 1, '서울', '강남구', NULL, '일원동', NULL, NULL, 'REQUIRED', '2021-02-18', NULL),
+	(2, 1, '서울', '강남구', NULL, '반포동', NULL, NULL, 'REQUIRED', '2021-02-19', NULL),
+	(3, 1, '서울', '강남구', NULL, '신사동', NULL, '2021-04-16', 'PURCHASED', '2021-02-19', NULL),
+	(4, 1, '서울', '강남구', NULL, '대치동', NULL, NULL, 'REQUIRED', '2021-03-19', NULL);
+/*!40000 ALTER TABLE `purchase_prop` ENABLE KEYS */;
 
+DELETE FROM `receipt`;
+/*!40000 ALTER TABLE `receipt` DISABLE KEYS */;
+INSERT INTO `receipt` (`id`, `claim_id`, `payment`, `reg_date`, `modi_date`, `buyer_ip`, `user_id`) VALUES
+	(1, 1, 1000, '2021-05-06', NULL, '127.0.0.1', 5),
+	(2, 1, 2000, '2021-05-16', NULL, '127.0.0.1', 5),
+	(3, 2, 1500, '2021-07-16', NULL, '127.0.0.1', 5);
+/*!40000 ALTER TABLE `receipt` ENABLE KEYS */;
 
-DELETE FROM purchase_prop;
-INSERT INTO purchase_prop (id, associate_id, city, state, zip_code, address, address_detail, price, purchase_date, reg_date, modi_date, prop_type) VALUES
-	(1, 1, '서울', '강남구', NULL, NULL, NULL, 30000, NULL, '2021-03-03', NULL, 'REQUIRED'),
-	(2, 1, '서울', '강남구', NULL, NULL, NULL, 50000, NULL, '2021-03-10', NULL, 'REQUIRED'),
-	(3, 1, '서울', '강남구', NULL, NULL, NULL, 300, NULL, '2021-03-13', NULL, 'PURCHASED'),
-	(4, 1, '서울', '강남구', NULL, NULL, NULL, 34500, NULL, '2021-04-03', NULL, 'REQUIRED');
-
-
-DELETE FROM receipt;
-
-
-DELETE FROM sale_prop;
-INSERT INTO sale_prop (id, associate_id, address_detail, sale_round, reg_date, modi_date) VALUES
+DELETE FROM `sale_prop`;
+/*!40000 ALTER TABLE `sale_prop` DISABLE KEYS */;
+INSERT INTO `sale_prop` (`id`, `associate_id`, `address_detail`, `sale_round`, `reg_date`, `modi_date`) VALUES
 	(1, 1, 'A101동 101호', 1, '2021-06-03', NULL),
 	(2, 1, 'A101동 102호', 1, '2021-06-03', NULL),
 	(3, 1, 'A101동 103호', 1, '2021-06-03', NULL),
 	(4, 1, 'A101동 104호', 1, '2021-06-03', NULL),
 	(5, 1, 'A101동 105호', 1, '2021-06-03', NULL);
+/*!40000 ALTER TABLE `sale_prop` ENABLE KEYS */;
 
-
-DELETE FROM staff;
-INSERT INTO staff (id, staff_role, reg_date, modi_date, associate_id, user_id) VALUES
+DELETE FROM `staff`;
+/*!40000 ALTER TABLE `staff` DISABLE KEYS */;
+INSERT INTO `staff` (`id`, `staff_role`, `reg_date`, `modi_date`, `associate_id`, `user_id`) VALUES
 	(1, 'MANAGER', '2021-06-03', NULL, 1, 4),
 	(2, 'STAFF', '2021-06-03', NULL, 1, 5);
+/*!40000 ALTER TABLE `staff` ENABLE KEYS */;
 
+DELETE FROM `user`;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`id`, `username`, `company_id`, `password`, `name`, `email`, `profile_Img`, `user_role`, `user_state`, `retired_date`, `reg_date`, `modi_date`, `modi_password_date`, `phone_number`, `provider`, `provider_id`, `fail_login_count`) VALUES
+	(1, 'Admin', NULL, '$2a$10$Izrc7nyTyH38JVE/uD37qui1bqy7/gr22UpgSHqi/W4eQKVdPV41q', '관리자', NULL, '/img/profile_img.jpg', 'ROLE_ADMIN', 'AUTH', NULL, '2021-05-03', '2021-08-09', NULL, '02-3554-0901', NULL, NULL, 0),
+	(2, 'Manager', NULL, '$2a$10$bGruS8.UvG9FYOFV6zfS3OoKlOEto/YvNIqu6N3NKTx5rkTJie1sO', '운영자', NULL, '/img/profile_img.jpg', 'ROLE_MANAGER', 'AUTH', NULL, '2021-05-03', NULL, NULL, '02-3456-2034', NULL, NULL, 0),
+	(3, 'Partner', 1, '$2a$10$nKqCj682/pL3B1QlYVMeluSxr8xB/JySi6aO1SU8IRfsEgFIlrnO6', '파트너사', NULL, '/img/profile_img.jpg', 'ROLE_PARTNER', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3456-1245', NULL, NULL, 0),
+	(4, 'Staff01', NULL, '$2a$10$TypW6qPn2o7441NNoSS85e5NauidkmxYzKpOPyora.8i6DMnAgDIm', '스탭1', NULL, '/img/profile_img.jpg', 'ROLE_STAFF', 'AUTH', NULL, '2021-06-03', NULL, NULL, '010-3434-3941', NULL, NULL, 0),
+	(5, 'Staff02', NULL, '$2a$10$IVXqd80UCAtoWNiQWyqPm.A.Aoeai7oRD2KFJPCPa11Kec163Pjsu', '스탭2', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'AUTH', NULL, '2021-06-03', NULL, NULL, '', NULL, NULL, 0),
+	(6, 'User01', NULL, '$2a$10$si4DIExdyVrzHFJfwU/G7e9hW/DhvnsInThaKOK0vc/PowEVt1Wtu', '김OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, '', NULL, NULL, 0),
+	(7, 'User02', NULL, '$2a$10$zTt24aA0Gtx7xWV97Ffe4Of0w8D5baZzUvGLHE5mT8MRz64j0H7YW', '이OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, ' ', NULL, NULL, 0),
+	(8, 'User03', NULL, '$2a$10$IdzE20lwxNazrf8WrNMOdeIRyQMuOVxHly9v1DBtVwIon.B7JEid6', '박OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, ' ', NULL, NULL, 0),
+	(10, 'User04', NULL, '$2a$10$OjlOJpRtwbabKKuJcVosouOuz67trdo4OsGJymP1MS0.BKLQM/jHS', '손', '111@111.ccc', '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-10', '2021-06-10', NULL, ' ', NULL, NULL, 0),
+	(11, 'Admin1', NULL, '$2a$10$Izrc7nyTyH38JVE/uD37qui1bqy7/gr22UpgSHqi/W4eQKVdPV41q', '관리자', NULL, '/img/profile_img.jpg', 'ROLE_ADMIN', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3554-0901', NULL, NULL, 0),
+	(12, 'Admin2', NULL, '$2a$10$Izrc7nyTyH38JVE/uD37qui1bqy7/gr22UpgSHqi/W4eQKVdPV41q', '관리자', NULL, '/img/profile_img.jpg', 'ROLE_ADMIN', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3554-0901', NULL, NULL, 0),
+	(19, 'qwer', NULL, '$2a$10$/1OvaGio1XHWC6nUReC34e699nl.29wQ9pOT2U589ViZilBr9Ku2W', '야무치', 'kafei@naver.com', '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-07-09', '2021-07-09', NULL, NULL, NULL, NULL, 0);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
-DELETE FROM user;
-INSERT INTO user (id, username, company_id, password, name, email, profile_Img, user_role, user_state, retired_date, reg_date, modi_date, modi_password_date, phone_number, provider, provider_id) VALUES
-	(1, 'Admin', NULL, '$2a$10$Izrc7nyTyH38JVE/uD37qui1bqy7/gr22UpgSHqi/W4eQKVdPV41q', '관리자', NULL, '/img/profile_img.jpg', 'ROLE_ADMIN', 'AUTH', NULL, '2021-05-03', NULL, NULL, '02-3554-0901', NULL, NULL),
-	(2, 'Manager', NULL, '$2a$10$bGruS8.UvG9FYOFV6zfS3OoKlOEto/YvNIqu6N3NKTx5rkTJie1sO', '운영자', NULL, '/img/profile_img.jpg', 'ROLE_MANAGER', 'AUTH', NULL, '2021-05-03', NULL, NULL, '02-3456-2034', NULL, NULL),
-	(3, 'Partner', 1, '$2a$10$nKqCj682/pL3B1QlYVMeluSxr8xB/JySi6aO1SU8IRfsEgFIlrnO6', '파트너사', NULL, '/img/profile_img.jpg', 'ROLE_PARTNER', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3456-1245', NULL, NULL),
-	(4, 'Staff01', NULL, '$2a$10$TypW6qPn2o7441NNoSS85e5NauidkmxYzKpOPyora.8i6DMnAgDIm', '스탭1', NULL, '/img/profile_img.jpg', 'ROLE_STAFF', 'AUTH', NULL, '2021-06-03', NULL, NULL, '010-3434-3941', NULL, NULL),
-	(5, 'Staff02', NULL, '$2a$10$IVXqd80UCAtoWNiQWyqPm.A.Aoeai7oRD2KFJPCPa11Kec163Pjsu', '스탭2', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'AUTH', NULL, '2021-06-03', NULL, NULL, NULL, NULL, NULL),
-	(6, 'User01', NULL, '$2a$10$si4DIExdyVrzHFJfwU/G7e9hW/DhvnsInThaKOK0vc/PowEVt1Wtu', '김OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, NULL, NULL, NULL),
-	(7, 'User02', NULL, '$2a$10$zTt24aA0Gtx7xWV97Ffe4Of0w8D5baZzUvGLHE5mT8MRz64j0H7YW', '이OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, NULL, NULL, NULL),
-	(8, 'User03', NULL, '$2a$10$IdzE20lwxNazrf8WrNMOdeIRyQMuOVxHly9v1DBtVwIon.B7JEid6', '박OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, NULL, NULL, NULL),
-	(10, 'User04', NULL, '$2a$10$OjlOJpRtwbabKKuJcVosouOuz67trdo4OsGJymP1MS0.BKLQM/jHS', '손', '111@111.ccc', '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-10', '2021-06-10', NULL, NULL, NULL, NULL),
-	(11, 'Admin1', NULL, '$2a$10$Izrc7nyTyH38JVE/uD37qui1bqy7/gr22UpgSHqi/W4eQKVdPV41q', '관리자', NULL, '/img/profile_img.jpg', 'ROLE_ADMIN', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3554-0901', NULL, NULL),
-	(12, 'Admin2', NULL, '$2a$10$Izrc7nyTyH38JVE/uD37qui1bqy7/gr22UpgSHqi/W4eQKVdPV41q', '관리자', NULL, '/img/profile_img.jpg', 'ROLE_ADMIN', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3554-0901', NULL, NULL),
-	(19, 'qwer', NULL, '$2a$10$/1OvaGio1XHWC6nUReC34e699nl.29wQ9pOT2U589ViZilBr9Ku2W', '야무치', 'kafei@naver.com', '/img/proflie_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-07-09', '2021-07-09', NULL, NULL, NULL, NULL);
+DELETE FROM `web_menu`;
+/*!40000 ALTER TABLE `web_menu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `web_menu` ENABLE KEYS */;
 
-
-DELETE FROM web_menu;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

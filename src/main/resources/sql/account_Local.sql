@@ -1,6 +1,6 @@
 use mysql;
 
-CREATE DATABASE PROPTECH default CHARACTER SET UTF8;
+CREATE DATABASE PROPTECH default CHARACTER SET utf8mb4;
 
 create user 'GUNS'@localhost identified by 'GUNS';
 create user 'GUNS'@'%' identified by 'GUNS';

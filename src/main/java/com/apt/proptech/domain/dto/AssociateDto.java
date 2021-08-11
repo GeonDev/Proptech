@@ -18,6 +18,7 @@ public class AssociateDto {
 
     private Long id;
     private String name;
+    private String logo;
     private String round;
     private String expectDate;
     private String realDate;
@@ -37,16 +38,20 @@ public class AssociateDto {
     //전체 납입 금액
     private int totalPaid;
 
-
     //전체 필요(토지구매) 금액
     private int totalPurchaseNeedPaid;
 
+    //필요금액 대비 납입금
+    private int perPaid;
+    
+    
     //토지 구매에 사용한 금액
     private int totalPurchasePaid;
 
     public AssociateDto(Associate associate){
         this.id = associate.getId();
         this.name = associate.getName();
+        this.logo = associate.getLogo();
         this.round = associate.getAssociateRound().name();
         this.expectDate = CommonUtil.toDateStr(associate.getEndExpectDate());
         this.realDate = CommonUtil.toDateStr(associate.getEndRealDate());
@@ -60,7 +65,7 @@ public class AssociateDto {
         this.totalJoinUserCount = 0;
         this.totalRequiredPaid = 0;
         this.totalPaid = 0;
-  
+        this.perPaid = 0;
 
         //전체 사업 금액
         for (SaleProp sale : associate.getSalePropList()){
@@ -86,6 +91,11 @@ public class AssociateDto {
                     }
                 }
             }
+        }
+
+        if(this.totalRequiredPaid !=0 && this.totalPaid !=0){
+            //전체 금액 대비 납입금 상황 (퍼센트)
+            this.perPaid = (int) Math.round( ((double)this.totalPaid/(double)this.totalRequiredPaid )* 100.0f );
         }
 
 

@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 text-center">
-                <img class="img-profile rounded-circle" style="width:200px;" src="{{info.profileImg}}">
+                <img class="img-profile rounded-circle" style="width:200px;" src="{{info.logo}}">
             </div>
         </div>
 
@@ -20,37 +20,40 @@
 
                 <tbody>
                 <tr>
-                    <th scope="row"><b>ID : </b></th>
-                    <td> {{info.userName}} </td>
-                </tr>
-
-                <tr>
                     <th scope="row"><b>이름 : </b></th>
                     <td> {{info.name}} </td>
                 </tr>
 
                 <tr>
-                    <th scope="row"><b>이메일 : </b></th>
-                    <td> {{info.email}} </td>
-                </tr>
-                <tr>
-                    <th scope="row"><b>전화번호 : </b></th>
-                    <td> {{info.phoneNumber}} </td>
-                </tr>
-
-                <tr>
-                    <th scope="row"><b>등록일 : </b></th>
+                    <th scope="row"><b>설립일 : </b></th>
                     <td> {{info.registerDate}} </td>
                 </tr>
 
                 <tr>
-                    <th scope="row"><b>권한 : </b></th>
-                    <td> {{info.role}} </td>
+                    <th scope="row"><b>주소: </b></th>
+                    <td> {{info.city}}&nbsp;{{info.state}}&nbsp;{{info.address}} </td>
                 </tr>
+
                 <tr>
-                    <th scope="row"><b>상태 : </b></th>
-                    <td> {{info.state}} </td>
+                    <th scope="row"><b>전체 사업금액 : </b></th>
+                    <td> {{info.totalJoinUserCount}} </td>
                 </tr>
+
+                <tr>
+                    <th scope="row"><b>전체 가입자 수 : </b></th>
+                    <td> {{info.totalJoinUserCount}} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><b>진행단계 : </b></th>
+                    <td> {{info.round}} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><b>모금 현황(%) : </b></th>
+                    <td> {{info.perPaid}} %</td>
+                </tr>
+
 
                 </tbody>
             </table>
@@ -59,24 +62,26 @@
     </div>
 
     <hr>
-    <h3> 등록 계좌 정보</h3>
+    <h3> 토지 구매 현황</h3>
 
     <div class="row">
         <table class="table">
             <thead>
-            <th>은행명 </th>
-            <th>계좌번호 </th>
-            <th>상태 </th>
+            <th>토지 주소</th>
+            <th>우편 번호</th>
+            <th>구입 가격 </th>
+            <th>구매 일 </th>
             </thead>
 
             <tbody>
-            {{#accountList}}
+            {{#purchaseList}}
                 <tr>
-                    <td>{{bankName}} </td>
-                    <td>{{account}} </td>
-                    <td>{{accountState}} </td>
+                    <td>{{address}} </td>
+                    <td>{{zipCode}} </td>
+                    <td>{{price}} </td>
+                    <td>{{buyDate}} </td>
                 </tr>
-            {{/accountList}}
+            {{/purchaseList}}
             </tbody>
         </table>
 

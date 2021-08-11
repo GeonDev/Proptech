@@ -11,6 +11,7 @@ import com.apt.proptech.domain.dto.Pagination;
 
 import com.apt.proptech.domain.enums.AssociateRound;
 import com.apt.proptech.repository.AssociateRepository;
+import com.apt.proptech.repository.PurchasePropRepository;
 import com.apt.proptech.repository.support.AssociateRepositorySupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
