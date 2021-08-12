@@ -49,6 +49,9 @@ public class TableController {
     @Autowired
     private StaffService staffService;
 
+    @Autowired
+    private SalePropService salePropService;
+
 
     @GetMapping("/user-list")
     public String userTables(Model model, @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC) Pageable pageable,
@@ -211,6 +214,8 @@ public class TableController {
         Associate associate = associateService.getItem(Long.parseLong(id));
 
         model.addAttribute("purchaseList" , purchasePropService.getBuyedPurchasList(associate) );
+
+        model.addAttribute("propList", salePropService.getPropList(associate));
 
         model.addAttribute("staffList", staffService.getStaffList(associate));
 

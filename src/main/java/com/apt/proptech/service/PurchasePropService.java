@@ -22,9 +22,9 @@ public class PurchasePropService {
 
         List<PurchaseProp> propList = purchasePropRepository.findByAssociateAndPropType(associate, PropType.PURCHASED);
 
-        propList.stream().forEach(purchaseProp -> {
-            temp.add(new PurchaseDto(purchaseProp) );
-        } );
+        for (PurchaseProp purchaseProp : propList) {
+            temp.add(new PurchaseDto(purchaseProp));
+        }
 
         return temp;
     }

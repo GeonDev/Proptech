@@ -30,6 +30,8 @@ class AssociateRepositoryTest {
     @Autowired
     private ClaimRepository claimRepository;
 
+
+
     @Transactional
     void paymentTest() {
 
@@ -43,8 +45,6 @@ class AssociateRepositoryTest {
 
         } );
     }
-
-
 
 
 }
