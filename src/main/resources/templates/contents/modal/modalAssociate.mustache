@@ -99,18 +99,24 @@
                 <th>계약 일 </th>
                 <th>가입 회차 </th>
                 <th>요구 금액 </th>
-                <th>요구 회차 </th>
+                <th>요구 횟수 </th>
                 <th>납입 금액 </th>
-                <th>연체 금액 </th>
+                <th>미납 금액 </th>
                 </thead>
 
                 <tbody>
-                {{#historyList}}
+                {{#propList}}
                     <tr>
-                        <td>{{loginDate}} </td>
-                        <td>{{isLogin}} </td>
+                        <td>{{address}} </td>
+                        <td>{{owner}} </td>
+                        <td>{{regDate}} </td>
+                        <td>{{regRound}} </td>
+                        <td>{{totalPrice}} </td>
+                        <td>{{priceRound}} </td>
+                        <td>{{payment}} </td>
+                        <td>{{overdue}} </td>
                     </tr>
-                {{/historyList}}
+                {{/propList}}
                 </tbody>
             </table>
 

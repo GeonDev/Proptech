@@ -14,20 +14,21 @@ public class PropDto {
 
     String address;
     String owner;
+
     //계약일 - 계약자 입장에서
     String regDate;
     String regRound;
-    String price;
+    String totalPrice;
     String priceRound;
     String payment;
 
-    
-    //연체
+    //미납 금
     String overdue;
 
     public PropDto(SaleProp saleProp){
         this.address = saleProp.getAddressDetail();
-        this.price = "";
+        this.regRound = String.valueOf(saleProp.getSaleRound());
+        this.totalPrice = "";
         this.priceRound = "";
         this.payment = "";
         this.owner = "";
@@ -55,9 +56,18 @@ public class PropDto {
                    this.payment = String.valueOf(receiptList.stream().mapToLong(receipt-> receipt.getPayment() ).sum());
 ;                }
             }
-            this.price = String.valueOf(tempPrice);
+            this.totalPrice = String.valueOf(tempPrice);
             this.priceRound = String.valueOf(claimList.size());
 
         }
+
+        if(!this.totalPrice.equals("") && !this.payment.equals("") ){
+            this.overdue =  String.valueOf( Integer.parseInt(this.totalPrice) - Integer.parseInt(this.payment));
+        }else if(this.payment.equals("")  ){
+            this.overdue = this.totalPrice;
+        }else{
+            this.overdue = "";
+        }
+
     }
 }

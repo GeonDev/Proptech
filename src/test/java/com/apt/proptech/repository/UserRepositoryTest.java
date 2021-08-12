@@ -62,7 +62,7 @@ class UserRepositoryTest {
     }
 
 
-    @Transactional
+
     void UserDetailTest(){
 
         User user = userRepository.findByUsername("Admin");
@@ -75,7 +75,7 @@ class UserRepositoryTest {
 
         System.out.println("---------------------------------------------");
 
-        List<LoginHistory> list =  loginHistoryRepository.findTop5ByUserOrderByIdDesc(user);
+        List<LoginHistory> list =  loginHistoryRepository.findTop10ByUserOrderByIdDesc(user);
         list.stream().forEach(
                 loginHistory -> {
                     System.out.println("repo -> "+ loginHistory.getId() +" " + loginHistory.getLoginDate());
