@@ -5,134 +5,142 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 </div>
 
-<div class="modal-body">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <img class="img-profile rounded-circle" style="width:200px;" src="{{info.logo}}">
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <img class="img-profile rounded-circle" style="width:200px;" src="{{info.logo}}">
+                </div>
             </div>
-        </div>
 
+
+            <hr>
+            <div class="row">
+                <table class="table table-borderless">
+
+                    <tbody>
+                    <tr>
+                        <th scope="row"><b>이름 : </b></th>
+                        <td> {{info.name}} </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><b>설립일 : </b></th>
+                        <td> {{info.registerDate}} </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><b>주소: </b></th>
+                        <td> {{info.city}}&nbsp;{{info.state}}&nbsp;{{info.address}} </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><b>전체 사업금액 : </b></th>
+                        <td> {{info.totalJoinUserCount}} </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><b>전체 가입자 수 : </b></th>
+                        <td> {{info.totalJoinUserCount}} </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><b>진행단계 : </b></th>
+                        <td> {{info.round}} </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><b>모금 현황(%) : </b></th>
+                        <td> {{info.perPaid}} %</td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
 
         <hr>
+        <h3> 토지 구매 현황</h3>
+
         <div class="row">
-            <table class="table table-borderless">
+            <table class="table">
+                <thead>
+                <th>토지 주소</th>
+                <th>우편 번호</th>
+                <th>구입 가격 </th>
+                <th>구매 일 </th>
+                </thead>
 
                 <tbody>
-                <tr>
-                    <th scope="row"><b>이름 : </b></th>
-                    <td> {{info.name}} </td>
-                </tr>
-
-                <tr>
-                    <th scope="row"><b>설립일 : </b></th>
-                    <td> {{info.registerDate}} </td>
-                </tr>
-
-                <tr>
-                    <th scope="row"><b>주소: </b></th>
-                    <td> {{info.city}}&nbsp;{{info.state}}&nbsp;{{info.address}} </td>
-                </tr>
-
-                <tr>
-                    <th scope="row"><b>전체 사업금액 : </b></th>
-                    <td> {{info.totalJoinUserCount}} </td>
-                </tr>
-
-                <tr>
-                    <th scope="row"><b>전체 가입자 수 : </b></th>
-                    <td> {{info.totalJoinUserCount}} </td>
-                </tr>
-
-                <tr>
-                    <th scope="row"><b>진행단계 : </b></th>
-                    <td> {{info.round}} </td>
-                </tr>
-
-                <tr>
-                    <th scope="row"><b>모금 현황(%) : </b></th>
-                    <td> {{info.perPaid}} %</td>
-                </tr>
-
-
+                {{#purchaseList}}
+                    <tr>
+                        <td>{{address}} </td>
+                        <td>{{zipCode}} </td>
+                        <td>{{price}} </td>
+                        <td>{{buyDate}} </td>
+                    </tr>
+                {{/purchaseList}}
                 </tbody>
             </table>
+
         </div>
 
+        <hr>
+
+        <h3> 계약 현황</h3>
+
+        <div class="row">
+            <table class="table">
+                <thead>
+                <th>호 </th>
+                <th>계약자 </th>
+                <th>계약 일 </th>
+                <th>가입 회차 </th>
+                <th>요구 금액 </th>
+                <th>요구 회차 </th>
+                <th>납입 금액 </th>
+                <th>연체 금액 </th>
+                </thead>
+
+                <tbody>
+                {{#historyList}}
+                    <tr>
+                        <td>{{loginDate}} </td>
+                        <td>{{isLogin}} </td>
+                    </tr>
+                {{/historyList}}
+                </tbody>
+            </table>
+
+        </div>
+        <hr>
+
+        <h3> 스탭 리스트</h3>
+
+        <div class="row">
+            <table class="table">
+                <thead>
+                <th>이름</th>
+                <th>직책</th>
+                <th>연락처</th>
+                <th>등록일 </th>
+                </thead>
+
+                <tbody>
+                {{#staffList}}
+                    <tr>
+                        <td>{{name}} </td>
+                        <td>{{role}} </td>
+                        <td>{{phoneNumber}} </td>
+                        <td>{{regDate}} </td>
+                    </tr>
+                {{/staffList}}
+                </tbody>
+            </table>
+
+        </div>
     </div>
 
-    <hr>
-    <h3> 토지 구매 현황</h3>
-
-    <div class="row">
-        <table class="table">
-            <thead>
-            <th>토지 주소</th>
-            <th>우편 번호</th>
-            <th>구입 가격 </th>
-            <th>구매 일 </th>
-            </thead>
-
-            <tbody>
-            {{#purchaseList}}
-                <tr>
-                    <td>{{address}} </td>
-                    <td>{{zipCode}} </td>
-                    <td>{{price}} </td>
-                    <td>{{buyDate}} </td>
-                </tr>
-            {{/purchaseList}}
-            </tbody>
-        </table>
-
-    </div>
-
-    <hr>
-
-    <h3> 최근 로그인 시간</h3>
-
-    <div class="row">
-        <table class="table">
-            <thead>
-            <th>로그인 일자 </th>
-            <th>상태 </th>
-            </thead>
-
-            <tbody>
-            {{#historyList}}
-                <tr>
-                    <td>{{loginDate}} </td>
-                    <td>{{isLogin}} </td>
-                </tr>
-            {{/historyList}}
-            </tbody>
-        </table>
-
-    </div>
-    <hr>
-
-    <h3> 승인된 로그인 IP</h3>
-
-    <div class="row">
-        <table class="table">
-            <thead>
-            <th>로그인 IP </th>
-            <th>상태 </th>
-            </thead>
-
-            <tbody>
-            {{#iplist}}
-                <tr>
-                    <td>{{ip}} </td>
-                    <td>{{isActive}} </td>
-                </tr>
-            {{/iplist}}
-            </tbody>
-        </table>
-
-    </div>
-
-
-</div>
-</div>
 

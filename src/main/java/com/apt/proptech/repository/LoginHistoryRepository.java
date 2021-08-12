@@ -17,7 +17,7 @@ public interface LoginHistoryRepository extends JpaRepository<LoginHistory, Long
    LoginHistory findTopByUserOrderByIdDesc(User user);
 
    @Transactional
-   List<LoginHistory> findTop5ByUserOrderByIdDesc(User user);
+   List<LoginHistory> findTop10ByUserOrderByIdDesc(User user);
 
    @Transactional
    @Modifying(flushAutomatically = true, clearAutomatically = true)
