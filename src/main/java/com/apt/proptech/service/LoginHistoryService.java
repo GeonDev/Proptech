@@ -32,7 +32,7 @@ public class LoginHistoryService {
     public List<LoginHistoryDto> getLoginHistoryInfo(User user ){
         List<LoginHistoryDto> list = new ArrayList<>();
 
-        List<LoginHistory> temp = loginHistoryRepository.findTop5ByUserOrderByIdDesc(user);
+        List<LoginHistory> temp = loginHistoryRepository.findTop10ByUserOrderByIdDesc(user);
 
         if(temp !=null && !temp.isEmpty() ){
             for( LoginHistory history : temp ){

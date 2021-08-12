@@ -46,6 +46,8 @@ public class TableController {
     @Autowired
     private PurchasePropService purchasePropService;
 
+    @Autowired
+    private StaffService staffService;
 
 
     @GetMapping("/user-list")
@@ -210,7 +212,11 @@ public class TableController {
 
         model.addAttribute("purchaseList" , purchasePropService.getBuyedPurchasList(associate) );
 
+        model.addAttribute("staffList", staffService.getStaffList(associate));
+
         model.addAttribute("info", new AssociateDto(associate));
+
+
         //모달 페이지 전체를 보낸다.
         return "/contents/modal/modalAssociate";
     }

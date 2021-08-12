@@ -19,7 +19,7 @@ public class LoginIpService {
     public List<LoginIpDto> getLoginIpInfo(User user){
         List<LoginIpDto> list = new ArrayList<>();
 
-        List<LoginIp> temp = loginIpRepository.findTop5ByUserOrderByIdDesc(user);
+        List<LoginIp> temp = loginIpRepository.findTop10ByUserOrderByIdDesc(user);
 
         if(temp !=null && !temp.isEmpty() ){
             for( LoginIp ip : temp ){
