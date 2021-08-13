@@ -31,9 +31,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT * FROM user WHERE user.user_state =:state ORDER BY id DESC", nativeQuery = true)
     Page<User> findAllByUserState(@Param("state") String state , Pageable pageable);
 
-    @Query("SELECT u.id FROM User u")
-    List<String> findAllByUserId();
-
-
-
 }
