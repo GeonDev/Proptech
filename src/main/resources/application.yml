@@ -16,8 +16,7 @@ spring:
 spring:
   devtools:
     livereload:
-      restart:
-        enabled: true
+      enabled: true
   mustache:
     expose-session-attributes: true
   security:

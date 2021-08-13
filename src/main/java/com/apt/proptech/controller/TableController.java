@@ -210,7 +210,7 @@ public class TableController {
     @GetMapping(value = "/associate-detail")
     public String associateDetailView(@RequestParam(value = "id") String id , Model model){
 
-        //조합 기본 정보 출력
+        //조합 객체 출력
         Associate associate = associateService.getItem(Long.parseLong(id));
 
         model.addAttribute("purchaseList" , purchasePropService.getBuyedPurchasList(associate) );
