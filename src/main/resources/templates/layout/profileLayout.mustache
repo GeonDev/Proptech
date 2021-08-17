@@ -1,15 +1,14 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <img class="img-profile rounded-circle" style="width:200px;" src="{{info.profileImg}}">
-            </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <img class="img-profile rounded-circle" style="width:200px;" src="{{info.profileImg}}">
         </div>
+    </div>
 
-
-        <div class="row">
-            <div class="col-md-8">
+    <div class="row">
+        <div class="col-md-6 text-center" style="float: none; margin: 0 auto;">
                 <hr>
                 <h3> 사용자 정보</h3>
                 <table class="table">
@@ -67,82 +66,76 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-6 text-center" style="float: none; margin: 0 auto;">
+            <hr>
+            <h3> 등록 계좌 정보</h3>
 
-
-
-        <div class="row">
-            <div class="col-md-8">
-                <hr>
-                <h3> 등록 계좌 정보</h3>
-
-                <table class="table">
-                    <thead>
-                    <th>은행명 </th>
-                    <th>계좌번호 </th>
-                    <th>상태 </th>
-                    </thead>
-
-                    <tbody>
-                    {{#accountList}}
-                        <tr>
-                            <td>{{bankName}} </td>
-                            <td>{{account}} </td>
-                            <td>{{accountState}} </td>
-                        </tr>
-                    {{/accountList}}
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
-
-
-
-        <div class="row">
-            <div class="col-md-8">
-                <hr>
-                <h3> 최근 로그인 시간</h3>
-                <table class="table">
-                    <thead>
-                    <th>로그인 일자 </th>
-                    <th>상태 </th>
-                    </thead>
-
-                    <tbody>
-                    {{#historyList}}
-                        <tr>
-                            <td>{{loginDate}} </td>
-                            <td>{{isLogin}} </td>
-                        </tr>
-                    {{/historyList}}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-8">
-                    <hr>
-                    <h3> 승인된 로그인 IP</h3>
-
-                <table class="table">
-                    <thead>
-                    <th>로그인 IP </th>
-                    <th>상태 </th>
-                    </thead>
+            <table class="table">
+                <thead>
+                <th>은행명 </th>
+                <th>계좌번호 </th>
+                <th>상태 </th>
+                </thead>
 
                 <tbody>
-                    {{#ipList}}
+                {{#accountList}}
+                    <tr>
+                        <td>{{bankName}} </td>
+                        <td>{{account}} </td>
+                        <td>{{accountState}} </td>
+                    </tr>
+                {{/accountList}}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 text-center" style="float: none; margin: 0 auto;">
+            <hr>
+            <h3> 최근 로그인 시간</h3>
+            <table class="table">
+                <thead>
+                <th>로그인 일자 </th>
+                <th>상태 </th>
+                </thead>
+
+                <tbody>
+                {{#historyList}}
+                    <tr>
+                        <td>{{loginDate}} </td>
+                        <td>{{isLogin}} </td>
+                    </tr>
+                {{/historyList}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 text-center" style="float: none; margin: 0 auto;">
+            <hr>
+            <h3> 로그인 IP</h3>
+
+            <table class="table">
+                <thead>
+                <th>로그인 IP </th>
+                <th>상태 </th>
+                </thead>
+
+                <tbody>
+                {{#ipList}}
                     <tr>
                         <td>{{ip}} </td>
                         <td>{{isActive}} </td>
                     </tr>
-                    {{/ipList}}
+                {{/ipList}}
                 </tbody>
-                </table>
-            </div>
+            </table>
         </div>
+    </div>
 </div>
