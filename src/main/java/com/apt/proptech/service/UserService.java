@@ -75,6 +75,8 @@ public class UserService extends BaseService<User>{
         return baseRepository.findById(id).orElse(null);
     }
 
+
+
     @Override
     public User updateItem(User object) {
 
@@ -102,6 +104,11 @@ public class UserService extends BaseService<User>{
 
         return user;
     }
+
+    public User getItem(String userName ) {
+        return userRepository.findByUsername(userName);
+    }
+
 
     public Pagination getItemList(Pageable pageable, String type, String value, String startDate, String endDate) {
 

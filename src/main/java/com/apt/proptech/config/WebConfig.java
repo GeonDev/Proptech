@@ -47,6 +47,7 @@ public class WebConfig  implements WebMvcConfigurer {
         excludeUrlList.add("/css**");
         excludeUrlList.add("/img**");
         excludeUrlList.add("/js**");
+        excludeUrlList.add("/error/**");
 
         //addPathPatterns 해당 패턴에 해당하는 URL을 인터럽트한다.
         //excludePathPatterns 해당 패턴에 해당하는 URL은 인터럽트하지 않는다.

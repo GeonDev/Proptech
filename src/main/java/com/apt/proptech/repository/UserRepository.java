@@ -15,10 +15,6 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    List<User> findAllByNameContaining(String name);
-
-    User findByUsernameAndPassword(String username, String password);
-
     User findByProviderAndProviderId(String provider, String providerId);
 
     User findByUsername(String username);

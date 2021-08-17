@@ -17,29 +17,25 @@ public class CustomErrorController implements ErrorController {
 
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
-        model.addAttribute("contentName","");
-
         if (status != null) {
             int statusCode = Integer.valueOf(status.toString());
 
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
-                model.addAttribute("error404", true);
+                return "error/error404";
 
             } else if(statusCode == HttpStatus.FORBIDDEN.value()){
-                model.addAttribute("error403", true);
+                return "error/error403";
 
             }else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()){
-                model.addAttribute("error500", true);
-
-            }else{
-                model.addAttribute("errorDefault", true);
+                return "error/error500";
             }
+
         }else{
             //강제로 에러페이지에 접근하려는 경우 404 출력
-            model.addAttribute("error404", true);
+            return "error/error404";
         }
 
-        return "main";
+        return "error/errorDefault";
     }
 
 
