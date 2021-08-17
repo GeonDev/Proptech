@@ -18,6 +18,8 @@ public class PurchaseProp extends BaseTimeEntity{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String landNum;
+
     private String city;
     private String state;
     private String zipCode;
