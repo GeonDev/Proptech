@@ -255,6 +255,15 @@ CREATE TABLE IF NOT EXISTS `web_menu` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `file_info`;
+CREATE TABLE IF NOT EXISTS `file_info` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `orig_filename` varchar(50) DEFAULT NULL COMMENT '파일명(원본)',
+  `filename` varchar(50) DEFAULT NULL COMMENT '파일명(구분자 추가)',
+  `filePath` varchar(50) DEFAULT NULL COMMENT '파일 위치',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
 DROP VIEW IF EXISTS `v_associate_summary`;
 DROP TABLE IF EXISTS `v_associate_summary`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`GUNS`@`localhost` SQL SECURITY DEFINER VIEW `v_associate_summary` AS select `proptech`.`associate`.`id` AS `id`,`proptech`.`associate`.`name` AS `name`,`proptech`.`associate`.`associate_round` AS `associate_round`,`proptech`.`associate`.`operate_fee_ratio` AS `operate_fee_ratio`,`proptech`.`associate`.`end_expect_date` AS `end_expect_date`,`proptech`.`associate`.`end_real_date` AS `end_real_date`,`proptech`.`associate`.`city` AS `city`,`proptech`.`associate`.`state` AS `state`,`proptech`.`associate`.`address` AS `address`,`proptech`.`associate`.`reg_date` AS `reg_date`,`sale`.`totalClaimPay` AS `totalClaimPay`,`sale`.`TotalReceiptPay` AS `TotalReceiptPay`,`purchase`.`TotalpurchasePay` AS `TotalpurchasePay` from ((`proptech`.`associate` left join (select `proptech`.`sale_prop`.`associate_id` AS `associate_id`,sum(`a`.`claimpay`) AS `totalClaimPay`,sum(`a`.`receiptPay`) AS `TotalReceiptPay` from (`proptech`.`sale_prop` left join (select `proptech`.`claim_prop`.`sale_prop_id` AS `sale_prop_id`,sum(`proptech`.`claim_prop`.`payment`) AS `claimpay`,sum(`proptech`.`receipt`.`payment`) AS `receiptPay` from (`proptech`.`claim_prop` left join `proptech`.`receipt` on(`proptech`.`claim_prop`.`id` = `proptech`.`receipt`.`claim_id`)) group by `proptech`.`claim_prop`.`sale_prop_id`) `a` on(`proptech`.`sale_prop`.`id` = `a`.`sale_prop_id`))) `sale` on(`proptech`.`associate`.`id` = `sale`.`associate_id`)) left join (select sum(`a`.`price`) AS `TotalpurchasePay`,`proptech`.`purchase_prop`.`associate_id` AS `associate_id` from (`proptech`.`purchase_prop` left join (select `proptech`.`prop_price`.`id` AS `id`,`proptech`.`prop_price`.`price` AS `price`,`proptech`.`prop_price`.`reg_date` AS `reg_date`,`proptech`.`prop_price`.`modi_date` AS `modi_date`,`proptech`.`prop_price`.`reg_ip` AS `reg_ip`,`proptech`.`prop_price`.`description` AS `description`,`proptech`.`prop_price`.`purchase_prop_id` AS `purchase_prop_id` from `proptech`.`prop_price` where `proptech`.`prop_price`.`id` in (select max(`proptech`.`prop_price`.`id`) from `proptech`.`prop_price` group by `proptech`.`prop_price`.`purchase_prop_id`)) `a` on(`proptech`.`purchase_prop`.`id` = `a`.`purchase_prop_id`))) `purchase` on(`proptech`.`associate`.`id` = `purchase`.`associate_id`));
