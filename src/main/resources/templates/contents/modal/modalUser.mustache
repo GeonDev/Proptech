@@ -100,17 +100,19 @@
 
             <h3> 최근 로그인 시간</h3>
 
-            <div class="row">
+            <div class="row" style="overflow-x: hidden; height:150px;">
                 <table class="table table-borderless">
                     <thead>
                         <th>로그인 일자 </th>
-                        <th>상태 </th>
+                        <th>로그인 IP </th>
+                        <th>로그인 성공 여부 </th>
                     </thead>
 
                     <tbody>
                         {{#historyList}}
                         <tr>
                             <td>{{loginDate}} </td>
+                            <td>{{ip}} </td>
                             <td>{{isLogin}} </td>
                         </tr>
                         {{/historyList}}
@@ -118,26 +120,5 @@
                 </table>
             </div>
             <hr>
-
-            <h3> 승인된 로그인 IP</h3>
-
-            <div class="row">
-                <table class="table table-borderless">
-                    <thead>
-                    <th>로그인 IP </th>
-                    <th>상태 </th>
-                    </thead>
-
-                <tbody>
-                    {{#ipList}}
-                    <tr>
-                        <td>{{ip}} </td>
-                        <td>{{isActive}} </td>
-                    </tr>
-                    {{/ipList}}
-                </tbody>
-                </table>
-            </div>
-
         </div>
 
