@@ -1,21 +1,16 @@
 package com.apt.proptech.service;
 
 import com.apt.proptech.config.TableColumnConfig;
-import com.apt.proptech.domain.Account;
 import com.apt.proptech.domain.LoginHistory;
-import com.apt.proptech.domain.LoginIp;
 import com.apt.proptech.domain.dto.*;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.enums.UserRole;
 import com.apt.proptech.domain.enums.UserState;
 import com.apt.proptech.repository.AccountRepository;
 import com.apt.proptech.repository.LoginHistoryRepository;
-import com.apt.proptech.repository.LoginIpRepository;
 import com.apt.proptech.repository.UserRepository;
 import com.apt.proptech.repository.support.UserRepositorySupport;
-import com.apt.proptech.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService extends BaseService<User>{
@@ -36,9 +30,6 @@ public class UserService extends BaseService<User>{
 
     @Autowired
     private LoginHistoryRepository loginHistoryRepository;
-
-    @Autowired
-    private LoginIpRepository loginIpRepository;
 
     @Autowired
     private AccountRepository accountRepository;

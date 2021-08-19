@@ -56,13 +56,11 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 		// Attribute를 파싱해서 공통 객체로 묶는다. 관리가 편함.
 		OAuth2UserInfo oAuth2UserInfo = null;
 		if (userRequest.getClientRegistration().getRegistrationId().equals("google")) {
-
 			oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
 		} else if (userRequest.getClientRegistration().getRegistrationId().equals("facebook")) {
-
-			oAuth2UserInfo = new FaceBookUserInfo(oAuth2User.getAttributes());
+			// 키가 연결되어 있지 않은 상태 -> 로그인 불가
+			//oAuth2UserInfo = new FaceBookUserInfo(oAuth2User.getAttributes());
 		} else if (userRequest.getClientRegistration().getRegistrationId().equals("naver")){
-
 			oAuth2UserInfo = new NaverUserInfo((Map)oAuth2User.getAttributes().get("response"));
 		} else {
 			LOGGER.info(" 지원하지 않는 소셜 로그인 입니다.");
@@ -70,7 +68,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
 		User user  = userRepository.findByProviderAndProviderId(oAuth2UserInfo.getProvider(), oAuth2UserInfo.getProviderId());
 
-		if (user==null) {
+		if (user == null) {
 			// user의 패스워드가 null이기 때문에 OAuth 유저는 일반적인 로그인을 할 수 없음.
 			user = User.builder()
 					.username(oAuth2UserInfo.getProvider() + "_" + oAuth2UserInfo.getProviderId())

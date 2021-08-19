@@ -34,7 +34,7 @@ public class User extends BaseTimeEntity{
     private String profileImg;
     private String phoneNumber;
 
-    //로그인 실패 횟수 5회 초과시 잠금
+    //로그인 실패 횟수 10회 초과시 잠금
     private Integer failLoginCount;
 
     //OAuth를 위한 필드
@@ -63,9 +63,6 @@ public class User extends BaseTimeEntity{
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<LoginHistory> loginHistoryList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<LoginIp> loginIpList = new ArrayList<>();
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private List<OwnedHistory> ownedHistoryList = new ArrayList<>();

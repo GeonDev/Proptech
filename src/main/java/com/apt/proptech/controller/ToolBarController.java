@@ -2,9 +2,9 @@ package com.apt.proptech.controller;
 
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.dto.UserDto;
+import com.apt.proptech.domain.enums.IpChecked;
 import com.apt.proptech.service.AccountService;
 import com.apt.proptech.service.LoginHistoryService;
-import com.apt.proptech.service.LoginIpService;
 import com.apt.proptech.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,9 +29,6 @@ public class ToolBarController {
     private AccountService accountService;
 
     @Autowired
-    private LoginIpService loginIpService;
-
-    @Autowired
     private LoginHistoryService loginHistoryService;
 
 
@@ -49,7 +46,10 @@ public class ToolBarController {
         }
 
         model.addAttribute("accountList" , accountService.getAccountInfo(user) );
-        model.addAttribute("ipList" , loginIpService.getLoginIpInfo(user) );
+
+        //금지된 IP를 제외한 전체 출력
+        model.addAttribute("ipList" , loginHistoryService.getLoginHistoryExceptIpChecked(user, IpChecked.BANNED ) );
+
         model.addAttribute("historyList" , loginHistoryService.getLoginHistoryInfo(user) );
 
         model.addAttribute("contentName","Profile");

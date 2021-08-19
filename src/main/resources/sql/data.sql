@@ -21,8 +21,8 @@ DELETE FROM `alert`;
 DELETE FROM `associate`;
 /*!40000 ALTER TABLE `associate` DISABLE KEYS */;
 INSERT INTO `associate` (`id`, `name`, `associate_round`, `operate_fee_ratio`, `end_expect_date`, `end_real_date`, `city`, `state`, `address`, `reg_date`, `modi_date`, `logo`) VALUES
-	(1, '강남 조합', 'CREATE', 0.2, '2025-08-03', '2027-10-05', '서울', '강남구', '도산대로', '2021-06-28', NULL, NULL),
-	(3, '테스트 조합', 'CREATE', 0.2, '2025-08-03', '2026-06-28', '경기도', '김포', '하성면 석탄리', '2021-06-28', NULL, NULL);
+	(1, '강남 조합', 'CREATE', 0.2, '2025-08-03', '2027-10-05', '서울', '강남구', '도산대로', '2021-06-28', NULL, '/img/logo_img.jpg'),
+	(3, '테스트 조합', 'CREATE', 0.2, '2025-08-03', '2026-06-28', '경기도', '김포', '하성면 석탄리', '2021-06-28', NULL, '/img/logo_img.jpg');
 /*!40000 ALTER TABLE `associate` ENABLE KEYS */;
 
 DELETE FROM `claim_prop`;
@@ -41,31 +41,62 @@ INSERT INTO `company` (`id`, `ceo_name`, `biz_reg_num`, `address`, `zip_code`, `
 	(1, '김CC', '12345631', '', '034342', '2021-06-03');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 
+DELETE FROM `file_info`;
+/*!40000 ALTER TABLE `file_info` DISABLE KEYS */;
+INSERT INTO `file_info` (`id`, `orig_filename`, `filename`, `filePath`) VALUES
+	(1, 'profile_img.jpg', 'profile_img.jpg', '/img/profile_img.jpg'),
+	(2, 'logo_img.jpg', 'logo_img.jpg', '/img/logo_img.jpg');
+/*!40000 ALTER TABLE `file_info` ENABLE KEYS */;
+
 DELETE FROM `located_pos`;
 /*!40000 ALTER TABLE `located_pos` DISABLE KEYS */;
 /*!40000 ALTER TABLE `located_pos` ENABLE KEYS */;
 
 DELETE FROM `login_history`;
 /*!40000 ALTER TABLE `login_history` DISABLE KEYS */;
-INSERT INTO `login_history` (`id`, `user_id`, `login_date`, `is_login`) VALUES
-	(1, 1, '2021-06-25', 1),
-	(2, 1, '2021-06-25', 1),
-	(3, 1, '2021-06-25', 1),
-	(4, 1, '2021-06-25', 1),
-	(5, 1, '2021-06-25', 1),
-	(6, 1, '2021-06-25', 1),
-	(7, 1, '2021-06-25', 1),
-	(8, 1, '2021-06-25', 1),
-	(9, 1, '2021-06-25', 1);
-
+INSERT INTO `login_history` (`id`, `user_id`, `login_date`, `is_login`, `ip`, `Ip_checked`, `reg_date`, `modi_date`) VALUES
+	(1, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(2, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(3, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(4, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(5, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(6, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(7, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(8, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(9, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(10, 1, '2021-06-25', 1, '0.0.0.0.2', 'CHECKED', NULL, NULL),
+	(11, 1, '2021-06-25', 1, '0.0.0.0.2', 'CHECKED', NULL, NULL),
+	(12, 1, '2021-06-25', 1, '0.0.0.0.2', 'CHECKED', NULL, NULL),
+	(13, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(14, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(15, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(16, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(17, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(18, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(19, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(20, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(21, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(22, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(23, 1, '2021-06-25', 0, '0.0.0.0.3', 'BANNED', NULL, NULL),
+	(24, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(25, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(26, 1, '2021-06-25', 1, '0.0.0.0.1', 'UNCHECKED', NULL, NULL),
+	(27, 1, '2021-06-25', 1, '0.0.0.0.4', 'UNCHECKED', NULL, NULL),
+	(28, 1, '2021-06-25', 1, '0.0.0.0.5', 'UNCHECKED', NULL, NULL),
+	(29, 1, '2021-06-25', 1, '0.0.0.0.4', 'UNCHECKED', NULL, NULL),
+	(30, 1, '2021-06-25', 1, '0.0.0.0.4', 'UNCHECKED', NULL, NULL),
+	(31, 1, '2021-06-25', 1, '0.0.0.0.4', 'UNCHECKED', NULL, NULL),
+	(32, 1, '2021-06-28', 1, '0.0.0.0.4', 'UNCHECKED', NULL, NULL),
+	(33, 1, '2021-06-28', 1, '0.0.0.0.4', 'UNCHECKED', NULL, NULL),
+	(34, 1, '2021-06-28', 1, '0.0.0.0.5', 'UNCHECKED', NULL, NULL),
+	(35, 1, '2021-06-28', 1, '0.0.0.0.5', 'UNCHECKED', NULL, NULL),
+	(36, 1, '2021-06-28', 1, '0.0.0.0.5', 'UNCHECKED', NULL, NULL),
+	(37, 1, '2021-06-28', 1, '0.0.0.0.5', 'UNCHECKED', NULL, NULL),
+	(38, 1, '2021-06-28', 1, '0.0.0.0.5', 'UNCHECKED', NULL, NULL),
+	(39, 1, '2021-06-28', 1, '0.0.0.0.5', 'UNCHECKED', NULL, NULL),
+	(40, 1, '2021-06-28', 1, '0.0.0.0.5', 'UNCHECKED', NULL, NULL),
+	(393, 1, '2021-08-19', 1, '0:0:0:0:0:0:0:1', 'UNCHECKED', NULL, NULL);
 /*!40000 ALTER TABLE `login_history` ENABLE KEYS */;
-
-DELETE FROM `login_ip`;
-/*!40000 ALTER TABLE `login_ip` DISABLE KEYS */;
-INSERT INTO `login_ip` (`id`, `user_id`, `ip`, `is_active`, `reg_date`, `modi_date`) VALUES
-	(1, 1, '0:0:0:0:0:0:0:1', 1, '2021-08-02', '2021-08-02'),
-	(2, 1, '127.0.0.1', 1, '2021-08-02', '2021-08-02');
-/*!40000 ALTER TABLE `login_ip` ENABLE KEYS */;
 
 DELETE FROM `message`;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
@@ -83,26 +114,26 @@ INSERT INTO `prop_price` (`id`, `price`, `reg_date`, `modi_date`, `reg_ip`, `des
 	(1, 100, '2021-02-16', NULL, '127.0.0.1', '최초 거래값', 3),
 	(2, 300, '2021-05-16', '2021-05-16', '127.0.0.1', '제시가 증가', 3),
 	(3, 500, '2021-07-16', '2021-07-16', '127.0.0.1', '제시가 증가', 3),
-	(4, 1200, '2021-07-16', '2021-07-16', '127.0.0.1', '제시가 증가', 1),
-	(5, 2500, '2021-07-16', '2021-07-16', '127.0.0.1', '제시가 증가', 2),
-	(6, 800, '2021-07-16', '2021-07-16', '127.0.0.1', '제시가 증가', 4);
+	(4, 1200, '2021-07-16', '2021-07-16', '127.0.0.1', '최초 거래값', 1),
+	(5, 2500, '2021-07-16', '2021-07-16', '127.0.0.1', '최초 거래값', 2),
+	(6, 800, '2021-07-16', '2021-07-16', '127.0.0.1', '최초 거래값', 4);
 /*!40000 ALTER TABLE `prop_price` ENABLE KEYS */;
 
 DELETE FROM `purchase_prop`;
 /*!40000 ALTER TABLE `purchase_prop` DISABLE KEYS */;
-INSERT INTO `purchase_prop` (`id`, `associate_id`, `city`, `state`, `zip_code`, `address`, `address_detail`, `purchase_date`, `prop_type`, `reg_date`, `modi_date`) VALUES
-	(1, 1, '서울', '강남구', NULL, '일원동', NULL, NULL, 'REQUIRED', '2021-02-18', NULL),
-	(2, 1, '서울', '강남구', NULL, '반포동', NULL, NULL, 'REQUIRED', '2021-02-19', NULL),
-	(3, 1, '서울', '강남구', NULL, '신사동', NULL, '2021-04-16', 'PURCHASED', '2021-02-19', NULL),
-	(4, 1, '서울', '강남구', NULL, '대치동', NULL, NULL, 'REQUIRED', '2021-03-19', NULL);
+INSERT INTO `purchase_prop` (`id`, `associate_id`, `land_num`, `city`, `state`, `address`, `address_detail`, `zip_code`, `purchase_date`, `prop_type`, `reg_date`, `modi_date`) VALUES
+	(1, 1, NULL, '서울', '강남구', '일원동', NULL, NULL, NULL, 'REQUIRED', '2021-02-18', NULL),
+	(2, 1, NULL, '서울', '강남구', '반포동', NULL, NULL, NULL, 'REQUIRED', '2021-02-19', NULL),
+	(3, 1, NULL, '서울', '강남구', '신사동', NULL, NULL, '2021-04-16', 'PURCHASED', '2021-02-19', NULL),
+	(4, 1, NULL, '서울', '강남구', '대치동', NULL, NULL, NULL, 'REQUIRED', '2021-03-19', NULL);
 /*!40000 ALTER TABLE `purchase_prop` ENABLE KEYS */;
 
 DELETE FROM `receipt`;
 /*!40000 ALTER TABLE `receipt` DISABLE KEYS */;
-INSERT INTO `receipt` (`id`, `claim_id`, `payment`, `reg_date`, `modi_date`, `buyer_ip`, `user_id`) VALUES
-	(1, 1, 1000, '2021-05-06', NULL, '127.0.0.1', 5),
-	(2, 1, 2000, '2021-05-16', NULL, '127.0.0.1', 5),
-	(3, 2, 1500, '2021-07-16', NULL, '127.0.0.1', 5);
+INSERT INTO `receipt` (`id`, `claim_id`, `payment`, `buyer_ip`, `user_id`, `reg_date`, `modi_date`) VALUES
+	(1, 1, 1000, '127.0.0.1', 5, '2021-05-06', NULL),
+	(2, 1, 2000, '127.0.0.1', 5, '2021-05-16', NULL),
+	(3, 2, 1500, '127.0.0.1', 5, '2021-07-16', NULL);
 /*!40000 ALTER TABLE `receipt` ENABLE KEYS */;
 
 DELETE FROM `sale_prop`;
@@ -125,29 +156,23 @@ INSERT INTO `staff` (`id`, `staff_role`, `reg_date`, `modi_date`, `associate_id`
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `company_id`, `password`, `name`, `email`, `profile_Img`, `user_role`, `user_state`, `retired_date`, `reg_date`, `modi_date`, `modi_password_date`, `phone_number`, `provider`, `provider_id`, `fail_login_count`) VALUES
-	(1, 'Admin', NULL, '$2a$10$Izrc7nyTyH38JVE/uD37qui1bqy7/gr22UpgSHqi/W4eQKVdPV41q', '관리자', NULL, '/img/profile_img.jpg', 'ROLE_ADMIN', 'AUTH', NULL, '2021-05-03', '2021-08-09', NULL, '02-3554-0901', NULL, NULL, 0),
+	(1, 'Admin', NULL, '$2a$10$Izrc7nyTyH38JVE/uD37qui1bqy7/gr22UpgSHqi/W4eQKVdPV41q', '관리자', NULL, '/img/profile_img.jpg', 'ROLE_ADMIN', 'AUTH', NULL, '2021-05-03', '2021-08-17', NULL, '02-3554-0901', NULL, NULL, 0),
 	(2, 'Manager', NULL, '$2a$10$bGruS8.UvG9FYOFV6zfS3OoKlOEto/YvNIqu6N3NKTx5rkTJie1sO', '운영자', NULL, '/img/profile_img.jpg', 'ROLE_MANAGER', 'AUTH', NULL, '2021-05-03', NULL, NULL, '02-3456-2034', NULL, NULL, 0),
 	(3, 'Partner', 1, '$2a$10$nKqCj682/pL3B1QlYVMeluSxr8xB/JySi6aO1SU8IRfsEgFIlrnO6', '파트너사', NULL, '/img/profile_img.jpg', 'ROLE_PARTNER', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3456-1245', NULL, NULL, 0),
 	(4, 'Staff01', NULL, '$2a$10$TypW6qPn2o7441NNoSS85e5NauidkmxYzKpOPyora.8i6DMnAgDIm', '스탭1', NULL, '/img/profile_img.jpg', 'ROLE_STAFF', 'AUTH', NULL, '2021-06-03', NULL, NULL, '010-3434-3941', NULL, NULL, 0),
-	(5, 'Staff02', NULL, '$2a$10$IVXqd80UCAtoWNiQWyqPm.A.Aoeai7oRD2KFJPCPa11Kec163Pjsu', '스탭2', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'AUTH', NULL, '2021-06-03', NULL, NULL, '', NULL, NULL, 0),
-	(6, 'User01', NULL, '$2a$10$si4DIExdyVrzHFJfwU/G7e9hW/DhvnsInThaKOK0vc/PowEVt1Wtu', '김OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, '', NULL, NULL, 0),
-	(7, 'User02', NULL, '$2a$10$zTt24aA0Gtx7xWV97Ffe4Of0w8D5baZzUvGLHE5mT8MRz64j0H7YW', '이OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, ' ', NULL, NULL, 0),
+	(5, 'Staff02', NULL, '$2a$10$IVXqd80UCAtoWNiQWyqPm.A.Aoeai7oRD2KFJPCPa11Kec163Pjsu', '스탭2', NULL, '/img/profile_img.jpg', 'ROLE_STAFF', 'AUTH', NULL, '2021-06-03', NULL, NULL, '', NULL, NULL, 0),
+	(6, 'User01', NULL, '$2a$10$si4DIExdyVrzHFJfwU/G7e9hW/DhvnsInThaKOK0vc/PowEVt1Wtu', '김OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'AUTH', NULL, '2021-06-03', NULL, NULL, '', NULL, NULL, 0),
+	(7, 'User02', NULL, '$2a$10$zTt24aA0Gtx7xWV97Ffe4Of0w8D5baZzUvGLHE5mT8MRz64j0H7YW', '이OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'AUTH', NULL, '2021-06-03', NULL, NULL, ' ', NULL, NULL, 0),
 	(8, 'User03', NULL, '$2a$10$IdzE20lwxNazrf8WrNMOdeIRyQMuOVxHly9v1DBtVwIon.B7JEid6', '박OO', NULL, '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-03', NULL, NULL, ' ', NULL, NULL, 0),
 	(10, 'User04', NULL, '$2a$10$OjlOJpRtwbabKKuJcVosouOuz67trdo4OsGJymP1MS0.BKLQM/jHS', '손', '111@111.ccc', '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-06-10', '2021-06-10', NULL, ' ', NULL, NULL, 0),
 	(11, 'Admin1', NULL, '$2a$10$Izrc7nyTyH38JVE/uD37qui1bqy7/gr22UpgSHqi/W4eQKVdPV41q', '관리자', NULL, '/img/profile_img.jpg', 'ROLE_ADMIN', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3554-0901', NULL, NULL, 0),
 	(12, 'Admin2', NULL, '$2a$10$Izrc7nyTyH38JVE/uD37qui1bqy7/gr22UpgSHqi/W4eQKVdPV41q', '관리자', NULL, '/img/profile_img.jpg', 'ROLE_ADMIN', 'AUTH', NULL, '2021-06-03', NULL, NULL, '02-3554-0901', NULL, NULL, 0),
-	(19, 'qwer', NULL, '$2a$10$/1OvaGio1XHWC6nUReC34e699nl.29wQ9pOT2U589ViZilBr9Ku2W', '야무치', 'kafei@naver.com', '/img/profile_img.jpg', 'ROLE_USER', 'UN_AUTH', NULL, '2021-07-09', '2021-07-09', NULL, NULL, NULL, NULL, 0);
+	(19, 'qwer', NULL, '$2a$10$/1OvaGio1XHWC6nUReC34e699nl.29wQ9pOT2U589ViZilBr9Ku2W', '야무치', 'kafei@naver.com', '/img/profile_img.jpg', 'ROLE_USER', 'AUTH', NULL, '2021-07-09', '2021-07-09', NULL, NULL, NULL, NULL, 0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 DELETE FROM `web_menu`;
 /*!40000 ALTER TABLE `web_menu` DISABLE KEYS */;
 /*!40000 ALTER TABLE `web_menu` ENABLE KEYS */;
-
-DELETE FROM `file_info`;
-/*!40000 ALTER TABLE `file_info` DISABLE KEYS */;
-INSERT INTO `file_info` (`id`, `orig_filename`, `filename`, `filePath`) VALUES
-	(1, 'profile_img.jpg', 'profile_img.jpg', '/img/profile_img.jpg'),
-	(2, 'logo_img.jpg', 'logo_img.jpg', '/img/logo_img.jpg');
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

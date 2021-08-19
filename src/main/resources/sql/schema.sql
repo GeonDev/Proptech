@@ -73,6 +73,15 @@ CREATE TABLE IF NOT EXISTS `company` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `file_info`;
+CREATE TABLE IF NOT EXISTS `file_info` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `orig_filename` varchar(50) DEFAULT NULL COMMENT '파일명(원본)',
+  `filename` varchar(50) DEFAULT NULL COMMENT '파일명(구분자 추가)',
+  `filePath` varchar(50) DEFAULT NULL COMMENT '파일 위치',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `located_pos`;
 CREATE TABLE IF NOT EXISTS `located_pos` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -90,19 +99,12 @@ CREATE TABLE IF NOT EXISTS `login_history` (
   `user_id` bigint(20) DEFAULT NULL COMMENT '유저 ID',
   `login_date` date DEFAULT NULL COMMENT '로그인 일자',
   `is_login` tinyint(4) DEFAULT NULL COMMENT '로그인 성공여부',
+  `ip` varchar(50) DEFAULT '0.0.0.0.1' COMMENT '접속 IP',
+  `Ip_checked` varchar(50) DEFAULT 'UNCHECKED' COMMENT 'IP확인 여부',
+  `reg_date` date DEFAULT NULL,
+  `modi_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=388 DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `login_ip`;
-CREATE TABLE IF NOT EXISTS `login_ip` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL COMMENT '로그인 ID',
-  `ip` varchar(50) DEFAULT NULL COMMENT '접속 IP',
-  `is_active` tinyint(4) DEFAULT NULL COMMENT 'IP 인증 여부',
-  `reg_date` date DEFAULT NULL COMMENT '등록일',
-  `modi_date` date DEFAULT NULL COMMENT '수정일',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=394 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
@@ -254,15 +256,6 @@ CREATE TABLE IF NOT EXISTS `web_menu` (
   `modi_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `file_info`;
-CREATE TABLE IF NOT EXISTS `file_info` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `orig_filename` varchar(50) DEFAULT NULL COMMENT '파일명(원본)',
-  `filename` varchar(50) DEFAULT NULL COMMENT '파일명(구분자 추가)',
-  `filePath` varchar(50) DEFAULT NULL COMMENT '파일 위치',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 DROP VIEW IF EXISTS `v_associate_summary`;
 DROP TABLE IF EXISTS `v_associate_summary`;
