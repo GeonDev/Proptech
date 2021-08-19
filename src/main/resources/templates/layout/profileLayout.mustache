@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-6 text-center" style="float: none; margin: 0 auto;">
                 <hr>
-                <h3> 사용자 정보</h3>
+                <h3>사용자 정보</h3>
                 <form>
                     <table class="table table-borderless">
                         <tbody>
@@ -73,13 +73,13 @@
     <div class="row">
         <div class="col-md-6 text-center" style="float: none; margin: 0 auto;">
             <hr>
-            <h3> 등록 계좌 정보</h3>
+            <h3>등록 계좌 정보</h3>
 
             <table class="table table-borderless">
                 <thead>
                 <th>은행명 </th>
                 <th>계좌번호 </th>
-                <th>상태 </th>
+                <th>상 태 </th>
                 <th>수정/삭제 </th>
                 </thead>
 
@@ -106,12 +106,14 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6 text-center" style="float: none; margin: 0 auto;">
+        <div class="col-md-6 text-center" style="float: none; margin: 0 auto; ">
             <hr>
-            <h3> 최근 로그인 시간</h3>
-            <table class="table table-borderless">
+            <h3>최근 로그인 시간</h3>
+            <div style="overflow-x: hidden; height:300px;">
+                <table class="table table-borderless">
                 <thead>
                 <th>로그인 일자 </th>
+                <th>로그인 IP </th>
                 <th>로그인 성공 여부 </th>
                 <th>기록 삭제 </th>
                 </thead>
@@ -120,6 +122,7 @@
                 {{#historyList}}
                     <tr>
                         <td>{{loginDate}} </td>
+                        <td>{{ip}} </td>
                         <td>{{isLogin}} </td>
                         <td>
                             <button  class="btn btn-light" onclick="deleteLoginHistory({{id}})">
@@ -130,6 +133,7 @@
                 {{/historyList}}
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 
