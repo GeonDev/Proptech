@@ -1,12 +1,10 @@
 package com.apt.proptech.hendler;
 
 import com.apt.proptech.domain.LoginHistory;
-import com.apt.proptech.domain.LoginIp;
 import com.apt.proptech.domain.User;
+import com.apt.proptech.domain.enums.IpChecked;
 import com.apt.proptech.repository.LoginHistoryRepository;
-import com.apt.proptech.repository.LoginIpRepository;
 import com.apt.proptech.repository.UserRepository;
-import com.apt.proptech.service.UserService;
 import com.apt.proptech.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -25,9 +23,6 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
     @Autowired
     private UserRepository userRepository;
-    
-    @Autowired
-    private LoginIpRepository loginIpRepository;
 
     @Autowired
     private LoginHistoryRepository loginHistoryRepository;
@@ -48,28 +43,26 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
         userRepository.save(user);
 
+        //현재 IP를 받아온다.
+        String ip = CommonUtil.getUserIp();
+
         //로그인 히스토리 기록
         LoginHistory loginHistory = LoginHistory.builder()
                 .user(user)
                 .isLogin(true)
+                .ipChecked(IpChecked.UNCHECKED)
+                .ip(ip)
                 .loginDate(LocalDateTime.now())
                 .build();
 
-        loginHistoryRepository.save(loginHistory);
-        
-        //현재 IP를 받아온다.
-        String ip = CommonUtil.getUserIp();
+        //특정 유저 IP의 가장 최신 상태를 가지고 온다.
+        LoginHistory temp = loginHistoryRepository.findTopByUserAndIpOrderByIdDesc(user, ip);
 
-        LoginIp loginIp = loginIpRepository.findByUserAndIp(user, ip);
-        if(loginIp == null ){
-            LoginIp newIp = LoginIp.builder()
-                    .user(user)
-                    .ip(ip)
-                    .isActive(true)
-                    .build();
-
-            loginIpRepository.save(newIp);
+        if(temp != null){
+            loginHistory.setIpChecked(temp.getIpChecked() );
         }
+
+        loginHistoryRepository.save(loginHistory);
 
 
         super.onAuthenticationSuccess(httpServletRequest, httpServletResponse, authentication);

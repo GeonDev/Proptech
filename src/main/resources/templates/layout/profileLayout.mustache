@@ -11,60 +11,62 @@
         <div class="col-md-6 text-center" style="float: none; margin: 0 auto;">
                 <hr>
                 <h3> 사용자 정보</h3>
-                <table class="table">
-
-                    <tbody>
-                    <tr>
-                        <th scope="row"><b>ID : </b></th>
-                        <td> {{info.userName}} </td>
-                    </tr>
-
-                    <tr>
-                        <th scope="row"><b>이름 : </b></th>
-                        <td> {{info.ceoName}} </td>
-                    </tr>
-
-                    {{#isCompany}}
+                <form>
+                    <table class="table table-borderless">
+                        <tbody>
                         <tr>
-                            <th scope="row"><b>대표 명 : </b></th>
-                            <td> {{info.name}} </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><b>사업자번호 : </b></th>
-                            <td> {{info.bizNum}} </td>
+                            <th scope="row"><b>ID : </b></th>
+                            <td> {{info.userName}} </td>
                         </tr>
 
-                    {{/isCompany}}
+                        <tr>
+                            <th scope="row"><b>이름 : </b></th>
+                            <td> {{info.ceoName}} </td>
+                        </tr>
 
-                    <tr>
-                        <th scope="row"><b>이메일 : </b></th>
-                        <td> {{info.email}} </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><b>전화번호 : </b></th>
-                        <td> {{info.phoneNumber}} </td>
-                    </tr>
+                        {{#isCompany}}
+                            <tr>
+                                <th scope="row"><b>대표 명 : </b></th>
+                                <td> {{info.name}} </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><b>사업자번호 : </b></th>
+                                <td> {{info.bizNum}} </td>
+                            </tr>
 
-                    <tr>
-                        <th scope="row"><b>등록일 : </b></th>
-                        <td> {{info.registerDate}} </td>
-                    </tr>
+                        {{/isCompany}}
 
-                    <tr>
-                        <th scope="row"><b>권한 : </b></th>
-                        <td> {{info.role}} </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><b>상태 : </b></th>
-                        <td> {{info.state}} </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><b>탈퇴일 : </b></th>
-                        <td> {{info.retiredDate}} </td>
-                    </tr>
+                        <tr>
+                            <th scope="row"><b>이메일 : </b></th>
+                            <td> {{info.email}} </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><b>전화번호 : </b></th>
+                            <td> {{info.phoneNumber}} </td>
+                        </tr>
 
-                    </tbody>
-                </table>
+                        <tr>
+                            <th scope="row"><b>등록일 : </b></th>
+                            <td> {{info.registerDate}} </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><b>권한 : </b></th>
+                            <td> {{info.role}} </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><b>상태 : </b></th>
+                            <td> {{info.state}} </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><b>탈퇴일 : </b></th>
+                            <td> {{info.retiredDate}} </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </form>
+
             </div>
     </div>
 
@@ -73,11 +75,12 @@
             <hr>
             <h3> 등록 계좌 정보</h3>
 
-            <table class="table">
+            <table class="table table-borderless">
                 <thead>
                 <th>은행명 </th>
                 <th>계좌번호 </th>
                 <th>상태 </th>
+                <th>수정/삭제 </th>
                 </thead>
 
                 <tbody>
@@ -86,6 +89,14 @@
                         <td>{{bankName}} </td>
                         <td>{{account}} </td>
                         <td>{{accountState}} </td>
+                        <td>
+                            <button class="btn btn-light" onclick="updateAccountInfo({{id}})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button  class="btn btn-light" onclick="deleteAccountInfo({{id}})">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </td>
                     </tr>
                 {{/accountList}}
                 </tbody>
@@ -98,10 +109,11 @@
         <div class="col-md-6 text-center" style="float: none; margin: 0 auto;">
             <hr>
             <h3> 최근 로그인 시간</h3>
-            <table class="table">
+            <table class="table table-borderless">
                 <thead>
                 <th>로그인 일자 </th>
-                <th>상태 </th>
+                <th>로그인 성공 여부 </th>
+                <th>기록 삭제 </th>
                 </thead>
 
                 <tbody>
@@ -109,6 +121,11 @@
                     <tr>
                         <td>{{loginDate}} </td>
                         <td>{{isLogin}} </td>
+                        <td>
+                            <button  class="btn btn-light" onclick="deleteLoginHistory({{id}})">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </td>
                     </tr>
                 {{/historyList}}
                 </tbody>
@@ -119,19 +136,21 @@
     <div class="row">
         <div class="col-md-6 text-center" style="float: none; margin: 0 auto;">
             <hr>
-            <h3> 로그인 IP</h3>
+            <h3>로그인 IP 리스트</h3>
 
-            <table class="table">
+            <table class="table table-borderless">
                 <thead>
                 <th>로그인 IP </th>
-                <th>상태 </th>
+                <th>최근 사용 일 </th>
+                <th>IP 승인 </th>
                 </thead>
 
                 <tbody>
                 {{#ipList}}
                     <tr>
                         <td>{{ip}} </td>
-                        <td>{{isActive}} </td>
+                        <td>{{loginDate}}  </td>
+                        <td>{{state}} </td>
                     </tr>
                 {{/ipList}}
                 </tbody>

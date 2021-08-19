@@ -5,6 +5,7 @@ import com.apt.proptech.domain.LoginHistory;
 import com.apt.proptech.domain.User;
 import com.apt.proptech.domain.dto.*;
 
+import com.apt.proptech.domain.enums.IpChecked;
 import com.apt.proptech.service.*;
 import com.apt.proptech.util.ExcelDownloader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,6 @@ public class TableController {
 
     @Autowired
     private LoginHistoryService loginHistoryService;
-
-    @Autowired
-    private LoginIpService loginIpService;
 
     @Autowired
     private AccountService accountService;
@@ -200,7 +198,8 @@ public class TableController {
         }
 
         model.addAttribute("accountList" , accountService.getAccountInfo(user) );
-        model.addAttribute("ipList" , loginIpService.getLoginIpInfo(user) );
+        //금지된 IP를 제외한 전체 출력
+        model.addAttribute("ipList" , loginHistoryService.getLoginHistoryExceptIpChecked(user, IpChecked.BANNED ) );
         model.addAttribute("historyList" , loginHistoryService.getLoginHistoryInfo(user) );
 
         //모달 페이지 전체를 보낸다.

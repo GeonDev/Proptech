@@ -1,14 +1,19 @@
 package com.apt.proptech.domain.oauth;
 
+import com.apt.proptech.domain.LoginHistory;
 import com.apt.proptech.domain.User;
+import com.apt.proptech.domain.enums.IpChecked;
 import com.apt.proptech.domain.enums.UserState;
+import com.apt.proptech.util.CommonUtil;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 
@@ -62,8 +67,20 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 	// 계정이 활성화(사용가능) 상태 인지 반환
 	@Override
 	public boolean isEnabled() {
-		if(user.getFailLoginCount() >= 5){
+
+		if(user.getFailLoginCount() >= 10){
 			return  false;
+		}
+
+		//현재 접속 IP가 금지 IP라면 로그인 불가 처리
+		String ip = CommonUtil.getUserIp();
+
+		List<LoginHistory> list = user.getLoginHistoryList();
+
+		for(LoginHistory history : list ){
+			if(history.getIpChecked() == IpChecked.BANNED && history.getIp().equals(ip)){
+				return  false;
+			}
 		}
 
 		return true;

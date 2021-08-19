@@ -2,6 +2,7 @@ package com.apt.proptech.hendler;
 
 import com.apt.proptech.domain.LoginHistory;
 import com.apt.proptech.domain.User;
+import com.apt.proptech.domain.enums.IpChecked;
 import com.apt.proptech.repository.LoginHistoryRepository;
 import com.apt.proptech.repository.UserRepository;
 import com.apt.proptech.service.UserService;
@@ -37,12 +38,24 @@ public class CustomFailureHandler extends SimpleUrlAuthenticationFailureHandler 
             user.setFailLoginCount(user.getFailLoginCount()+1 );
             userRepository.save(user);
 
+            //현재 IP를 받아온다.
+            String ip = CommonUtil.getUserIp();
+
             //로그인 히스토리 기록
             LoginHistory loginHistory = LoginHistory.builder()
                     .user(user)
                     .isLogin(false)
+                    .ipChecked(IpChecked.UNCHECKED)
+                    .ip(ip)
                     .loginDate(LocalDateTime.now())
                     .build();
+
+            //특정 유저 IP의 가장 최신 상태를 가지고 온다.
+            LoginHistory temp = loginHistoryRepository.findTopByUserAndIpOrderByIdDesc(user, ip);
+
+            if(temp != null){
+                loginHistory.setIpChecked(temp.getIpChecked() );
+            }
 
             loginHistoryRepository.save(loginHistory);
 

@@ -8,6 +8,8 @@ import lombok.Getter;
 @Getter
 public class AccountDto {
 
+    private Long id;
+
     private String account;
 
     private String bankName;
@@ -17,6 +19,8 @@ public class AccountDto {
     private String useDate;
 
     public AccountDto(Account account ){
+        this.id = account.getId();
+
         this.account = account.getAccount();
 
         this.bankName = account.getBankName();

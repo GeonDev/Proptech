@@ -75,7 +75,7 @@ class UserRepositoryTest {
 
         System.out.println("---------------------------------------------");
 
-        List<LoginHistory> list =  loginHistoryRepository.findTop10ByUserOrderByIdDesc(user);
+        List<LoginHistory> list =  loginHistoryRepository.findByUserOrderByIdDesc(user);
         list.stream().forEach(
                 loginHistory -> {
                     System.out.println("repo -> "+ loginHistory.getId() +" " + loginHistory.getLoginDate());
