@@ -30,7 +30,7 @@ public class PurchaseProp extends BaseTimeEntity{
     private LocalDateTime purchaseDate;
 
     @Enumerated(EnumType.STRING)
-    private PropType propType;
+    private PropType propType = PropType.REQUIRED;
 
     @ManyToOne
     @JoinColumn(name = "associate_id")

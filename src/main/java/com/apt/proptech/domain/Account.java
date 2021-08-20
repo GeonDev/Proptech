@@ -30,7 +30,7 @@ public class Account extends BaseTimeEntity{
     private User user;
 
     @Enumerated(EnumType.STRING)
-    private AccountState accountState;
+    private AccountState accountState = AccountState.ACTIVE;
 
     private LocalDateTime useDate;
 

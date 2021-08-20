@@ -27,7 +27,7 @@ public class LoginHistory extends BaseTimeEntity{
 
     //IP 상태 체크
     @Enumerated(EnumType.STRING)
-    private IpChecked ipChecked;
+    private IpChecked ipChecked = IpChecked.UNCHECKED;
 
     //로그인 성공 여부
     private Boolean isLogin;

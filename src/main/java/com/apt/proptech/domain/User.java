@@ -43,10 +43,10 @@ public class User extends BaseTimeEntity{
 
 
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private UserRole userRole = UserRole.ROLE_USER;
 
     @Enumerated(EnumType.STRING)
-    private UserState userState;
+    private UserState userState = UserState.UN_AUTH;
 
     private LocalDateTime retiredDate;
 

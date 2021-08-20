@@ -18,7 +18,7 @@ public class Staff extends BaseTimeEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private StaffRole staffRole;
+    private StaffRole staffRole = StaffRole.STAFF;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "associate_id")
