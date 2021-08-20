@@ -32,7 +32,7 @@ public class Associate extends BaseTimeEntity{
     private String logo;
 
     @Enumerated(EnumType.STRING)
-    private AssociateRound associateRound;
+    private AssociateRound associateRound = AssociateRound.CREATE;
 
     private Double operateFeeRatio;
 

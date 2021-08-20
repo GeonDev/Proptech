@@ -17,7 +17,7 @@ public class OwnedHistory extends BaseTimeEntity{
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private OwnedState ownedState;
+    private OwnedState ownedState = OwnedState.OWNED;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
