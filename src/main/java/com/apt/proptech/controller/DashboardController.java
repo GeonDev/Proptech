@@ -36,7 +36,7 @@ public class DashboardController {
 
 
     @GetMapping("/main")
-    public String Dashboard(Model model , @AuthenticationPrincipal PrincipalDetails principal, HttpSession session){
+    public String Dashboard(Model model , HttpSession session){
 
         model.addAttribute("contentName","Dashboard");
         model.addAttribute("dashboardLayout", true);

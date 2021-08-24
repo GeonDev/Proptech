@@ -124,9 +124,9 @@
                         <td>{{ip}} </td>
                         <td>{{isLogin}} </td>
                         <td>
-                            <button  class="btn btn-light" onclick="deleteLoginHistory({{id}})">
+                            <a class="btn btn-light" href="/toolbar/delete-his?id={{id}}">
                                 <i class="far fa-trash-alt"></i>
-                            </button>
+                            </a>
                         </td>
                     </tr>
                 {{/historyList}}
