@@ -41,7 +41,7 @@ public interface AssociateRepository extends JpaRepository<Associate, Long> {
             "\t\tWHEN associate_round = 'SELECTION' Then 3\n" +
             "\t\tWHEN associate_round = 'COMPLETION' Then 4\n" +
             "\t\tWHEN associate_round = 'SALE' Then 5\n" +
-            "\t\tWHEN associate_round = 'FINISH' Then 5\n" +
+            "\t\tWHEN associate_round = 'FINISH' Then 6\n" +
             "\t\tEND) /\n" +
             "\t\t(COUNT(*)*6))*100, :round ) persent\t\t\n" +
             "\t\tFROM associate ", nativeQuery = true)

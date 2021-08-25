@@ -198,8 +198,10 @@ public class TableController {
         }
 
         model.addAttribute("accountList" , accountService.getAccountInfo(user) );
-        //금지된 IP를 제외한 전체 출력
-        model.addAttribute("ipList" , loginHistoryService.getLoginHistoryExceptIpChecked(user, IpChecked.BANNED ) );
+        
+        //금지된 IP를 제외한 최근 10개 출력
+        model.addAttribute("ipList" , loginHistoryService.getLoginHistoryExceptIpChecked(user, IpChecked.BANNED, 10) );
+        
         model.addAttribute("historyList" , loginHistoryService.getLoginHistoryInfo(user) );
 
         //모달 페이지 전체를 보낸다.

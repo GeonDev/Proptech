@@ -54,10 +54,12 @@ public class LoginHistoryService {
     }
 
     //특정 IP 상태를 제외한 IP 정보를 위한 메소드
-    public List<LoginHistoryDto> getLoginHistoryExceptIpChecked(User user ,IpChecked ipChecked){
+    public List<LoginHistoryDto> getLoginHistoryExceptIpChecked(User user ,IpChecked ipChecked, int count){
         List<LoginHistoryDto> list = new ArrayList<>();
 
-        List<LoginHistory> temp = loginHistoryRepository.findByUserAndExceptIpChecked(ipChecked, user);
+        //List<LoginHistory> temp = loginHistoryRepository.findByUserAndExceptIpChecked(ipChecked, user);
+
+        List<LoginHistory> temp = loginHistoryRepositorySupport.findLoginHistoryLimitAndOrder(user, ipChecked, "except", count, "desc");
 
         if(temp !=null && !temp.isEmpty() ){
             for( LoginHistory history : temp ){
@@ -70,12 +72,12 @@ public class LoginHistoryService {
 
 
     //특정 IP 정보를 위한 메소드
-    public List<LoginHistoryDto> getLoginHistoryIpChecked(User user ,IpChecked ipChecked){
+    public List<LoginHistoryDto> getLoginHistoryIpChecked(User user ,IpChecked ipChecked, int count){
         List<LoginHistoryDto> list = new ArrayList<>();
 
         //List<LoginHistory> temp = loginHistoryRepository.findByUserAndIpChecked(ipChecked, user);
 
-        List<LoginHistory> temp = loginHistoryRepositorySupport.findLoginHistoryLimitAndOrder(user, ipChecked, "only", 10, "desc" );
+        List<LoginHistory> temp = loginHistoryRepositorySupport.findLoginHistoryLimitAndOrder(user, ipChecked, "only", count, "desc" );
 
         if(temp !=null && !temp.isEmpty() ){
             for( LoginHistory history : temp ){

@@ -52,7 +52,7 @@ public class ToolBarController {
         model.addAttribute("accountList" , accountService.getAccountInfo(user) );
 
         //금지된 IP를 제외한 전체 출력
-        model.addAttribute("ipList" , loginHistoryService.getLoginHistoryExceptIpChecked(user, IpChecked.BANNED ) );
+        model.addAttribute("ipList" , loginHistoryService.getLoginHistoryExceptIpChecked(user, IpChecked.BANNED , 10) );
 
         model.addAttribute("historyList" , loginHistoryService.getLoginHistoryInfo(user) );
 
@@ -70,7 +70,7 @@ public class ToolBarController {
 
         userService.addItem(user);
 
-        return "redirect:/";
+        return  "redirect:/toolbar/user-detail";
     }
 
     @GetMapping("/delete-his")
@@ -79,7 +79,7 @@ public class ToolBarController {
         if(id !=null ){
             loginHistoryService.deleteLoginHistory(Long.parseLong(id));
         }
-
+        //화면 초기화
         return  "redirect:/toolbar/user-detail";
     }
 
