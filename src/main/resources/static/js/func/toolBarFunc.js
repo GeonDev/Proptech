@@ -1,14 +1,14 @@
 
 
 
-function getToolBarModal(type, userName ){
+function getToolBarModal(type, id ){
 
     console.log(type );
     console.log(userName );
     $('#modalBox').modal('show');
 
     if(type == 'profile' ){
-        var urlPath = "/table/user-detail?id=" + userName;
+        var urlPath = "/table/user-detail";
 
     	    $.ajax({
     	     type: 'GET'
@@ -19,8 +19,19 @@ function getToolBarModal(type, userName ){
     	    	 $( "#result .modal-content" ).html(data);
     	     }
     	    });
-    }else if(type == 'log' ){
 
+    }else if(type == 'account' ){
+        var urlPath = "/table/user-account?id=" + id;
+
+            $.ajax({
+             type: 'GET'
+             , url: urlPath
+             , dataType: 'text'
+             , success: function(data) {
+                 console.log(data)
+                 $( "#result .modal-content" ).html(data);
+             }
+            });
     }
 
 }
