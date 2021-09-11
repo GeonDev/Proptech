@@ -1,15 +1,9 @@
 package com.apt.proptech;
 
-import com.apt.proptech.config.TableColumnConfig;
-import com.apt.proptech.domain.ClaimProp;
-import com.apt.proptech.domain.SaleProp;
+import com.apt.proptech.core.config.TableColumnConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import javax.transaction.Transactional;
-import java.util.List;
 
 @SpringBootTest
 class ProptechApplicationTests {
