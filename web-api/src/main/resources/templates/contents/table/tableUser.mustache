@@ -1,0 +1,111 @@
+<div class="card-body pt-0">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+                {{#c0}}
+                    <th>아이디</th>
+                {{/c0}}
+                {{#c1}}
+                    <th>사용자명</th>
+                {{/c1}}
+                {{#c2}}
+                    <th>이메일</th>
+                {{/c2}}
+                {{#c3}}
+                    <th>전화번호</th>
+                {{/c3}}
+                {{#c4}}
+                    <th>가입 형태</th>
+                {{/c4}}
+                {{#c5}}
+                    <th>권한</th>
+                {{/c5}}
+                {{#c6}}
+                    <th>대표 명</th>
+                {{/c6}}
+                {{#c7}}
+                    <th>사업자번호</th>
+                {{/c7}}
+                {{#c8}}
+                    <th>상태</th>
+                {{/c8}}
+                {{#c9}}
+                    <th>가입일</th>
+                {{/c9}}
+                {{#c10}}
+                    <th>로그인 일자</th>
+                {{/c10}}
+                {{#c11}}
+                    <th>탈퇴일</th>
+                {{/c11}}
+                    <th>자세히</th>
+            </tr>
+            </thead>
+
+            <tbody>
+                {{#pages.contents}}
+                    <tr>
+                        {{#c0}}
+                            <td>{{username}}</td>
+                        {{/c0}}
+                        {{#c1}}
+                        <td>{{name}}</td>
+                        {{/c1}}
+                        {{#c2}}
+                            <td>{{email}}</td>
+                        {{/c2}}
+                        {{#c3}}
+                            <td>{{phoneNumber}}</td>
+                        {{/c3}}
+                        {{#c4}}
+                            <td>{{provider}}</td>
+                        {{/c4}}
+                        {{#c5}}
+                            <td>{{role}}</td>
+                        {{/c5}}
+
+                        {{#c6}}
+                            <td>{{ceoName}}</td>
+                        {{/c6}}
+                        {{#c7}}
+                            <td>{{bizNum}}</td>
+                        {{/c7}}
+
+                        {{#c8}}
+                            <td>{{state}}</td>
+                        {{/c8}}
+                        {{#c9}}
+                            <td>{{registerDate}}</td>
+                        {{/c9}}
+                        {{#c10}}
+                            <td>{{lastLoginDate}}</td>
+                        {{/c10}}
+                        {{#c11}}
+                            <td>{{retiredDate}}</td>
+                        {{/c11}}
+                        <td>
+                            <button class="btn btn-info" onclick="getDetailModalView('user' ,{{id}})">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </td>
+                    </tr>
+                {{/pages.contents}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- modal Box -->
+<div id="modalBox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <!-- modal 사이즈 조절 -->
+    <div class="modal-dialog" role="document" style="max-width: 80%; width: 40%; display: table;">
+
+        <div id ="result">
+            <!-- 테이블 내용 불러오기 ajax-->
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+</div>

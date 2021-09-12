@@ -1,0 +1,104 @@
+
+<div class="card-body pt-0">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    {{#c0}}
+                        <th>조합 명</th>
+                    {{/c0}}
+                    {{#c1}}
+                        <th>진행 단계</th>
+                    {{/c1}}
+                    {{#c2}}
+                        <th>설립 일</th>
+                    {{/c2}}
+                    {{#c3}}
+                        <th>종료일(예상)</th>
+                    {{/c3}}
+                    {{#c4}}
+                        <th>종료일(확정)</th>
+                    {{/c4}}
+                    {{#c5}}
+                        <th>운영 수수료(%)</th>
+                    {{/c5}}
+                    {{#c6}}
+                        <th>전체 사업 비용</th>
+                    {{/c6}}
+                    {{#c7}}
+                        <th>전체 모금 금액</th>
+                    {{/c7}}
+                    {{#c8}}
+                        <th>전체 토지 비용</th>
+                    {{/c8}}
+                    {{#c9}}
+                        <th>토지 구매 비용</th>
+                    {{/c9}}
+                    {{#c10}}
+                        <th>시</th>
+                    {{/c10}}
+                        <th>자세히</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {{#pages.contents}}
+                <tr>
+                {{#c0}}
+                    <td>{{name}}</td>
+                {{/c0}}
+                {{#c1}}
+                    <td>{{round}}</td>
+                {{/c1}}
+                {{#c2}}
+                    <td>{{registerDate}}</td>
+                {{/c2}}
+                {{#c3}}
+                    <td>{{expectDate}}</td>
+                {{/c3}}
+                {{#c4}}
+                    <td>{{realDate}}</td>
+                {{/c4}}
+                {{#c5}}
+                    <td>{{feeRatio}}</td>
+                {{/c5}}
+                {{#c6}}
+                    <td>{{totalRequiredPaid}}</td>
+                {{/c6}}
+                {{#c7}}
+                    <td>{{totalPaid}}</td>
+                {{/c7}}
+                {{#c8}}
+                    <td>{{totalPurchaseNeedPaid}}</td>
+                {{/c8}}
+                {{#c9}}
+                    <td>{{totalPurchasePaid}}</td>
+                {{/c9}}
+                {{#c10}}
+                    <td>{{city}}</td>
+                {{/c10}}
+                    <td>
+                        <button class="btn btn-info" onclick="getDetailModalView('associate' ,{{id}})">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </td>
+                </tr>
+            {{/pages.contents}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- modal Box -->
+<div id="modalBox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <!-- modal 사이즈 조절 -->
+    <div class="modal-dialog" role="document" style="max-width: 80%; width: 55%; display: table;">
+
+        <div id ="result">
+            <!-- 테이블 내용 불러오기 ajax-->
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+</div>

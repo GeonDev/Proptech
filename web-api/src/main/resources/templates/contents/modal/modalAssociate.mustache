@@ -1,0 +1,150 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">조합 상세 정보</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+</div>
+
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <img class="img-profile rounded-circle" style="width:200px;" src="{{info.logo}}">
+                </div>
+            </div>
+
+
+            <hr>
+            <div class="row">
+                <table class="table table-borderless">
+
+                    <tbody>
+                    <tr>
+                        <th scope="row"><b>조합명 : </b></th>
+                        <td> {{info.name}} </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><b>설립일 : </b></th>
+                        <td> {{info.registerDate}} </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><b>주소: </b></th>
+                        <td> {{info.city}}&nbsp;{{info.state}}&nbsp;{{info.address}} </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><b>전체 사업금액 : </b></th>
+                        <td> {{info.totalJoinUserCount}} </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><b>전체 가입자 수 : </b></th>
+                        <td> {{info.totalJoinUserCount}} </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><b>진행단계 : </b></th>
+                        <td> {{info.round}} </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><b>모금 현황(%) : </b></th>
+                        <td> {{info.perPaid}} %</td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <hr>
+        <h3> 토지 구매 현황</h3>
+
+        <div class="row" style="overflow-x: hidden; height:150px;">
+            <table class="table table-borderless">
+                <thead>
+                <th>토지 주소</th>
+                <th>우편 번호</th>
+                <th>구입 가격 </th>
+                <th>구매 일 </th>
+                </thead>
+
+                <tbody>
+                {{#purchaseList}}
+                    <tr>
+                        <td>{{address}} </td>
+                        <td>{{zipCode}} </td>
+                        <td>{{price}} </td>
+                        <td>{{buyDate}} </td>
+                    </tr>
+                {{/purchaseList}}
+                </tbody>
+            </table>
+
+        </div>
+
+        <hr>
+
+        <h3> 계약 현황</h3>
+
+        <div class="row" style="overflow-x: hidden; height:150px;">
+            <table class="table table-borderless">
+                <thead>
+                <th>호 </th>
+                <th>계약자 </th>
+                <th>계약 일 </th>
+                <th>가입 회차 </th>
+                <th>요구 금액 </th>
+                <th>요구 횟수 </th>
+                <th>납입 금액 </th>
+                <th>미납 금액 </th>
+                </thead>
+
+                <tbody>
+                {{#propList}}
+                    <tr>
+                        <td>{{address}} </td>
+                        <td>{{owner}} </td>
+                        <td>{{regDate}} </td>
+                        <td>{{regRound}} </td>
+                        <td>{{totalPrice}} </td>
+                        <td>{{priceRound}} </td>
+                        <td>{{payment}} </td>
+                        <td>{{overdue}} </td>
+                    </tr>
+                {{/propList}}
+                </tbody>
+            </table>
+
+        </div>
+        <hr>
+
+        <h3> 스탭 리스트</h3>
+
+        <div class="row" style="overflow-x: hidden; height:150px;">
+            <table class="table table-borderless">
+                <thead>
+                <th>이름</th>
+                <th>직책</th>
+                <th>연락처</th>
+                <th>등록일 </th>
+                </thead>
+
+                <tbody>
+                {{#staffList}}
+                    <tr>
+                        <td>{{name}} </td>
+                        <td>{{role}} </td>
+                        <td>{{phoneNumber}} </td>
+                        <td>{{regDate}} </td>
+                    </tr>
+                {{/staffList}}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+

@@ -1,0 +1,177 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Filter</h6>
+        </div>
+        <div class="cord-body">
+            <div class="row ml-2">
+
+                <!-- GSON :  날짜 선택 부분 -->
+                <div class="col-xl-5 col-md-6">
+                    <div class="alert ">
+                        <div class="row">
+                            <b>DATE :</b>&nbsp;&nbsp;
+                            <div class="form-group mb-0" style="width:30%">
+                                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                    <input type="text"  class="form-control datetimepicker-input" data-target="#datetimepicker1" value="{{startDate}}">
+                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            &nbsp;&nbsp;<b>~</b>&nbsp;&nbsp;
+                            <div class="form-group mb-0" style="width:30%">
+                                <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                    <input type="text" style="width:50%" class="form-control datetimepicker-input" data-target="#datetimepicker2" value="{{endDate}}">
+                                    <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- GSON :  검색 타입 선택 부분  -->
+                <div class=" col-xl-2 col-md-6">
+                    <div class="alert ">
+                        <b>TYPE :</b>&nbsp;&nbsp;
+                        <select class="selectpicker" id="inputGroupSelect1" data-width="fit">
+                            <option value="" selected>Choose</option>
+
+                            {{#pages.searchType}}
+                                <option value="{{.}}">{{.}}</option>
+                            {{/pages.searchType}}
+                        </select>
+                    </div>
+                </div>
+
+                <!-- GSON :  페이지 당 개수 선택  -->
+                <div class=" col-xl-2 col-md-6">
+                    <div class="alert ">
+                        <b>SIZE :</b>&nbsp;&nbsp;
+                        <select class="selectpicker" id="inputGroupSelect2" data-width="fit">
+                            <option value="10" selected>10</option>
+                            <option value="25" >25</option>
+                            <option value="50" >50</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- GSON :  표시할 칼럼 선택 -->
+        <div class="row ml-2">
+            <div class="col-xl-5 col-md-6">
+                <div class="alert ">
+                    <div class="row">
+                        <b>COLUMN :</b>&nbsp;&nbsp;
+                        <select class="selectpicker" multiple data-actions-box="true" id="inputGroupSelect3" data-width="50%">
+                            {{#pages.columnTitles}}
+                                <option value="{{order}}" selected>{{title}}</option>
+                            {{/pages.columnTitles}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- GSON :  검색어 입력 & 검색 요청  -->
+            <div class="col-xl-3 col-md-6">
+                <div class="alert ">
+                    <div class="row">
+                        <b>KEYWORD :</b>&nbsp;&nbsp;
+                        <input id="inputGroupText1" style="width:50%;" type="text" class="form-control" aria-label="Text input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-2 col-md-6">
+                <div class="alert ">
+                    <button id="tableSearchBtn" class="btn btn-primary" type="button" onclick="getTablePage(1)">
+                        <i class="fas fa-search fa-sm"> Search</i>
+                    </button>
+
+                    <button id="tableExcelBtn" class="btn btn-light" type="button" onclick="getTableExcel()">
+                        <i class="fas fa-download fa-sm"> Excel</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- DataTales -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Data Tables</h6>
+        </div>
+
+        <div class ="row">
+            <div class ="col-sm-12 col-md-9">
+                <p class="pl-3 pb-0 pt-3">{{pages.currentPage}} to {{pages.totalPages}} of {{pages.totalElements}} entries</p>
+            </div>
+        </div>
+
+
+        <!-- 테이블 내용 불러오기 -->
+        {{#tableUser}}
+            {{>contents/table/tableUser}}
+        {{/tableUser}}
+
+        {{#tableAssociate}}
+            {{>contents/table/tableAssociate}}
+        {{/tableAssociate}}
+
+    </div>
+
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+
+            {{#isFirstPage}}
+            <li class="page-item disabled">
+            {{/isFirstPage}}
+
+            {{^isFirstPage}}
+            <li class="page-item ">
+            {{/isFirstPage}}
+            <a class="page-link" href="javascript:getTablePage({{pages.prePageNum}});" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+
+
+            {{#pages.pageNumbers}}
+                <li class="page-item"><a class="page-link" href="javascript:getTablePage({{.}});" >{{.}}</a></li>
+            {{/pages.pageNumbers}}
+
+
+            {{#isLastPage}}
+            <li class="page-item disabled">
+            {{/isLastPage}}
+
+            {{^isLastPage}}
+            <li class="page-item ">
+            {{/isLastPage}}
+            <a class="page-link" href="javascript:getTablePage({{pages.nextPageNum}});" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+        </ul>
+    </nav>
+
+</div>
+<!-- /.container-fluid -->
+
+
+
