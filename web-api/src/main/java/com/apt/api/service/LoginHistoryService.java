@@ -11,6 +11,7 @@ import com.apt.api.repository.support.LoginHistoryRepositorySupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -39,6 +40,7 @@ public class LoginHistoryService {
         return loginHistoryRepository.deleteAllUserLoginHistory(date);
     }
 
+    @Cacheable(value = "loginHistory")
     public List<LoginHistoryDto> getLoginHistoryInfo(User user ){
         List<LoginHistoryDto> list = new ArrayList<>();
 
@@ -66,7 +68,6 @@ public class LoginHistoryService {
                 list.add( new LoginHistoryDto(history));
             }
         }
-
         return  list;
     }
 

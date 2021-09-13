@@ -6,6 +6,7 @@ import com.apt.api.domain.User;
 import com.apt.api.domain.dto.AccountDto;
 import com.apt.api.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
+    @Cacheable(value = "account", key = "#user")
     public List<AccountDto> getAccountInfo(User user){
         List<AccountDto> list = new ArrayList<>();
 
